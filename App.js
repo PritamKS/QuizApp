@@ -16,6 +16,12 @@ import {
     ReloadInstructions,
   } from 'react-native/Libraries/NewAppScreen';
 
+  import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import Thunk from 'redux-thunk';
+
+// const store = createStore(rootReducer, applyMiddleware(Thunk));
+
   const Section = ({children,title}) => {
     const isDarkMode = useColorScheme() === 'dark';
     return (
