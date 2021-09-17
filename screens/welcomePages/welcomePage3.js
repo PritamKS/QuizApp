@@ -2,7 +2,7 @@ import React from "react";
 import { View, Image, Text, TouchableOpacity } from "react-native";
 import styles from './welcomePageStyle';
 
-const WelcomePage3 = () => {
+const WelcomePage3 = ({nextPageClickHandler}) => {
   return (
     <View style={styles.container}>
       <Image source={require("../../assets/welcome3.png")} style={styles.img} />
@@ -11,8 +11,8 @@ const WelcomePage3 = () => {
         <Text style={styles.message}>
           Deposit and withdrawal your winning within few seconds with Paytm, UPI etc.
         </Text>
-        <TouchableOpacity style={styles.loginBtn}>
-          <Text style={styles.loginTxt}>Get Started</Text>
+        <TouchableOpacity style={styles.loginBtn} onPress={nextPageClickHandler}>
+          <Text style={styles.loginTxt}>Lets Play</Text>
         </TouchableOpacity>
       </View>
     </View>

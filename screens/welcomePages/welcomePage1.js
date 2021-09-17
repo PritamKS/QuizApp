@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Image, Text, TouchableOpacity } from 'react-native';
 import styles from './welcomePageStyle';
 
-const WelcomePage1 = () => {
+const WelcomePage1 = ({nextPageClickHandler}) => {
   return (
     <View style={styles.container}>
       <Image source={require('../../assets/welcome1.png')} style={styles.img} />
@@ -11,8 +11,8 @@ const WelcomePage1 = () => {
         <Text style={styles.message}>
           India's best peer to peer gaming platform.
         </Text>
-        <TouchableOpacity style={styles.loginBtn}>
-          <Text style={styles.loginTxt}>Get Started</Text>
+        <TouchableOpacity style={styles.loginBtn} onPress={nextPageClickHandler}>
+          <Text style={styles.loginTxt}>Swipe To Left -></Text>
         </TouchableOpacity>
       </View>
     </View>

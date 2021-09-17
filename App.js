@@ -9,14 +9,14 @@ import {
   View,
 } from 'react-native';
 import {
-    Colors,
-    DebugInstructions,
-    Header,
-    LearnMoreLinks,
-    ReloadInstructions,
-  } from 'react-native/Libraries/NewAppScreen';
+  Colors,
+  DebugInstructions,
+  Header,
+  LearnMoreLinks,
+  ReloadInstructions,
+} from 'react-native/Libraries/NewAppScreen';
 
-  import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import Thunk from 'redux-thunk';
 
@@ -24,12 +24,18 @@ import Thunk from 'redux-thunk';
 
 import WelcomePages from './screens/welcomePages/welcomePages';
 // import Dashboard from './src/dashboard/dashboard';
-
+import Tabbar from './screens/TabBar';
 export default function App() {
   return (
     <View style={styles.container}>
-      <WelcomePages />
+      {/* <WelcomePages /> */}
       {/* <Dashboard /> */}
+      <Tabbar
+        tabBarContainerBackground='#1C39BB'
+        tabBarBackground='#FFFFFF'
+        activeTabBackground='#1C39BB'
+        onTabChange={() => console.log('Tab changed')}
+      />
     </View>
   );
 }

@@ -33,21 +33,6 @@ export default StyleSheet.create({
     fontSize: 17,
     color: '#91b4ed',
   },
-  submit: {
-    marginRight: 40,
-    marginLeft: 40,
-    marginTop: 10,
-    paddingTop: 20,
-    paddingBottom: 20,
-    backgroundColor: '#68a0cf',
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: '#fff',
-  },
-  submitText: {
-    color: '#fff',
-    textAlign: 'center',
-  },
   loginBtn: {
     width: "40%",
     borderRadius: 15,
@@ -60,5 +45,5 @@ export default StyleSheet.create({
   },
   loginTxt: {
     color: "white",
-  }
+  },
 });
