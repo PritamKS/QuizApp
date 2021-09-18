@@ -2,7 +2,6 @@ import * as React from "react";
 import {
   View, StyleSheet, TouchableWithoutFeedback, Animated, Dimensions, Text
 } from "react-native";
-import Dashboard from './dashboard/dashboard';
 let { width } = Dimensions.get("window");
 // width = width
 var prevIndex = 0
@@ -46,17 +45,10 @@ export default class StaticTabbar extends React.PureComponent {
     }
   }
 
-  onTabChange = (index) => {
-    console.log(index);
-    if (prevIndex !== index) {
-      { index === 0 && <Dashboard /> }
-
-    }
-  }
 
   render() {
-    const { onPress, onTabChange } = this;
-    const { tabs, value, activeTabBackground, labelStyle, Hvalue, containerWidth } = this.props;
+    const { onPress } = this;
+    const { tabs, value, activeTabBackground, labelStyle, Hvalue, containerWidth, onTabChange } = this.props;
     let customWidth = containerWidth ? containerWidth : width
     let mergeLabelStyle = { ...styles.labelStyle, ...labelStyle }
     let newActiveIcon = [styles.activeIcon, { backgroundColor: activeTabBackground ? activeTabBackground : '#fff' }]

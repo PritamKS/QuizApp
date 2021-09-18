@@ -1,20 +1,13 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import LinearGradient from 'react-native-linear-gradient';
 
 const QuizBoxCard = ({ subject }) => {
   return (
     <TouchableOpacity
       style={styles.quizBox}
     >
-      {/* <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={styles.linearGradient}> */}
       <View style={styles.quizBoxImage} />
       <Text style={styles.quizBoxDetails}>{subject}</Text>
-      <View style={styles.playIcon}>
-        <Icon name="play" color="#900" size={30} />
-      </View>
-      {/* </LinearGradient> */}
     </TouchableOpacity>
   );
 }
@@ -25,7 +18,7 @@ const styles = StyleSheet.create({
   quizBox: {
     width: "90%",
     height: "26%",
-    backgroundColor: '#0066cc',
+    backgroundColor: '#1C39BB',
     borderRadius: 20,
     flexDirection: "row",
     justifyContent: "space-evenly",
@@ -46,10 +39,9 @@ const styles = StyleSheet.create({
   },
   quizBoxDetails: {
     width: "60%",
-    height: "50%"
+    height: "50%",
+    color: 'white',
   },
-  playIcon: {
-  }
 });
 
 export default QuizBoxCard

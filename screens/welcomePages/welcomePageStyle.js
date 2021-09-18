@@ -14,7 +14,7 @@ export default StyleSheet.create({
   textArea: {
     width: '100%',
     height: '40%',
-    backgroundColor: '#0066cc',
+    backgroundColor: '#1C39BB',
     borderTopRightRadius: 50,
     borderTopLeftRadius: 50,
   },

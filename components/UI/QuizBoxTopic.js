@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   quizBox: {
     width: "90%",
     height: "26%",
-    backgroundColor: '#0066cc',
+    backgroundColor: '#1C39BB',
     borderRadius: 20,
     flexDirection: "row",
     justifyContent: "space-evenly",

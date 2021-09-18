@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   box: {
     width: "25%",
     height: "100%",
-    backgroundColor: '#0066cc',
+    backgroundColor: '#1C39BB',
     borderRadius: 20,
     flexDirection: "column",
     justifyContent: "space-evenly",

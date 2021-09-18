@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import * as shape from 'd3-shape';
 import Svg, { Path } from 'react-native-svg';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import StaticTabbar from './StaticTabbar';
 
 const AnimatedSvg = Animated.createAnimatedComponent(Svg);
@@ -57,6 +56,7 @@ export default class Tabbar extends React.PureComponent {
 
   render() {
     const {
+      tabs,
       containerTopRightRadius,
       tabBarBackground,
       tabBarContainerBackground,
@@ -66,28 +66,6 @@ export default class Tabbar extends React.PureComponent {
       containerBottomLeftRadius,
       containerBottomRightRadius
     } = this.props;
-    const tabs = [
-      {
-        activeIcon: <Icon name="home" color="#fff" size={25} />,
-        inactiveIcon: <Icon name="home" color="#fff" size={25} />
-      },
-      {
-        activeIcon: <Icon name="list-ul" color="#fff" size={25} />,
-        inactiveIcon: <Icon name="list-ul" color="#fff" size={25} />
-      },
-      {
-        activeIcon: <Icon name="camera" color="#fff" size={25} />,
-        inactiveIcon: <Icon name="camera" color="#fff" size={25} />
-      },
-      {
-        activeIcon: <Icon name="bell" color="#fff" size={25} />,
-        inactiveIcon: <Icon name="bell" color="#fff" size={25} />
-      },
-      {
-        activeIcon: <Icon name="user" color="#fff" size={25} />,
-        inactiveIcon: <Icon name="user" color="#fff" size={25} />
-      },
-    ];
     let CustomWidth = containerWidth ? containerWidth : width;
     const { value } = this;
     const translateX = value.interpolate({
@@ -174,9 +152,3 @@ export default class Tabbar extends React.PureComponent {
     }
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    width: Dimensions.get('window').width,
-  },
-});

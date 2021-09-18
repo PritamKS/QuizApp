@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
   },
   quizHeading: {
-    color: '#0066cc',
+    color: '#1C39BB',
     fontSize: 20,
     fontWeight: 'bold',
     alignSelf: 'flex-start',

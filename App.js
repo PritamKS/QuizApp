@@ -19,23 +19,12 @@ import {
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import Thunk from 'redux-thunk';
-
-// const store = createStore(rootReducer, applyMiddleware(Thunk));
-
-import WelcomePages from './screens/welcomePages/welcomePages';
-// import Dashboard from './src/dashboard/dashboard';
-import Tabbar from './screens/TabBar';
+// import Tabbar from './screens/TabBar';
+import TabNav from './components/UI/TabNav';
 export default function App() {
   return (
     <View style={styles.container}>
-      {/* <WelcomePages /> */}
-      {/* <Dashboard /> */}
-      <Tabbar
-        tabBarContainerBackground='#1C39BB'
-        tabBarBackground='#FFFFFF'
-        activeTabBackground='#1C39BB'
-        onTabChange={() => console.log('Tab changed')}
-      />
+      <TabNav />
     </View>
   );
 }
