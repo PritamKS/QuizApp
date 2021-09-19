@@ -11,7 +11,9 @@ const QuizBoxCard = ({ index, subject, questCount }) => {
         <View style={styles.infoElementStyle} >
           <Text style={styles.subject}>{subject}</Text>
           <Text style={styles.questCount}>{questCount} Questions</Text>
-          <Icon name="play-circle" color="#fff" size={35} style={styles.playIcon} />
+          <View style={styles.iconView}>
+            <Icon name="play-circle" color="#fff" size={35} style={styles.playIcon} />
+          </View>
         </View>
       </LinearGradient>
     </TouchableOpacity>
@@ -59,11 +61,17 @@ const styles = StyleSheet.create({
     paddingLeft: "5%"
   },
   playIcon: {
-    position: "absolute",
-    top: "51%",
-    right: "15%",
     color: "#ff0a27",
   },
+  iconView: {
+    position: "absolute",
+    backgroundColor: "white",
+    width: 30,
+    height: 33,
+    top: "50%",
+    right: "15%",
+    borderRadius: 50,
+  }
 });
 
 export default QuizBoxCard

@@ -15,12 +15,12 @@ export default class StaticTabbar extends React.PureComponent {
   }
 
 
-  onPress = (index, tab) => {
-
+  onPress = (index) => {
     if (prevIndex !== index) {
       const { value, tabs, containerWidth } = this.props;
       let customWidth = containerWidth ? containerWidth : width
       const tabWidth = customWidth / tabs.length;
+
       Animated.sequence([
         Animated.parallel(
           this.values.map(v => Animated.timing(v, {
@@ -34,12 +34,16 @@ export default class StaticTabbar extends React.PureComponent {
           useNativeDriver: true,
           bounciness: 2,
         }),
-        Animated.timing(this.values[index], {
-          toValue: 1,
-          useNativeDriver: true,
-          duration: 750
-        })
-
+        Animated.parallel([
+          Animated.spring(value, {
+            toValue: tabWidth * index,
+            useNativeDriver: true,
+          }),
+          Animated.spring(this.values[index], {
+            toValue: 1,
+            useNativeDriver: true,
+          }),
+        ]),
       ]).start();
       prevIndex = index
     }
@@ -61,6 +65,12 @@ export default class StaticTabbar extends React.PureComponent {
             const opacity = value.interpolate({
               inputRange: [cursor - tabWidth, cursor, cursor + tabWidth],
               outputRange: [1, 0, 1],
+              extrapolate: "clamp",
+            });
+
+            const translateY = this.values[key].interpolate({
+              inputRange: [0, 1],
+              outputRange: [64, 0],
               extrapolate: "clamp",
             });
 
@@ -88,6 +98,7 @@ export default class StaticTabbar extends React.PureComponent {
                     justifyContent: "center",
                     alignItems: "center",
                     opacity: opacity1,
+                    transform: [{ translateY }],
                     zIndex: 50,
                   }}
                 >
@@ -123,12 +134,5 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     justifyContent: "center",
     alignItems: "center",
-
   },
-  labelStyle: {
-    fontSize: 11,
-    fontWeight: '600',
-    // marginTop: 3,
-    color: '#000'
-  }
 });
