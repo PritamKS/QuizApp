@@ -35,7 +35,6 @@ const tabData = [
 
 const TabNav = () => {
   const [tabs, setTabs] = useState(tabData)
-  const [bgColor, setBgColor] = useState('#FFC0C7')
   const [screen, setScreen] = useState(0)
 
   const onTabChange = (key) => {
@@ -70,13 +69,12 @@ const TabNav = () => {
       {screen === 4 && <Text>Account</Text>}
       <Tabbar
         tabs={tabs}
-        tabBarBackground={bgColor}
         onTabChange={(item) => onTabChange(item)}
         tabBarContainerBackground='#1C39BB'
         tabBarBackground='#FFFFFF'
         activeTabBackground='#1C39BB'
       />
-    </View >
+    </View  >
   )
 }
 
@@ -85,7 +83,7 @@ export default TabNav
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center'
+    justifyContent: 'center',
+    alignItems: 'center'
   },
 })

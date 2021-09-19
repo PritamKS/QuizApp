@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 const StatsCard = (children) => {
   return (
     <View style={styles.box}>
-      <View style={styles.statsAPI} />
+      <Image source={require('../../assets/smileys.png')} style={styles.statsAPI} />
       <Text style={styles.statsTxt}>{children.text}</Text>
     </View>
   );
@@ -12,7 +12,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-
   box: {
     width: "25%",
     height: "100%",

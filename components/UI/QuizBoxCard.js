@@ -1,13 +1,16 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Dimensions, Image } from 'react-native';
 
-const QuizBoxCard = ({ subject }) => {
+const QuizBoxCard = ({ index, subject, questCount }) => {
   return (
-    <TouchableOpacity
-      style={styles.quizBox}
-    >
-      <View style={styles.quizBoxImage} />
-      <Text style={styles.quizBoxDetails}>{subject}</Text>
+    <TouchableOpacity style={styles.quizBox} id={index}>
+      <View style={styles.elementStyle}>
+        <Image source={require('../../assets/quiz.png')} style={styles.quizBoxImage} />
+        <View style={styles.infoElementStyle} >
+          <Text style={styles.quizBoxDetails}>{subject}</Text>
+          <Text style={styles.quizBoxDetails}>{questCount} Questions</Text>
+        </View>
+      </View>
     </TouchableOpacity>
   );
 }
@@ -16,32 +19,33 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   quizBox: {
-    width: "90%",
-    height: "26%",
+    width: Dimensions.get('window').width - 30,
+    height: 90,
+    padding: 20,
+    marginTop: 20,
     backgroundColor: '#1C39BB',
     borderRadius: 20,
     flexDirection: "row",
     justifyContent: "space-evenly",
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#ddd',
-    borderBottomWidth: 0,
-    shadowColor: '#000000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.9,
-    shadowRadius: 3,
-    elevation: 3,
   },
   quizBoxImage: {
-    width: "15%",
-    height: "50%",
-    backgroundColor: "red"
+    width: "25%",
+    height: 50,
+    resizeMode: 'contain',
   },
   quizBoxDetails: {
     width: "60%",
     height: "50%",
     color: 'white',
   },
+  elementStyle: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    flex: 1
+  },
+  infoElementStyle: {
+    width: "70%"
+  }
 });
 
 export default QuizBoxCard

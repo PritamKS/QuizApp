@@ -19,12 +19,11 @@ import {
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import Thunk from 'redux-thunk';
-// import Tabbar from './screens/TabBar';
-import TabNav from './components/UI/TabNav';
+import WelcomePages from './screens/welcomePages/welcomePages';
 export default function App() {
   return (
     <View style={styles.container}>
-      <TabNav />
+      <WelcomePages />
     </View>
   );
 }
@@ -35,6 +34,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: StatusBar.currentHeight,
+    //paddingTop: StatusBar.currentHeight,
   },
 });
