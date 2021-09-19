@@ -9,15 +9,15 @@ import TabNav from '../../components/UI/TabNav';
 const WelcomePages = () => {
   const [screen, setScreen] = useState(0);
   const nextPageClickHandler = () => setScreen(screen + 1);
-  const onSwipeLeft = () => {
+  const onSwipeLeft = (gestureState) => {
     if (screen == 2) {
       setScreen(2);
     } else {
-      setScreen(prevState => prevState + 1)
+      setScreen(prevState => prevState + 1);
     }
   }
 
-  const onSwipeRight = () => {
+  const onSwipeRight = (gestureState) => {
     if (screen == 0) {
       setScreen(0);
     } else {
@@ -28,8 +28,8 @@ const WelcomePages = () => {
 
   return (
     <GestureRecognizer
-      onSwipeLeft={state => onSwipeLeft(state)}
-      onSwipeRight={state => onSwipeRight(state)}
+      onSwipeLeft={screen => onSwipeLeft(screen)}
+      onSwipeRight={screen => onSwipeRight(screen)}
       style={styles.gestContainer}>
       {screen === 0 && <WelcomePage1 nextPageClickHandler={nextPageClickHandler} />}
       {screen === 1 && <WelcomePage2 nextPageClickHandler={nextPageClickHandler} />}

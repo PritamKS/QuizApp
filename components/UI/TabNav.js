@@ -70,9 +70,9 @@ const TabNav = () => {
       <Tabbar
         tabs={tabs}
         onTabChange={(item) => onTabChange(item)}
-        tabBarContainerBackground='#1C39BB'
+        tabBarContainerBackground='#2a1bfa'
         tabBarBackground='#FFFFFF'
-        activeTabBackground='#1C39BB'
+        activeTabBackground='#2a1bfa'
       />
     </View  >
   )

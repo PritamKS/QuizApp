@@ -27,35 +27,15 @@ const DATA = [
     subject: 'Hindi',
     questCount: 4,
   },
-  {
-    id: 5,
-    subject: 'Maths',
-    questCount: 5,
-  },
-  {
-    id: 6,
-    subject: 'Science',
-    questCount: 6,
-  },
-  {
-    id: 7,
-    subject: 'English',
-    questCount: 7,
-  },
-  {
-    id: 8,
-    subject: 'Hindi',
-    questCount: 4,
-  },
 ];
 
 const Dashboard = () => {
   return (
     <View style={styles.main}>
       <Header points="1K" />
-      <ScrollView style={styles.container}>
+      <ScrollView>
         <View style={styles.quiz}>
-          <Banner infoString="50% Off Get Premium" />
+          <Banner infoString="50% Off Get Premium!" />
         </View>
         <View style={styles.stats}>
           <StatsCard text="Ranked" />
@@ -74,15 +54,12 @@ const Dashboard = () => {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   stats: {
     width: "100%",
-    height: 130,
+    height: "20%",
     flexDirection: "row",
-    justifyContent: "space-around",
-    marginTop: 20
+    justifyContent: "space-evenly",
+    marginTop: 10
   },
   quizHeading: {
     color: '#1C39BB',
@@ -90,14 +67,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     alignSelf: 'flex-start',
     paddingLeft: '5%',
-    marginTop: 20,
+    marginTop: "5%",
   },
   quiz: {
-    marginTop: 5,
     alignItems: 'center',
   },
   main: {
-    paddingBottom: 80
+    paddingBottom: "14%",
   }
 });
 
