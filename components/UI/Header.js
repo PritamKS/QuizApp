@@ -17,7 +17,7 @@ const Header = ({ points }) => {
 const styles = StyleSheet.create({
   header: {
     width: Dimensions.get('window').width,
-    height: "9%",
+    height: "7%",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",

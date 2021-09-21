@@ -1,15 +1,15 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
-import QuizBoxTopic from '../../components/UI/QuizBoxTopic';
+import QuizBoxTopic from './QuizBoxTopic';
 
 const SubjectwiseQuestionBox = () => {
   return (
     <View style={styles.container}>
       <View style={styles.quiz}>
-        <QuizBoxTopic topic="Science" amount="20rs" questionCount="4 Questions" />
-        <QuizBoxTopic topic="Science" amount="20rs" questionCount="4 Questions" />
-        <QuizBoxTopic topic="Science" amount="20rs" questionCount="4 Questions" />
+        <QuizBoxTopic topic="Science Quiz" amount="20.00" questionCount="4 Questions" />
+        <QuizBoxTopic topic="Science Quiz" amount="20.00" questionCount="4 Questions" />
+        <QuizBoxTopic topic="Science Quiz" amount="20.00" questionCount="4 Questions" />
       </View>
     </View>
   );

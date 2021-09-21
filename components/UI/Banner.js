@@ -12,7 +12,7 @@ const Banner = ({ infoString }) => {
             <Text style={styles.getNowText}>Get Now</Text>
           </TouchableOpacity>
         </View>
-        <Image source={require('../../assets/quiz.png')} style={styles.quizBoxImage} />
+        <Image source={require('../../assets/images/quiz.png')} style={styles.quizBoxImage} />
       </View>
     </LinearGradient>
   );

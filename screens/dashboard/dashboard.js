@@ -1,10 +1,13 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { createStackNavigator } from "@react-navigation/stack";
 
 import StatsCard from '../../components/UI/StatsCard';
 import QuizBoxCard from '../../components/UI/QuizBoxCard';
 import Banner from '../../components/UI/Banner';
 import Header from '../../components/UI/Header';
+import SubjectwiseQuestionBox from '../../components/UI/SubjectwiseQuestionBox';
+const Stack = createStackNavigator();
 
 const DATA = [
   {
@@ -31,6 +34,7 @@ const DATA = [
 
 const Dashboard = () => {
   return (
+
     <View style={styles.main}>
       <Header points="1K" />
       <ScrollView>
@@ -50,6 +54,7 @@ const Dashboard = () => {
         </View>
       </ScrollView>
     </View>
+
   );
 }
 

@@ -3,11 +3,14 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+import { useNavigation } from '@react-navigation/native';
+
 const QuizBoxCard = ({ index, subject, questCount }) => {
+  const navigation = useNavigation();
   return (
-    <TouchableOpacity id={index}>
+    <TouchableOpacity id={index} onPress={() => navigation.navigate('SubjectwiseQuestionBox')}>
       <LinearGradient style={styles.quizBox} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={['#2a1bfa', '#0420db', '#2a1bfa']}>
-        <Image source={require('../../assets/quiz.png')} style={styles.quizBoxImage} />
+        <Image source={require('../../assets/images/quiz.png')} style={styles.quizBoxImage} />
         <View style={styles.infoElementStyle} >
           <Text style={styles.subject}>{subject}</Text>
           <Text style={styles.questCount}>{questCount} Questions</Text>

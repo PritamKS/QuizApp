@@ -1,39 +1,20 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from "@react-navigation/stack";
+import OnBoarding from "./screens/OnBoarding/OnBoarding";
+import TabNav from './components/UI/TabNav';
+import SubjectwiseQuestionBox from './components/UI/SubjectwiseQuestionBox';
+const Stack = createStackNavigator();
 
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-import { Provider } from 'react-redux';
-import Thunk from 'redux-thunk';
-import WelcomePages from './screens/welcomePages/welcomePages';
 export default function App() {
   return (
-    <View style={styles.container}>
-      <WelcomePages />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="OnBoarding">
+        <Stack.Screen name="OnBoarding" component={OnBoarding} options={{ headerShown: false }} />
+        <Stack.Screen name="TabNav" component={TabNav} options={{ headerShown: false }} />
+        <Stack.Screen name="SubjectwiseQuestionBox" component={SubjectwiseQuestionBox} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    //paddingTop: StatusBar.currentHeight,
-  },
-});

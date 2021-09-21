@@ -5,7 +5,7 @@ import LinearGradient from 'react-native-linear-gradient';
 const StatsCard = (children) => {
   return (
     <LinearGradient style={styles.box} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={['#2a1bfa', '#0420db', '#2a1bfa']}>
-      <Image source={require('../../assets/smileys.png')} style={styles.statsAPI} />
+      <Image source={require('../../assets/images/smileys.png')} style={styles.statsAPI} />
       <Text style={styles.statsTxt}>{children.text}</Text>
     </LinearGradient>
   );

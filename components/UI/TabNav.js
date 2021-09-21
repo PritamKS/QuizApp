@@ -3,7 +3,7 @@ import { StyleSheet, View, Text } from 'react-native'
 import Tabbar from "../../screens/TabBar";
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import Dashboard from '../../screens/dashboard/dashboard'
+import Dashboard from '../../screens/Dashboard/Dashboard'
 
 const tabData = [
   {
@@ -74,7 +74,7 @@ const TabNav = () => {
         tabBarBackground='#FFFFFF'
         activeTabBackground='#2a1bfa'
       />
-    </View  >
+    </View >
   )
 }
 
