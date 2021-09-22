@@ -1,40 +1,46 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
-import { createStackNavigator } from "@react-navigation/stack";
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
 import StatsCard from '../../components/UI/StatsCard';
 import QuizBoxCard from '../../components/UI/QuizBoxCard';
 import Banner from '../../components/UI/Banner';
 import Header from '../../components/UI/Header';
-import SubjectwiseQuestionBox from '../../components/UI/SubjectwiseQuestionBox';
-const Stack = createStackNavigator();
+import {
+  getQuestionList
+} from './actions';
+import { selectQuestionList } from './selectors';
+// const DATA = [
+//   {
+//     id: 1,
+//     subject: 'Maths',
+//     questCount: 1,
+//   },
+//   {
+//     id: 2,
+//     subject: 'Science',
+//     questCount: 2,
+//   },
+//   {
+//     id: 3,
+//     subject: 'English',
+//     questCount: 3,
+//   },
+//   {
+//     id: 4,
+//     subject: 'Hindi',
+//     questCount: 4,
+//   },
+// ];
 
-const DATA = [
-  {
-    id: 1,
-    subject: 'Maths',
-    questCount: 1,
-  },
-  {
-    id: 2,
-    subject: 'Science',
-    questCount: 2,
-  },
-  {
-    id: 3,
-    subject: 'English',
-    questCount: 3,
-  },
-  {
-    id: 4,
-    subject: 'Hindi',
-    questCount: 4,
-  },
-];
+const Dashboard = props => {
 
-const Dashboard = () => {
+  useEffect(() => {
+    props.getQuestionListData()
+  });
+
   return (
-
     <View style={styles.main}>
       <Header points="1K" />
       <ScrollView>
@@ -48,13 +54,12 @@ const Dashboard = () => {
         </View>
         <Text style={styles.quizHeading}>Today's Quiz</Text>
         <View style={styles.quiz}>
-          {DATA.map((element, index) => {
-            return <QuizBoxCard key={element.id} subject={element.subject} questCount={element.questCount} index={index} />
+          {props.questionList && props.questionList.map((element, index) => {
+            return <QuizBoxCard key={element.id} subject={element.quizname} questCount={element.questioncount} price={element.price} index={index} />
           })}
         </View>
       </ScrollView>
     </View>
-
   );
 }
 
@@ -82,4 +87,14 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Dashboard
+export const mapStateToProps = createStructuredSelector({
+  questionList: selectQuestionList(),
+});
+
+export const mapDispatchToProps = dispatch => {
+  return {
+    getQuestionListData: () =>
+      dispatch(getQuestionList())
+  };
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
