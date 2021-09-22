@@ -1,7 +1,7 @@
 import { fromJS } from 'immutable';
 
 const initialState = fromJS({
-  loading: false,
+  loading: true,
   questionListData: [],
   downloadData: [],
   errorMessage: '',

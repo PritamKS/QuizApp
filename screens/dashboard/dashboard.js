@@ -7,38 +7,17 @@ import StatsCard from '../../components/UI/StatsCard';
 import QuizBoxCard from '../../components/UI/QuizBoxCard';
 import Banner from '../../components/UI/Banner';
 import Header from '../../components/UI/Header';
+import Skeleton from './Skeleton';
 import {
   getQuestionList
 } from './actions';
-import { selectQuestionList } from './selectors';
-// const DATA = [
-//   {
-//     id: 1,
-//     subject: 'Maths',
-//     questCount: 1,
-//   },
-//   {
-//     id: 2,
-//     subject: 'Science',
-//     questCount: 2,
-//   },
-//   {
-//     id: 3,
-//     subject: 'English',
-//     questCount: 3,
-//   },
-//   {
-//     id: 4,
-//     subject: 'Hindi',
-//     questCount: 4,
-//   },
-// ];
+import { selectQuestionList, selectLoadingStatus } from './selectors';
 
 const Dashboard = props => {
 
   useEffect(() => {
     props.getQuestionListData()
-  });
+  }, [props.loading]);
 
   return (
     <View style={styles.main}>
@@ -54,9 +33,9 @@ const Dashboard = props => {
         </View>
         <Text style={styles.quizHeading}>Today's Quiz</Text>
         <View style={styles.quiz}>
-          {props.questionList && props.questionList.map((element, index) => {
+          {!props.loading ? (props.questionList && props.questionList.map((element, index) => {
             return <QuizBoxCard key={element.id} subject={element.quizname} questCount={element.questioncount} price={element.price} index={index} />
-          })}
+          })) : <Skeleton />}
         </View>
       </ScrollView>
     </View>
@@ -66,7 +45,7 @@ const Dashboard = props => {
 const styles = StyleSheet.create({
   stats: {
     width: "100%",
-    height: "20%",
+    height: 120,
     flexDirection: "row",
     justifyContent: "space-evenly",
     marginTop: 10
@@ -89,6 +68,7 @@ const styles = StyleSheet.create({
 
 export const mapStateToProps = createStructuredSelector({
   questionList: selectQuestionList(),
+  loading: selectLoadingStatus()
 });
 
 export const mapDispatchToProps = dispatch => {
