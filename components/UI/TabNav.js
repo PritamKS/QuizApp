@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { StyleSheet, View, Text } from 'react-native'
-import Tabbar from "../../screens/TabBar";
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import Dashboard from '../../screens/Dashboard/Dashboard'
+import Dashboard from '../../screens/Dashboard/Dashboard';
+import Tabbar from "../../screens/TabBar";
 
 const tabData = [
   {

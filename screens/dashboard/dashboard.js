@@ -33,9 +33,13 @@ const Dashboard = props => {
         </View>
         <Text style={styles.quizHeading}>Today's Quiz</Text>
         <View style={styles.quiz}>
-          {!props.loading ? (props.questionList && props.questionList.map((element, index) => {
+          {props.loading && <Skeleton />}
+          {!props.loading && props.questionList.map((element, index) => {
             return <QuizBoxCard key={element.id} subject={element.quizname} questCount={element.questioncount} price={element.price} index={index} />
-          })) : <Skeleton />}
+          })}
+          {/* {!props.loading ? (props.questionList && props.questionList.map((element, index) => {
+            return <QuizBoxCard key={element.id} subject={element.quizname} questCount={element.questioncount} price={element.price} index={index} />
+          })) : <Skeleton />} */}
         </View>
       </ScrollView>
     </View>
