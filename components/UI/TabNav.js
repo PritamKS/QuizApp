@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { StyleSheet, View, Text } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import Dashboard from '../../screens/Dashboard/Dashboard';
+import DashboardContainer from '../../screens/Dashboard/dashboardContainer';
 import Tabbar from "../../screens/TabBar";
 
 const tabData = [
@@ -62,7 +62,7 @@ const TabNav = () => {
 
   return (
     <View style={[styles.container]}>
-      {screen === 0 && <Dashboard />}
+      {screen === 0 && <DashboardContainer />}
       {screen === 1 && <Text>Cricket Trading!</Text>}
       {screen === 2 && <Text>Cricket Stats!</Text>}
       {screen === 3 && <Text>Quiz Stats!</Text>}

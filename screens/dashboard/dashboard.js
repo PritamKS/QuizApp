@@ -1,23 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
 
 import StatsCard from '../../components/UI/StatsCard';
 import QuizBoxCard from '../../components/UI/QuizBoxCard';
 import Banner from '../../components/UI/Banner';
 import Header from '../../components/UI/Header';
 import Skeleton from './Skeleton';
-import {
-  getQuestionList
-} from './actions';
-import { selectQuestionList, selectLoadingStatus } from './selectors';
 
-const Dashboard = props => {
-
-  useEffect(() => {
-    props.getQuestionListData()
-  }, [props.loading]);
+const Dashboard = ({loading,questionList}) => {
 
   return (
     <View style={styles.main}>
@@ -33,13 +23,10 @@ const Dashboard = props => {
         </View>
         <Text style={styles.quizHeading}>Today's Quiz</Text>
         <View style={styles.quiz}>
-          {props.loading && <Skeleton />}
-          {!props.loading && props.questionList.map((element, index) => {
-            return <QuizBoxCard key={element.id} subject={element.quizname} questCount={element.questioncount} price={element.price} index={index} />
+          {loading && <Skeleton />}
+          {!loading && questionList.map((element, index) => {
+            return (<QuizBoxCard key={element.id} subject={element.quizname} questCount={element.questioncount} price={element.price} index={index} />)
           })}
-          {/* {!props.loading ? (props.questionList && props.questionList.map((element, index) => {
-            return <QuizBoxCard key={element.id} subject={element.quizname} questCount={element.questioncount} price={element.price} index={index} />
-          })) : <Skeleton />} */}
         </View>
       </ScrollView>
     </View>
@@ -70,15 +57,5 @@ const styles = StyleSheet.create({
   }
 });
 
-export const mapStateToProps = createStructuredSelector({
-  questionList: selectQuestionList(),
-  loading: selectLoadingStatus()
-});
 
-export const mapDispatchToProps = dispatch => {
-  return {
-    getQuestionListData: () =>
-      dispatch(getQuestionList())
-  };
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+export default Dashboard;
