@@ -1,6 +1,5 @@
 import endpoints from './apiEndpoints';
 
-
 /**
  * @method getApiEndPointsFromStore
  * Takes in key which returns API based on key we send as argument.

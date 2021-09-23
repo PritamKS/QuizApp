@@ -1,4 +1,4 @@
-import { takeLatest, call, put } from 'redux-saga/effects';
+import {takeLatest, call, put} from 'redux-saga/effects';
 
 import ApiService from '../../utils/service';
 import {
@@ -9,14 +9,14 @@ import {
 export function* getQuestionListDisplayData() {
   try {
     const {
-      response: { data, status, error, statusText },
+      response: {data, status, error, statusText},
     } = yield call(ApiService, {
       method: 'GET',
       apiUrl: 'getQuestionList',
     });
     if (status === 200) {
       return yield put(
-        getQuestionListDisplayDataSuccess(status, data.response)
+        getQuestionListDisplayDataSuccess(status, data.response),
       );
     }
     return yield put(getQuestionListDisplayDataError(error));

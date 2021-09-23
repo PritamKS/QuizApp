@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getApiEndPointsFromStore } from './common';
+import {getApiEndPointsFromStore} from './common';
 
 const ApiService = ({
   method = 'GET',
@@ -10,9 +10,9 @@ const ApiService = ({
 }) => {
   const url = getApiEndPointsFromStore(apiUrl) + appendUrl;
   return new Promise((resolve, reject) => {
-    axios({ url, method, data, headers })
+    axios({url, method, data, headers})
       .then(response => {
-        resolve({ response });
+        resolve({response});
       })
       .catch(err => {
         reject(err);

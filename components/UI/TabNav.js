@@ -1,44 +1,44 @@
-import React, { useState } from 'react'
-import { StyleSheet, View, Text } from 'react-native'
+import React, {useState} from 'react';
+import {StyleSheet, View, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import DashboardContainer from '../../screens/Dashboard/dashboardContainer';
-import Tabbar from "../../screens/TabBar";
+import Tabbar from '../../screens/TabBar';
 
 const tabData = [
   {
     key: 1,
     activeIcon: <Icon name="home" color="#fff" size={25} />,
-    inactiveIcon: <Icon name="home" color="#fff" size={25} />
+    inactiveIcon: <Icon name="home" color="#fff" size={25} />,
   },
   {
     key: 2,
     activeIcon: <Icon name="list-ul" color="#fff" size={25} />,
-    inactiveIcon: <Icon name="list-ul" color="#fff" size={25} />
+    inactiveIcon: <Icon name="list-ul" color="#fff" size={25} />,
   },
   {
     key: 3,
     activeIcon: <Icon name="comment" color="#fff" size={25} />,
-    inactiveIcon: <Icon name="comment" color="#fff" size={25} />
+    inactiveIcon: <Icon name="comment" color="#fff" size={25} />,
   },
   {
     key: 4,
     activeIcon: <Icon name="bell" color="#fff" size={25} />,
-    inactiveIcon: <Icon name="bell" color="#fff" size={25} />
+    inactiveIcon: <Icon name="bell" color="#fff" size={25} />,
   },
   {
     key: 5,
     activeIcon: <Icon name="user" color="#fff" size={25} />,
-    inactiveIcon: <Icon name="user" color="#fff" size={25} />
+    inactiveIcon: <Icon name="user" color="#fff" size={25} />,
   },
 ];
 
 const TabNav = () => {
-  const [tabs, setTabs] = useState(tabData)
-  const [screen, setScreen] = useState(0)
+  const [tabs, setTabs] = useState(tabData);
+  const [screen, setScreen] = useState(0);
 
-  const onTabChange = (key) => {
-    let tempTabs = [...tabs]
+  const onTabChange = key => {
+    let tempTabs = [...tabs];
     setTimeout(() => {
       tempTabs.map(() => {
         if (key === 0) {
@@ -51,14 +51,13 @@ const TabNav = () => {
           setScreen(3);
         } else if (key === 4) {
           setScreen(4);
+        } else {
+          return null;
         }
-        else {
-          return null
-        }
-      })
-      setTabs(tempTabs)
+      });
+      setTabs(tempTabs);
     }, 100);
-  }
+  };
 
   return (
     <View style={[styles.container]}>
@@ -69,21 +68,21 @@ const TabNav = () => {
       {screen === 4 && <Text>Account</Text>}
       <Tabbar
         tabs={tabs}
-        onTabChange={(item) => onTabChange(item)}
-        tabBarContainerBackground='#2a1bfa'
-        tabBarBackground='#FFFFFF'
-        activeTabBackground='#2a1bfa'
+        onTabChange={item => onTabChange(item)}
+        tabBarContainerBackground="#2a1bfa"
+        tabBarBackground="#FFFFFF"
+        activeTabBackground="#2a1bfa"
       />
-    </View >
-  )
-}
+    </View>
+  );
+};
 
-export default TabNav
+export default TabNav;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
-})
+});

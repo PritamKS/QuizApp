@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux-immutable';
+import {combineReducers} from 'redux-immutable';
 
 import getQuestionListReducer from './screens/Dashboard/reducer';
 

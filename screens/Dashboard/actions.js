@@ -8,7 +8,7 @@ export function getQuestionListDisplayDataSuccess(success, data) {
   return {
     type: 'getQuestionListDisplayDataSuccess',
     success,
-    data
+    data,
   };
 }
 

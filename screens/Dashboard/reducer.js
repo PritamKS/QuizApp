@@ -1,4 +1,4 @@
-import { fromJS } from 'immutable';
+import {fromJS} from 'immutable';
 
 const initialState = fromJS({
   loading: true,
@@ -10,7 +10,7 @@ const initialState = fromJS({
 
 const getQuestionListReducer = (
   state = initialState,
-  { type, success, error, data }
+  {type, success, error, data},
 ) => {
   switch (type) {
     case 'getQuestionListDisplayDataSuccess':
