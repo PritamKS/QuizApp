@@ -5,9 +5,8 @@ import StatsCard from '../../components/UI/StatsCard';
 import QuizBoxCard from '../../components/UI/QuizBoxCard';
 import Banner from '../../components/UI/Banner';
 import Header from '../../components/UI/Header';
-import Skeleton from './Skeleton';
 
-const Dashboard = ({loading, questionList}) => {
+const Dashboard = ({questionList}) => {
   return (
     <View style={styles.main}>
       <Header points="1K" />
@@ -22,15 +21,14 @@ const Dashboard = ({loading, questionList}) => {
         </View>
         <Text style={styles.quizHeading}>Today's Quiz</Text>
         <View style={styles.quiz}>
-          {loading && <Skeleton />}
-          {!loading &&
-            questionList.map((element, index) => {
+          {questionList &&
+            questionList.map((item, index) => {
               return (
                 <QuizBoxCard
-                  key={element.id}
-                  subject={element.quizname}
-                  questCount={element.questioncount}
-                  price={element.price}
+                  key={item.id}
+                  subject={item.quizname}
+                  questCount={item.questioncount}
+                  price={item.price}
                   index={index}
                 />
               );
@@ -62,6 +60,7 @@ const styles = StyleSheet.create({
   },
   main: {
     paddingBottom: '14%',
+    backgroundColor: 'white',
   },
 });
 

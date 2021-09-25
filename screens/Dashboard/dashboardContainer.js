@@ -9,11 +9,9 @@ import {selectQuestionList, selectLoadingStatus} from './selectors';
 const DashboardContainer = props => {
   useEffect(() => {
     props.getQuestionListData();
-  }, [props.loading]);
+  }, []);
 
-  return (
-    <Dashboard loading={props.loading} questionList={props.questionList} />
-  );
+  return <Dashboard questionList={props.questionList} />;
 };
 
 export const mapStateToProps = createStructuredSelector({

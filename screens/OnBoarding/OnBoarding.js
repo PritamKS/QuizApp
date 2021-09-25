@@ -85,13 +85,13 @@ const OnBoarding = ({navigation}) => {
                 right: 0,
                 backgroundColor: '#1C39BB',
                 width: '100%',
-                height: '35%',
+                height: '30%',
                 borderTopLeftRadius: 50,
                 borderTopRightRadius: 50,
               }}>
               <Text
                 style={{
-                  ...FONTS.h1,
+                  ...FONTS.h2,
                   color: 'white',
                   textAlign: 'center',
                   paddingTop: '5%',
@@ -105,6 +105,8 @@ const OnBoarding = ({navigation}) => {
                   textAlign: 'center',
                   marginTop: SIZES.base,
                   color: '#91b4ed',
+                  marginLeft: '5%',
+                  marginRight: '5%',
                 }}>
                 {item.description}
               </Text>
@@ -115,8 +117,8 @@ const OnBoarding = ({navigation}) => {
                 position: 'absolute',
                 right: 0,
                 bottom: 0,
-                width: 150,
-                height: 60,
+                width: 130,
+                height: 40,
                 paddingLeft: 20,
                 justifyContent: 'center',
                 borderTopLeftRadius: 30,
@@ -126,7 +128,7 @@ const OnBoarding = ({navigation}) => {
                 backgroundColor: 'orange',
               }}
               onPress={() => index === 2 && navigation.navigate('TabNav')}>
-              <Text style={{...FONTS.h3, color: COLORS.white}}>
+              <Text style={{...FONTS.h4, color: COLORS.white}}>
                 {screenCount(index) ? "Let's Play" : 'Swipe to Left ->'}
               </Text>
             </TouchableOpacity>
@@ -193,7 +195,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: SIZES.padding / 2,
-    marginBottom: SIZES.padding * 6,
+    marginBottom: SIZES.padding * 4,
     height: SIZES.padding,
   },
   dot: {
