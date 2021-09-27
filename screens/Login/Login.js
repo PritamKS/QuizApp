@@ -3,7 +3,7 @@ import {
   View,
   TextInput,
   StyleSheet,
-  Image,
+  ImageBackground,
   TouchableOpacity,
   Text,
 } from 'react-native';
@@ -18,31 +18,31 @@ const Login = ({onChangeNumber, phoneNumber, logInPress, userRegistered}) => {
   }
   return (
     <View style={styles.main}>
-      <Image
+      <ImageBackground
         source={require('../../assets/images/login.png')}
-        style={styles.image}
-      />
-      <View style={styles.actionArea}>
-        <TextInput
-          keyboardType="numeric"
-          style={styles.phoneInput}
-          value={phoneNumber}
-          onChange={onChangeNumber}
-          placeholder="Phone No."
-          placeholderTextColor="#1C39BB"
-          maxLength={10}
-        />
-        <TouchableOpacity
-          style={styles.actionButton}
-          onPress={() => logInPress(phoneNumber)}>
-          <Text style={styles.actionButtonTxt}>Login</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.actionButton}
-          onPress={console.log('register clicked')}>
-          <Text style={styles.actionButtonTxt}>Register</Text>
-        </TouchableOpacity>
-      </View>
+        style={styles.image}>
+        <View style={styles.actionArea}>
+          <TextInput
+            keyboardType="numeric"
+            style={styles.phoneInput}
+            value={phoneNumber}
+            onChange={onChangeNumber}
+            placeholder="Phone No."
+            placeholderTextColor="#1C39BB"
+            maxLength={10}
+          />
+          <TouchableOpacity
+            style={styles.actionButton}
+            onPress={() => logInPress(phoneNumber)}>
+            <Text style={styles.actionButtonTxt}>Login</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.actionButton}
+            onPress={console.log('register clicked')}>
+            <Text style={styles.actionButtonTxt}>Register</Text>
+          </TouchableOpacity>
+        </View>
+      </ImageBackground>
     </View>
   );
 };
@@ -52,8 +52,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   image: {
-    height: '100%',
-    width: '100%',
+    flex: 1,
+    justifyContent: 'center',
     resizeMode: 'stretch',
   },
   actionArea: {
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   },
   actionButton: {
     width: '90%',
-    height: '15%',
+    height: 50,
     backgroundColor: '#1C39BB',
     alignItems: 'center',
     justifyContent: 'center',
@@ -86,6 +86,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     fontSize: 20,
     textAlign: 'center',
+    color: 'black',
   },
 });
 

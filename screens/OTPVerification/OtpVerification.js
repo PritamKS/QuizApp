@@ -11,10 +11,13 @@ import {
 import RNOtpVerify from 'react-native-otp-verify';
 
 import {RESEND_OTP_TIME_LIMIT, AUTO_SUBMIT_OTP_TIME_LIMIT} from './constants';
-import {GenericStyles} from './GenericStyles';
+import {GenericStyles} from '../../components/UI/GenericStyles';
 import {CustomButton, FullButtonComponent} from '../../components/UI';
-import colors from './colors';
-import {isAndroid, logErrorWithMessage} from './helperFunctions';
+import colors from '../../components/UI/colors';
+import {
+  isAndroid,
+  logErrorWithMessage,
+} from '../../components/UI/helperFunctions';
 
 let resendOtpTimerInterval;
 let autoSubmitOtpTimerInterval;

@@ -17,8 +17,9 @@ const OtpVerificationContainer = props => {
   return (
     <OtpVerification
       setOtpString={setOtpString}
-      Otp={props.Otp}
       submitOtp={submitOtp}
+      phoneNumber={phoneNumber}
+      Otp={props.Otp}
       phoneNumber={phoneNumber}
       userStatus={props.userStatus}
     />

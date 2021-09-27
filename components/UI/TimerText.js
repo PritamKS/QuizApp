@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 
-import {CustomText} from '../../components/UI';
+import {CustomText} from '.';
 
 import {GenericStyles} from './GenericStyles';
 

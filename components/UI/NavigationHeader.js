@@ -14,9 +14,9 @@ import {
   searchIcon,
   whiteMenuIcon,
 } from '../../assets/images';
-import colors from '../../screens/OTPVerification/colors';
+import colors from './colors';
 import {CustomText, CustomImageButton, CustomTextInput} from './';
-import {GenericStyles} from '../../screens/OTPVerification/GenericStyles';
+import {GenericStyles} from './GenericStyles';
 
 const getLeftIconProperties = function (iconType = 'menu', showWhiteIcon) {
   const os = Platform.OS;

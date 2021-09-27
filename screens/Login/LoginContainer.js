@@ -17,8 +17,8 @@ const LoginContainer = props => {
   return (
     <Login
       userRegistered={props.userRegistered}
-      logInPress={logInPress}
       phoneNumber={props.phoneNumber}
+      logInPress={logInPress}
       onChangeNumber={onChangeNumber}
     />
   );

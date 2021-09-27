@@ -1,7 +1,7 @@
 import {StyleSheet, TouchableOpacity, Text} from 'react-native';
 import React from 'react';
 
-import colors from '../../screens/OTPVerification/colors';
+import colors from './colors';
 
 const CustomButton = function (props) {
   const style = {};

@@ -1,8 +1,8 @@
 import React from 'react';
 import {StyleSheet, View, TextInput} from 'react-native';
 
-import colors from '../../screens/OTPVerification/colors';
-import {GenericStyles} from '../../screens/OTPVerification/GenericStyles';
+import colors from './colors';
+import {GenericStyles} from './GenericStyles';
 
 const CustomTextInput = function (props) {
   const {

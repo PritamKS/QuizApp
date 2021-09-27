@@ -1,7 +1,7 @@
 import React from 'react';
 import {StatusBar, SafeAreaView} from 'react-native';
 
-import {GenericStyles} from '../../screens/OTPVerification/GenericStyles';
+import {GenericStyles} from './GenericStyles';
 
 const CustomScreenContainer = props => {
   const {children} = props;
