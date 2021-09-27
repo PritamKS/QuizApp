@@ -127,7 +127,9 @@ const OnBoarding = ({navigation}) => {
                 borderTopRightRadius: 0,
                 backgroundColor: 'orange',
               }}
-              onPress={() => index === 2 && navigation.navigate('TabNav')}>
+              onPress={() =>
+                index === 2 && navigation.navigate('LoginContainer')
+              }>
               <Text style={{...FONTS.h4, color: COLORS.white}}>
                 {screenCount(index) ? "Let's Play" : 'Swipe to Left ->'}
               </Text>

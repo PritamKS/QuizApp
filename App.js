@@ -8,6 +8,9 @@ import store from './store';
 import OnBoarding from './screens/OnBoarding/OnBoarding';
 import TabNav from './components/UI/TabNav';
 import SubjectwiseQuestionBox from './components/UI/SubjectwiseQuestionBox';
+import LoginContainer from './screens/Login/LoginContainer';
+import OtpVerificationContainer from './screens/OTPVerification/OtpVerificationContainer';
+import dashboardContainer from './screens/Dashboard/dashboardContainer';
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -26,13 +29,28 @@ export default function App() {
             options={{headerShown: false}}
           />
           <Stack.Screen
+            name="SubjectwiseQuestionBox"
+            component={SubjectwiseQuestionBox}
+          />
+          <Stack.Screen
             name="TabNav"
             component={TabNav}
             options={{headerShown: false}}
           />
           <Stack.Screen
-            name="SubjectwiseQuestionBox"
-            component={SubjectwiseQuestionBox}
+            name="LoginContainer"
+            component={LoginContainer}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="OtpVerificationContainer"
+            component={OtpVerificationContainer}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="dashboardContainer"
+            component={dashboardContainer}
+            options={{headerShown: false}}
           />
         </Stack.Navigator>
       </NavigationContainer>
