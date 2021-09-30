@@ -2,11 +2,11 @@ import React from 'react';
 import {View, Text, StyleSheet, ScrollView} from 'react-native';
 
 import StatsCard from '../../components/UI/StatsCard';
-import QuizBoxCard from '../../components/UI/QuizBoxCard';
+import CategoryListContainer from '../CategoryList/CategoryListContainer';
 import Banner from '../../components/UI/Banner';
 import Header from '../../components/UI/Header';
 
-const Dashboard = ({questionList}) => {
+const Dashboard = ({categoryList}) => {
   return (
     <View style={styles.main}>
       <Header points="1K" />
@@ -21,14 +21,15 @@ const Dashboard = ({questionList}) => {
         </View>
         <Text style={styles.quizHeading}>Today's Quiz</Text>
         <View style={styles.quiz}>
-          {questionList &&
-            questionList.map((item, index) => {
+          {categoryList &&
+            categoryList.map((item, index) => {
               return (
-                <QuizBoxCard
-                  key={item.id}
+                <CategoryListContainer
+                  key={item.questionUid}
                   subject={item.quizname}
                   questCount={item.questioncount}
                   price={item.price}
+                  quid={item.questionUid}
                   index={index}
                 />
               );

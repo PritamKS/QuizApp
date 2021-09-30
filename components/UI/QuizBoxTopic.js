@@ -1,13 +1,13 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
-const QuizBoxTopic = children => {
+const QuizBoxTopic = props => {
   return (
-    <View style={styles.quizBox}>
+    <View id={props.quid} style={styles.quizBox}>
       <TouchableOpacity style={styles.textInfo}>
-        <Text style={styles.topicName}>{children.topic}</Text>
-        <Text style={styles.topicName}>{children.amount}</Text>
-        <Text style={styles.questCount}>{children.questionCount}</Text>
+        <Text style={styles.topicName}>{props.topic}</Text>
+        <Text style={styles.topicName}>{props.amount}</Text>
+        <Text style={styles.questCount}>{props.questionCount}</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.paybtn} onPress={console.log('pay')}>
         <Text style={styles.payBtnTxt}>Pay</Text>
@@ -30,12 +30,13 @@ const styles = StyleSheet.create({
   },
   quizBox: {
     width: '90%',
-    height: '26%',
+    height: 150,
     backgroundColor: '#1C39BB',
     borderRadius: 25,
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     alignItems: 'center',
+    marginBottom: 20,
   },
   textInfo: {
     width: '60%',

@@ -5,13 +5,18 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import {useNavigation} from '@react-navigation/native';
 
-const QuizBoxCard = ({index, subject, questCount}) => {
+const CategoryList = ({subject, questCount, quid}) => {
   const navigation = useNavigation();
+
   return (
     <TouchableOpacity
-      id={index}
-      onPress={() => navigation.navigate('SubjectwiseQuestionBox')}>
+      onPress={() =>
+        navigation.navigate('SubCategoryQuestionsContainer', {
+          quid: quid,
+        })
+      }>
       <LinearGradient
+        id={quid}
         style={styles.quizBox}
         start={{x: 0, y: 0}}
         end={{x: 1, y: 0}}
@@ -91,4 +96,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default QuizBoxCard;
+export default CategoryList;

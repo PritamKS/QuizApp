@@ -11,11 +11,11 @@ const DashboardContainer = props => {
     props.getQuestionListData();
   }, []);
 
-  return <Dashboard questionList={props.questionList} />;
+  return <Dashboard categoryList={props.categoryList} />;
 };
 
 export const mapStateToProps = createStructuredSelector({
-  questionList: selectQuestionList(),
+  categoryList: selectQuestionList(),
   loading: selectLoadingStatus(),
 });
 

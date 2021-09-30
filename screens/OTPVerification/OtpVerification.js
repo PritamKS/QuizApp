@@ -58,7 +58,7 @@ const OtpVerification = props => {
   const autoSubmitOtpTimerIntervalCallbackReference = useRef();
   const navigation = useNavigation();
   if (userStatus) {
-    navigation.navigate('dashboardContainer');
+    navigation.navigate('TabNav');
   }
   useEffect(() => {
     // Your code here to get the OTP
