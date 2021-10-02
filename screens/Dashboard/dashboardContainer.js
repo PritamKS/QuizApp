@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import {createStructuredSelector} from 'reselect';
 
-import Dashboard from './dashboard';
+import Dashboard from './Dashboard';
 import {getCategoryList} from './actions';
 import {selectCategoryList, selectLoadingStatus} from './selectors';
 

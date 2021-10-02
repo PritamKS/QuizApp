@@ -11,11 +11,9 @@ const CategoryList = ({subject, questCount, id, index}) => {
     <TouchableOpacity
       index={index}
       key={id}
-      onPress={() =>
-        navigation.navigate('SubCategoryContainer', {
-          quid: id,
-        })
-      }>
+      onPress={() => {
+        navigation.navigate('SubCategoryContainer');
+      }}>
       <LinearGradient
         style={styles.quizBox}
         start={{x: 0, y: 0}}

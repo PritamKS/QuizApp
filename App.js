@@ -10,7 +10,7 @@ import TabNav from './components/UI/TabNav';
 import SubCategoryContainer from './screens/SubCategoriesScreen/SubCategoryContainer';
 import LoginContainer from './screens/Login/LoginContainer';
 import OtpVerificationContainer from './screens/OTPVerification/OtpVerificationContainer';
-import dashboardContainer from './screens/Dashboard/dashboardContainer';
+import DashboardContainer from './screens/Dashboard/DashboardContainer';
 import PlayRequestContainer from './screens/PlayRequest/PlayRequestContainer';
 import CategoryList from './screens/CategoryList/CategoryList';
 import QuizBoxTopic from './components/UI/QuizBoxTopic';
@@ -37,8 +37,8 @@ export default function App() {
             options={{headerShown: false}}
           />
           <Stack.Screen
-            name="dashboardContainer"
-            component={dashboardContainer}
+            name="DashboardContainer"
+            component={DashboardContainer}
             options={{headerShown: false}}
           />
           <Stack.Screen

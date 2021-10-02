@@ -25,7 +25,7 @@ const Dashboard = ({categoryList}) => {
             categoryList.map((item, index) => {
               return (
                 <CategoryList
-                  key={index}
+                  key={`cat-${index}`}
                   id={item.questionUid}
                   subject={item.quizname}
                   questCount={item.questioncount}

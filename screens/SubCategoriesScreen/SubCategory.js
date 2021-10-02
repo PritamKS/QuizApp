@@ -12,7 +12,7 @@ const SubCategory = ({subCategoryList}) => {
             subCategoryList.map((item, index) => {
               return (
                 <QuizBoxTopic
-                  key={index}
+                  key={`sub-${index}`}
                   id={item.questionUid}
                   amount="20.00"
                   index={index}

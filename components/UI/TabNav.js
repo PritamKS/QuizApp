@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import DashboardContainer from '../../screens/Dashboard/dashboardContainer';
+import DashboardContainer from '../../screens/Dashboard/DashboardContainer';
 import Tabbar from './TabBar';
 import MyAccountContainer from '../../screens/MyAccount/MyAccountContainer';
 

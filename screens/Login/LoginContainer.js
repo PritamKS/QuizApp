@@ -14,6 +14,7 @@ const LoginContainer = props => {
     const value = event.nativeEvent.text;
     props.dispatchOnNumberChange(value);
   };
+
   return (
     <Login
       userLoggedIn={props.userLoggedIn}

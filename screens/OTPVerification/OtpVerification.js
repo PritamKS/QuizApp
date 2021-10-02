@@ -22,17 +22,17 @@ let autoSubmitOtpTimerInterval;
 
 const OtpVerification = props => {
   const {Otp, setOtpString, submitOtp, phoneNumber, userStatus} = props;
+  const navigation = useNavigation();
+  if (userStatus) {
+    navigation.navigate('TabNav');
+  }
 
-  const [attemptsRemaining, setAttemptsRemaining] = useState(5);
   const [otpArray, setOtpArray] = useState(['', '', '', '']);
   const [submittingOtp, setSubmittingOtp] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
-
   // in secs, if value is greater than 0 then button will be disabled
   const [resendButtonDisabledTime, setResendButtonDisabledTime] = useState(
     RESEND_OTP_TIME_LIMIT,
   );
-
   // 0 < autoSubmitOtpTime < 4 to show auto submitting OTP text
   const [autoSubmitOtpTime, setAutoSubmitOtpTime] = useState(
     AUTO_SUBMIT_OTP_TIME_LIMIT,
@@ -43,17 +43,13 @@ const OtpVerification = props => {
   const secondTextInputRef = useRef(null);
   const thirdTextInputRef = useRef(null);
   const fourthTextInputRef = useRef(null);
-
   // a reference to autoSubmitOtpTimerIntervalCallback to always get updated value of autoSubmitOtpTime
   const autoSubmitOtpTimerIntervalCallbackReference = useRef();
-  const navigation = useNavigation();
-  if (userStatus) {
-    navigation.navigate('TabNav');
-  }
-  useEffect(() => {
-    // Your code here to get the OTP
-    console.log('call API to get the OTP');
-  }, []);
+
+  // useEffect(() => {
+  //   // Your code here to get the OTP
+  //   console.log('call API to get the OTP');
+  // }, []);
 
   useEffect(() => {
     // autoSubmitOtpTime value will be set after otp is detected,
@@ -63,8 +59,7 @@ const OtpVerification = props => {
   });
 
   useEffect(() => {
-    startResendOtpTimer();
-
+    // startResendOtpTimer();
     return () => {
       if (resendOtpTimerInterval) {
         clearInterval(resendOtpTimerInterval);
@@ -72,41 +67,41 @@ const OtpVerification = props => {
     };
   }, [resendButtonDisabledTime]);
 
-  useEffect(() => {
-    RNOtpVerify.getOtp()
-      .then(p =>
-        RNOtpVerify.addListener(message => {
-          try {
-            if (message) {
-              const messageArray = message.split('\n');
-              if (messageArray[2]) {
-                const otp = messageArray[2].split(' ')[0];
-                if (otp.length === 4) {
-                  setOtpArray(otp.split(''));
-                  setAutoSubmitOtpTime(AUTO_SUBMIT_OTP_TIME_LIMIT);
-                  startAutoSubmitOtpTimer();
-                }
-              }
-            }
-          } catch (error) {
-            logErrorWithMessage(
-              error.message,
-              'RNOtpVerify.getOtp - read message, OtpVerification',
-            );
-          }
-        }),
-      )
-      .catch(error => {
-        logErrorWithMessage(
-          error.message,
-          'RNOtpVerify.getOtp, OtpVerification',
-        );
-      });
-    // remove listener on unmount
-    return () => {
-      RNOtpVerify.removeListener();
-    };
-  }, []);
+  // useEffect(() => {
+  //   RNOtpVerify.getOtp()
+  //     .then(p =>
+  //       RNOtpVerify.addListener(message => {
+  //         try {
+  //           if (message) {
+  //             const messageArray = message.split('\n');
+  //             if (messageArray[2]) {
+  //               const otp = messageArray[2].split(' ')[0];
+  //               if (otp.length === 4) {
+  //                 setOtpArray(otp.split(''));
+  //                 setAutoSubmitOtpTime(AUTO_SUBMIT_OTP_TIME_LIMIT);
+  //                 startAutoSubmitOtpTimer();
+  //               }
+  //             }
+  //           }
+  //         } catch (error) {
+  //           logErrorWithMessage(
+  //             error.message,
+  //             'RNOtpVerify.getOtp - read message, OtpVerification',
+  //           );
+  //         }
+  //       }),
+  //     )
+  //     .catch(error => {
+  //       logErrorWithMessage(
+  //         error.message,
+  //         'RNOtpVerify.getOtp, OtpVerification',
+  //       );
+  //     });
+  //   // remove listener on unmount
+  //   return () => {
+  //     RNOtpVerify.removeListener();
+  //   };
+  // }, []);
 
   const startResendOtpTimer = () => {
     if (resendOtpTimerInterval) {
@@ -127,21 +122,20 @@ const OtpVerification = props => {
   const autoSubmitOtpTimerIntervalCallback = () => {
     if (autoSubmitOtpTime <= 0) {
       clearInterval(autoSubmitOtpTimerInterval);
-
       // submit OTP
       onSubmitButtonPress();
     }
     setAutoSubmitOtpTime(autoSubmitOtpTime - 1);
   };
 
-  const startAutoSubmitOtpTimer = () => {
-    if (autoSubmitOtpTimerInterval) {
-      clearInterval(autoSubmitOtpTimerInterval);
-    }
-    autoSubmitOtpTimerInterval = setInterval(() => {
-      autoSubmitOtpTimerIntervalCallbackReference.current();
-    }, 1000);
-  };
+  // const startAutoSubmitOtpTimer = () => {
+  //   if (autoSubmitOtpTimerInterval) {
+  //     clearInterval(autoSubmitOtpTimerInterval);
+  //   }
+  //   autoSubmitOtpTimerInterval = setInterval(() => {
+  //     autoSubmitOtpTimerIntervalCallbackReference.current();
+  //   }, 1000);
+  // };
 
   const refCallback = textInputRef => node => {
     textInputRef.current = node;
@@ -153,10 +147,8 @@ const OtpVerification = props => {
       setOtpArray(['', '', '', '']);
       firstTextInputRef.current.focus();
     }
-
     setResendButtonDisabledTime(RESEND_OTP_TIME_LIMIT);
     startResendOtpTimer();
-
     // resend OTP Api call
     // todo
     console.log('todo: Resend OTP');
@@ -239,9 +231,9 @@ const OtpVerification = props => {
               thirdTextInputRef,
               fourthTextInputRef,
             ].map((textInputRef, index) => (
-              <View style={styles.otpBoxes}>
+              <View style={styles.otpBoxes} key={index}>
                 <TextInput
-                  key={index}
+                  key={`otp-${index}`}
                   style={styles.otpText}
                   value={otpArray[index]}
                   onKeyPress={onOtpKeyPress(index)}
@@ -276,9 +268,6 @@ const OtpVerification = props => {
             Submitting OTP in {autoSubmitOtpTime}s
           </Text>
         ) : null}
-        <Text style={styles.attemptsRemainingText}>
-          {attemptsRemaining || 0} Attempts remaining
-        </Text>
         <FullButtonComponent
           type={'fill'}
           text={'Submit'}
