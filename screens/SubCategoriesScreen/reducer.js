@@ -2,8 +2,7 @@ import {fromJS} from 'immutable';
 
 const initialState = fromJS({
   loading: true,
-  questionListData: [],
-  downloadData: [],
+  subCategoryData: [],
   errorMessage: '',
   successMessage: '',
 });
@@ -13,13 +12,15 @@ const subCategoryReducer = (
   {type, success, error, data},
 ) => {
   switch (type) {
-    case 'getQuestionListDisplayDataSuccess':
+    case 'getSubCategorySuccess':
       return state
         .set('successMessage', success)
         .set('loading', false)
-        .set('questionListData', data);
-    case 'getQuestionListDisplayDataError':
+        .set('subCategoryData', data);
+    case 'getSubCategoryError':
       return state.set('errorMessage', error).set('loading', false);
+    case 'clearCategoryQuestionsData':
+      return state.set('subCategoryData', []);
     default:
       return state;
   }

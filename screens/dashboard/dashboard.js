@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet, ScrollView} from 'react-native';
 
 import StatsCard from '../../components/UI/StatsCard';
-import CategoryListContainer from '../CategoryList/CategoryListContainer';
+import CategoryList from '../CategoryList/CategoryList';
 import Banner from '../../components/UI/Banner';
 import Header from '../../components/UI/Header';
 
@@ -24,12 +24,11 @@ const Dashboard = ({categoryList}) => {
           {categoryList &&
             categoryList.map((item, index) => {
               return (
-                <CategoryListContainer
-                  key={item.questionUid}
+                <CategoryList
+                  key={index}
+                  id={item.questionUid}
                   subject={item.quizname}
                   questCount={item.questioncount}
-                  price={item.price}
-                  quid={item.questionUid}
                   index={index}
                 />
               );

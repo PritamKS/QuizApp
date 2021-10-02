@@ -14,13 +14,13 @@ const OtpVerificationContainer = props => {
   const submitOtp = (phone, otp) => {
     props.dispatchSubmitOtp(phone, otp);
   };
+
   return (
     <OtpVerification
       setOtpString={setOtpString}
       submitOtp={submitOtp}
       phoneNumber={phoneNumber}
       Otp={props.Otp}
-      phoneNumber={phoneNumber}
       userStatus={props.userStatus}
     />
   );

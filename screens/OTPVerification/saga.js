@@ -2,6 +2,7 @@ import {takeLatest, call, put} from 'redux-saga/effects';
 
 import ApiService from '../../utils/service';
 import {sendOtpSuccess, sendOtpError} from './actions';
+import {SEND_OTP} from './constants';
 
 export function* sendOtpData(payload) {
   try {
@@ -25,6 +26,6 @@ export function* sendOtpData(payload) {
 }
 
 export function* sendOtpSaga() {
-  yield takeLatest('sendOtp', sendOtpData);
+  yield takeLatest(SEND_OTP, sendOtpData);
 }
 export default sendOtpSaga;

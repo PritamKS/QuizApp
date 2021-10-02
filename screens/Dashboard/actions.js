@@ -1,20 +1,26 @@
-export function getQuestionList() {
+import {
+  GET_CATEGORY_LIST,
+  GET_CATEGORY_LIST_SUCCESS,
+  GET_CATEGORY_LIST_ERROR,
+} from './constants';
+
+export function getCategoryList() {
   return {
-    type: 'getQuestionList',
+    type: GET_CATEGORY_LIST,
   };
 }
 
-export function getQuestionListDisplayDataSuccess(success, data) {
+export function getCategoryListSuccess(success, data) {
   return {
-    type: 'getQuestionListDisplayDataSuccess',
+    type: GET_CATEGORY_LIST_SUCCESS,
     success,
     data,
   };
 }
 
-export function getQuestionListDisplayDataError(error) {
+export function getCategoryListError(error) {
   return {
-    type: 'getQuestionListDisplayDataError',
+    type: GET_CATEGORY_LIST_ERROR,
     error,
   };
 }

@@ -2,8 +2,9 @@ import {takeLatest, call, put} from 'redux-saga/effects';
 
 import ApiService from '../../utils/service';
 import {getLoginSuccess, getLoginError} from './actions';
+import {GET_LOGGED_IN} from './constant';
 
-export function* getLoginData(payload) {
+export function* getLoginData() {
   try {
     const {
       response: {data, status, error},
@@ -24,6 +25,6 @@ export function* getLoginData(payload) {
 }
 
 export function* getLoginSaga() {
-  yield takeLatest('getUserLogin', getLoginData);
+  yield takeLatest(GET_LOGGED_IN, getLoginData);
 }
 export default getLoginSaga;

@@ -1,24 +1,30 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
-const QuizBoxTopic = props => {
+const QuizBoxTopic = ({subject, questCount, id, index, amount}) => {
+  const navigation = useNavigation();
   return (
-    <View id={props.quid} style={styles.quizBox}>
-      <TouchableOpacity style={styles.textInfo}>
-        <Text style={styles.topicName}>{props.topic}</Text>
-        <Text style={styles.topicName}>{props.amount}</Text>
-        <Text style={styles.questCount}>{props.questionCount}</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.paybtn} onPress={console.log('pay')}>
+    <View key={id} index={index} style={styles.quizBox}>
+      <View style={styles.textInfo}>
+        <Text style={styles.topicName}>{subject}</Text>
+        <Text style={styles.topicName}>{amount}</Text>
+        <Text style={styles.questCount}>{questCount} Questions</Text>
+      </View>
+      <TouchableOpacity
+        style={styles.paybtn}
+        onPress={() => {
+          navigation.navigate('PlayRequestContainer', {
+            quid: id,
+          });
+        }}>
         <Text style={styles.payBtnTxt}>Pay</Text>
       </TouchableOpacity>
     </View>
   );
 };
+
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   topicName: {
     color: 'white',
     fontSize: 22,
@@ -34,9 +40,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#1C39BB',
     borderRadius: 25,
     flexDirection: 'row',
-    justifyContent: 'space-evenly',
+    justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 15,
   },
   textInfo: {
     width: '60%',

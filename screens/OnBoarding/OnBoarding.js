@@ -8,14 +8,9 @@ import {
   Text,
   TouchableOpacity,
 } from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-// constants
 import {theme} from '../constants';
 
-// theme
 const {COLORS, FONTS, SIZES} = theme;
-
 const onBoardings = [
   {
     title: 'Welcome to AlphaZ',
@@ -41,10 +36,9 @@ const screenCount = index => {
     return true;
   } else return false;
 };
+
 const OnBoarding = ({navigation}) => {
   const scrollX = new Animated.Value(0);
-
-  // Render
 
   function renderContent() {
     return (
@@ -61,11 +55,7 @@ const OnBoarding = ({navigation}) => {
           {useNativeDriver: false},
         )}>
         {onBoardings.map((item, index) => (
-          <View
-            //center
-            //bottom
-            key={`img-${index}`}
-            style={styles.imageAndTextContainer}>
+          <View key={`img-${index}`} style={styles.imageAndTextContainer}>
             <View
               style={{flex: 2, alignItems: 'center', justifyContent: 'center'}}>
               <Image
@@ -111,7 +101,6 @@ const OnBoarding = ({navigation}) => {
                 {item.description}
               </Text>
             </View>
-            {/* Button */}
             <TouchableOpacity
               style={{
                 position: 'absolute',

@@ -9,15 +9,15 @@ const SubCategory = ({subCategoryList}) => {
       <View style={styles.container}>
         <View style={styles.quiz}>
           {subCategoryList &&
-            subCategoryList.length > 1 &&
             subCategoryList.map((item, index) => {
               return (
                 <QuizBoxTopic
-                  key={item.questionUid}
-                  topic="Science Quiz"
+                  key={index}
+                  id={item.questionUid}
                   amount="20.00"
-                  questionCount="4 Questions"
                   index={index}
+                  subject={item.quizname}
+                  questCount={item.questioncount}
                 />
               );
             })}

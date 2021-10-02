@@ -1,7 +1,6 @@
 import React, {useState, useRef, useEffect} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {
-  StyleSheet,
   View,
   ActivityIndicator,
   Text,
@@ -13,27 +12,18 @@ import RNOtpVerify from 'react-native-otp-verify';
 import {RESEND_OTP_TIME_LIMIT, AUTO_SUBMIT_OTP_TIME_LIMIT} from './constants';
 import {GenericStyles} from '../../components/UI/GenericStyles';
 import {CustomButton, FullButtonComponent} from '../../components/UI';
-import colors from '../../components/UI/colors';
 import {
   isAndroid,
   logErrorWithMessage,
 } from '../../components/UI/helperFunctions';
-
+import {styles} from './Styles';
 let resendOtpTimerInterval;
 let autoSubmitOtpTimerInterval;
 
 const OtpVerification = props => {
-  const {
-    otpRequestData,
-    attempts,
-    Otp,
-    setOtpString,
-    submitOtp,
-    phoneNumber,
-    userStatus,
-  } = props;
+  const {Otp, setOtpString, submitOtp, phoneNumber, userStatus} = props;
 
-  const [attemptsRemaining, setAttemptsRemaining] = useState(attempts);
+  const [attemptsRemaining, setAttemptsRemaining] = useState(5);
   const [otpArray, setOtpArray] = useState(['', '', '', '']);
   const [submittingOtp, setSubmittingOtp] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -241,12 +231,7 @@ const OtpVerification = props => {
         resizeMode="cover"
         style={styles.image}>
         <View style={styles.contents}>
-          <Text>
-            Enter OTP sent to your{' '}
-            {otpRequestData && otpRequestData.email_id
-              ? 'email'
-              : 'mobile number'}{' '}
-          </Text>
+          <Text>Enter OTP sent to your mobile number</Text>
           <View style={styles.otpContainer}>
             {[
               firstTextInputRef,
@@ -255,8 +240,8 @@ const OtpVerification = props => {
               fourthTextInputRef,
             ].map((textInputRef, index) => (
               <View style={styles.otpBoxes}>
-                <></>
                 <TextInput
+                  key={index}
                   style={styles.otpText}
                   value={otpArray[index]}
                   onKeyPress={onOtpKeyPress(index)}
@@ -265,17 +250,10 @@ const OtpVerification = props => {
                   maxLength={1}
                   autoFocus={index === 0 ? true : undefined}
                   ref={refCallback(textInputRef)}
-                  key={index}
                 />
-                <></>
               </View>
             ))}
           </View>
-
-          {errorMessage ? (
-            <Text style={styles.errorText}>{errorMessage}</Text>
-          ) : null}
-
           {resendButtonDisabledTime > 0 ? (
             <Text style={styles.timerText}>
               Resend OTP in {resendButtonDisabledTime}s
@@ -290,7 +268,7 @@ const OtpVerification = props => {
             />
           )}
         </View>
-        <View style={GenericStyles.fill} />
+
         {submittingOtp && <ActivityIndicator />}
         {autoSubmitOtpTime > 0 &&
         autoSubmitOtpTime < AUTO_SUBMIT_OTP_TIME_LIMIT ? (
@@ -314,80 +292,4 @@ const OtpVerification = props => {
   );
 };
 
-const styles = StyleSheet.create({
-  timerText: {
-    fontSize: 12,
-    textAlign: 'center',
-    fontSize: 12,
-    marginTop: 24,
-    fontWeight: 'bold',
-  },
-  otpText: {
-    padding: 0,
-    flex: 1,
-    fontWeight: 'bold',
-    color: colors.BLUE,
-    fontSize: 18,
-    width: '100%',
-    textAlign: 'center',
-  },
-  otpBoxes: {
-    flex: 1,
-    marginRight: 12,
-    flexDirection: 'row',
-    borderColor: colors.WHITE_GREY,
-    borderWidth: 1,
-    borderRadius: 4,
-    padding: 8,
-  },
-  otpContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 12,
-  },
-  errorText: {
-    color: colors.RED,
-    marginTop: 12,
-    textAlign: 'center',
-  },
-  attemptsRemainingText: {
-    color: colors.BLACK,
-    marginTop: 12,
-    textAlign: 'center',
-  },
-  container: {
-    padding: 16,
-    flex: 1,
-    backgroundColor: 'white',
-  },
-  submitButtonText: {
-    color: colors.WHITE,
-  },
-  otpResendButton: {
-    alignItems: 'center',
-    width: '100%',
-    marginTop: 16,
-  },
-  otpResendButtonText: {
-    color: colors.ORANGE,
-    textTransform: 'none',
-    textDecorationLine: 'underline',
-  },
-  image: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-  contents: {
-    marginTop: '100%',
-  },
-});
-
-OtpVerification.defaultProps = {
-  attempts: 5,
-  otpRequestData: {
-    username: 'pritam',
-    email_id: false,
-    phone_no: true,
-  },
-};
 export default OtpVerification;

@@ -4,19 +4,19 @@ import {createStructuredSelector} from 'reselect';
 
 import Login from './Login';
 import {getuserLogin, setPhoneNumber} from './actions';
-import {selectuserRegistered, selectuserPhoneNumber} from './selectors';
+import {selectUserLoggedInStatus, selectUserPhoneNumber} from './selectors';
 
 const LoginContainer = props => {
   const logInPress = () => {
-    props.dispatchCheckLogin(props.phoneNumber);
+    props.dispatchLogin(props.phoneNumber);
   };
   const onChangeNumber = event => {
     const value = event.nativeEvent.text;
-    props.dispatchSaveNumber(value);
+    props.dispatchOnNumberChange(value);
   };
   return (
     <Login
-      userRegistered={props.userRegistered}
+      userLoggedIn={props.userLoggedIn}
       phoneNumber={props.phoneNumber}
       logInPress={logInPress}
       onChangeNumber={onChangeNumber}
@@ -25,14 +25,15 @@ const LoginContainer = props => {
 };
 
 export const mapStateToProps = createStructuredSelector({
-  userRegistered: selectuserRegistered(),
-  phoneNumber: selectuserPhoneNumber(),
+  userLoggedIn: selectUserLoggedInStatus(),
+  phoneNumber: selectUserPhoneNumber(),
 });
 
 export const mapDispatchToProps = dispatch => {
   return {
-    dispatchCheckLogin: phoneNumber => dispatch(getuserLogin(phoneNumber)),
-    dispatchSaveNumber: phoneNumber => dispatch(setPhoneNumber(phoneNumber)),
+    dispatchLogin: phoneNumber => dispatch(getuserLogin(phoneNumber)),
+    dispatchOnNumberChange: phoneNumber =>
+      dispatch(setPhoneNumber(phoneNumber)),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);

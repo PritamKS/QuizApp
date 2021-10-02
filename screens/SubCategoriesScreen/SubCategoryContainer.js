@@ -6,10 +6,11 @@ import SubCategory from './SubCategory';
 import {getSubCategory} from './actions';
 import {selectQuestionList} from './selectors';
 
-const SubCategoryQuestionsContainer = props => {
+const SubCategoryContainer = props => {
   const {quid} = props.route.params;
+
   useEffect(() => {
-    props.getSubCategoryData(quid);
+    props.dispatchGetSubCategoryData(quid);
   }, []);
 
   return <SubCategory subCategoryList={props.subCategoryList} />;
@@ -21,10 +22,10 @@ export const mapStateToProps = createStructuredSelector({
 
 export const mapDispatchToProps = dispatch => {
   return {
-    getSubCategoryData: quid => dispatch(getSubCategory(quid)),
+    dispatchGetSubCategoryData: quid => dispatch(getSubCategory(quid)),
   };
 };
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(SubCategoryQuestionsContainer);
+)(SubCategoryContainer);

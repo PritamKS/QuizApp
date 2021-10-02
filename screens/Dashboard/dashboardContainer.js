@@ -3,25 +3,25 @@ import {connect} from 'react-redux';
 import {createStructuredSelector} from 'reselect';
 
 import Dashboard from './dashboard';
-import {getQuestionList} from './actions';
-import {selectQuestionList, selectLoadingStatus} from './selectors';
+import {getCategoryList} from './actions';
+import {selectCategoryList, selectLoadingStatus} from './selectors';
 
 const DashboardContainer = props => {
   useEffect(() => {
-    props.getQuestionListData();
+    props.dispatchCategoryList();
   }, []);
 
   return <Dashboard categoryList={props.categoryList} />;
 };
 
 export const mapStateToProps = createStructuredSelector({
-  categoryList: selectQuestionList(),
+  categoryList: selectCategoryList(),
   loading: selectLoadingStatus(),
 });
 
 export const mapDispatchToProps = dispatch => {
   return {
-    getQuestionListData: () => dispatch(getQuestionList()),
+    dispatchCategoryList: () => dispatch(getCategoryList()),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardContainer);

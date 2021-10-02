@@ -1,9 +1,12 @@
 import {createSelector} from 'reselect';
+import {DASHBOARD_STATE} from './constants';
 
-const questionLists = state => state.get('dashboardQuestionList');
+const dashboardState = state => state.get(DASHBOARD_STATE);
 
-export const selectQuestionList = () =>
-  createSelector(questionLists, questions => questions.get('questionListData'));
+export const selectCategoryList = () =>
+  createSelector(dashboardState, categoryList =>
+    categoryList.get('categoryList'),
+  );
 
 export const selectLoadingStatus = () =>
-  createSelector(questionLists, loading => loading.get('loading'));
+  createSelector(dashboardState, loading => loading.get('loading'));

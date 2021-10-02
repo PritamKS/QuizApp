@@ -9,9 +9,9 @@ import {
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
-const Login = ({onChangeNumber, phoneNumber, logInPress, userRegistered}) => {
+const Login = ({onChangeNumber, phoneNumber, logInPress, userLoggedIn}) => {
   const navigation = useNavigation();
-  if (userRegistered) {
+  if (userLoggedIn) {
     navigation.navigate('OtpVerificationContainer', {
       phoneNumber: '8787043285',
     });

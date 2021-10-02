@@ -7,10 +7,13 @@ import {Provider} from 'react-redux';
 import store from './store';
 import OnBoarding from './screens/OnBoarding/OnBoarding';
 import TabNav from './components/UI/TabNav';
-import SubCategoryQuestionsContainer from './screens/SubCategoriesScreen/SubCategoryQuestionsContainer';
+import SubCategoryContainer from './screens/SubCategoriesScreen/SubCategoryContainer';
 import LoginContainer from './screens/Login/LoginContainer';
 import OtpVerificationContainer from './screens/OTPVerification/OtpVerificationContainer';
 import dashboardContainer from './screens/Dashboard/dashboardContainer';
+import PlayRequestContainer from './screens/PlayRequest/PlayRequestContainer';
+import CategoryList from './screens/CategoryList/CategoryList';
+import QuizBoxTopic from './components/UI/QuizBoxTopic';
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -39,8 +42,9 @@ export default function App() {
             options={{headerShown: false}}
           />
           <Stack.Screen
-            name="SubCategoryQuestionsContainer"
-            component={SubCategoryQuestionsContainer}
+            name="SubCategoryContainer"
+            component={SubCategoryContainer}
+            options={{headerShown: true}}
           />
           <Stack.Screen
             name="LoginContainer"
@@ -50,6 +54,21 @@ export default function App() {
           <Stack.Screen
             name="OtpVerificationContainer"
             component={OtpVerificationContainer}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="PlayRequestContainer"
+            component={PlayRequestContainer}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="CategoryList"
+            component={CategoryList}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="QuizBoxTopic"
+            component={QuizBoxTopic}
             options={{headerShown: false}}
           />
         </Stack.Navigator>

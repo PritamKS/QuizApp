@@ -1,31 +1,27 @@
 import {takeLatest, call, put} from 'redux-saga/effects';
 
 import ApiService from '../../utils/service';
-import {
-  getQuestionListDisplayDataSuccess,
-  getQuestionListDisplayDataError,
-} from './actions';
+import {getCategoryListSuccess, getCategoryListError} from './actions';
+import {GET_CATEGORY_LIST} from './constants';
 
-export function* getQuestionListDisplayData() {
+export function* getCategoryList() {
   try {
     const {
-      response: {data, status, error, statusText},
+      response: {data, status, error},
     } = yield call(ApiService, {
       method: 'GET',
-      apiUrl: 'getQuestionList',
+      apiUrl: 'categoryList',
     });
     if (status === 200) {
-      return yield put(
-        getQuestionListDisplayDataSuccess(status, data.response),
-      );
+      return yield put(getCategoryListSuccess(status, data.response));
     }
-    return yield put(getQuestionListDisplayDataError(error));
+    return yield put(getCategoryListError(error));
   } catch (error) {
-    return yield put(getQuestionListDisplayDataError(error));
+    return yield put(getCategoryListError(error));
   }
 }
 
-export function* getQuestionListSaga() {
-  yield takeLatest('getQuestionList', getQuestionListDisplayData);
+export function* dashboardSaga() {
+  yield takeLatest(GET_CATEGORY_LIST, getCategoryList);
 }
-export default getQuestionListSaga;
+export default dashboardSaga;

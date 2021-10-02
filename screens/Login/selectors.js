@@ -1,11 +1,10 @@
 import {createSelector} from 'reselect';
+import {LOGIN_STATE} from './constant';
 
-const login = state => state.get('login');
+const login = state => state.get(LOGIN_STATE);
 
-export const selectuserRegistered = () =>
-  createSelector(login, userRegisteredStatus =>
-    userRegisteredStatus.get('userRegistered'),
-  );
+export const selectUserLoggedInStatus = () =>
+  createSelector(login, userLoggedIn => userLoggedIn.get('loggedIn'));
 
-export const selectuserPhoneNumber = () =>
+export const selectUserPhoneNumber = () =>
   createSelector(login, phone => phone.get('phoneNumber'));

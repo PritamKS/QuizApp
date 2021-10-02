@@ -1,9 +1,12 @@
 import {createSelector} from 'reselect';
+import {SUBCATEGORY_STATE} from './constants';
 
-const questionLists = state => state.get('dashboardQuestionList');
+const subCategoryState = state => state.get(SUBCATEGORY_STATE);
 
 export const selectQuestionList = () =>
-  createSelector(questionLists, questions => questions.get('questionListData'));
+  createSelector(subCategoryState, subCategory =>
+    subCategory.get('subCategoryData'),
+  );
 
 export const selectLoadingStatus = () =>
-  createSelector(questionLists, loading => loading.get('loading'));
+  createSelector(subCategoryState, loading => loading.get('loading'));

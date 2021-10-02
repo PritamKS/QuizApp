@@ -1,30 +1,28 @@
 import {takeLatest, call, put} from 'redux-saga/effects';
 
 import ApiService from '../../utils/service';
-import {
-  getSubCategoryDisplayDataSuccess,
-  getSubCategoryDisplayDataError,
-} from './actions';
+import {getSubCategorySuccess, getSubCategoryError} from './actions';
+import {GET_SUBCATEGORY_DATA} from './constants';
 
-export function* getSubCategoryDisplayData(payload) {
+export function* getSubCategory(payload) {
   try {
     console.log(payload.quid);
     const {
-      response: {data, status, error, statusText},
+      response: {data, status, error},
     } = yield call(ApiService, {
       method: 'GET',
-      apiUrl: 'getQuestionList',
+      apiUrl: 'categoryList',
     });
     if (status === 200) {
-      return yield put(getSubCategoryDisplayDataSuccess(status, data.response));
+      return yield put(getSubCategorySuccess(status, data.response));
     }
-    return yield put(getSubCategoryDisplayDataError(error));
+    return yield put(getSubCategoryError(error));
   } catch (error) {
-    return yield put(getSubCategoryDisplayDataError(error));
+    return yield put(getSubCategoryError(error));
   }
 }
 
-export function* getSubCategorySaga() {
-  yield takeLatest('getSubCategory', getSubCategoryDisplayData);
+export function* SubCategorySaga() {
+  yield takeLatest(GET_SUBCATEGORY_DATA, getSubCategory);
 }
-export default getSubCategorySaga;
+export default SubCategorySaga;

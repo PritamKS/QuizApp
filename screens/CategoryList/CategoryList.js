@@ -2,21 +2,21 @@ import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
 import {useNavigation} from '@react-navigation/native';
 
-const CategoryList = ({subject, questCount, quid}) => {
+const CategoryList = ({subject, questCount, id, index}) => {
   const navigation = useNavigation();
 
   return (
     <TouchableOpacity
+      index={index}
+      key={id}
       onPress={() =>
-        navigation.navigate('SubCategoryQuestionsContainer', {
-          quid: quid,
+        navigation.navigate('SubCategoryContainer', {
+          quid: id,
         })
       }>
       <LinearGradient
-        id={quid}
         style={styles.quizBox}
         start={{x: 0, y: 0}}
         end={{x: 1, y: 0}}
