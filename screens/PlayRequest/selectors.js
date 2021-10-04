@@ -4,7 +4,7 @@ const sendPlayRequest = state => state.get('sendPlayRequest');
 
 export const selectUserStatus = () =>
   createSelector(sendPlayRequest, requestStatus =>
-    requestStatus.get('playerRequestStatus'),
+    requestStatus.getIn(['playerRequest1', 'status']),
   );
 
 export const selectLoadingStatus = () =>
@@ -12,5 +12,5 @@ export const selectLoadingStatus = () =>
 
 export const selectPlayStatus = () =>
   createSelector(sendPlayRequest, requestStatus =>
-    requestStatus.get('requestStatus'),
+    requestStatus.get('otherPlayerAvailable'),
   );

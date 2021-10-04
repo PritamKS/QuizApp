@@ -2,10 +2,10 @@ import {fromJS} from 'immutable';
 
 const initialState = fromJS({
   loading: true,
-  playerRequestStatus: '',
+  playerRequest1: '',
+  otherPlayerAvailable: false,
   errorMessage: '',
   successMessage: '',
-  requestStatus: false,
   errorMessageForPlayStatus: '',
 });
 
@@ -18,15 +18,13 @@ const sendPlayRequestReducer = (
       return state
         .set('successMessage', success)
         .set('loading', false)
-        .set('playerRequestStatus', data);
+        .set('playerRequest1', data);
     case 'sendPlayRequestError':
       return state.set('errorMessage', error).set('loading', false);
     case 'checkPlayStatusSuccess':
-      return state.set('requestStatus', data.status);
+      return state.set('otherPlayerAvailable', data.status);
     case 'checkPlayStatusError':
       return state.set('errorMessageForPlayStatus', error);
-    case 'clearData':
-      return state.set('playerRequestStatus', '').set('successMessage', '');
     default:
       return state;
   }

@@ -40,13 +40,13 @@ const screenCount = index => {
 const OnBoarding = ({navigation}) => {
   const scrollX = new Animated.Value(0);
 
-  function renderContent() {
+  const renderContent = () => {
     return (
       <Animated.ScrollView
         horizontal
         pagingEnabled
         scrollEnabled
-        decelerationRate={0}
+        decelerationRate="fast"
         scrollEventThrottle={16}
         snapToAlignment="center"
         showsHorizontalScrollIndicator={false}
@@ -56,70 +56,24 @@ const OnBoarding = ({navigation}) => {
         )}>
         {onBoardings.map((item, index) => (
           <View key={`img-${index}`} style={styles.imageAndTextContainer}>
-            <View
-              style={{flex: 2, alignItems: 'center', justifyContent: 'center'}}>
+            <View style={styles.imageContainer}>
               <Image
                 source={item.img}
                 resizeMode="stretch"
-                style={{
-                  width: SIZES.width,
-                  height: SIZES.height,
-                }}
+                style={styles.image}
               />
             </View>
-            <View
-              style={{
-                position: 'absolute',
-                bottom: 0,
-                left: 0,
-                right: 0,
-                backgroundColor: '#1C39BB',
-                width: '100%',
-                height: '30%',
-                borderTopLeftRadius: 50,
-                borderTopRightRadius: 50,
-              }}>
-              <Text
-                style={{
-                  ...FONTS.h2,
-                  color: 'white',
-                  textAlign: 'center',
-                  paddingTop: '5%',
-                }}>
-                {item.title}
-              </Text>
-
-              <Text
-                style={{
-                  ...FONTS.body3,
-                  textAlign: 'center',
-                  marginTop: SIZES.base,
-                  color: '#91b4ed',
-                  marginLeft: '5%',
-                  marginRight: '5%',
-                }}>
-                {item.description}
-              </Text>
+            <View style={styles.bottomContainer}>
+              <Text style={styles.textHeading}>{item.title}</Text>
+              <Text style={styles.textBody}>{item.description}</Text>
             </View>
             <TouchableOpacity
-              style={{
-                position: 'absolute',
-                right: 0,
-                bottom: 0,
-                width: 130,
-                height: 40,
-                paddingLeft: 20,
-                justifyContent: 'center',
-                borderTopLeftRadius: 30,
-                borderBottomLeftRadius: 30,
-                borderBottomRightRadius: 0,
-                borderTopRightRadius: 0,
-                backgroundColor: 'orange',
-              }}
+              activeOpacity={index === 2 ? 0.2 : 1}
+              style={styles.button}
               onPress={() =>
                 index === 2 && navigation.navigate('LoginContainer')
               }>
-              <Text style={{...FONTS.h4, color: COLORS.white}}>
+              <Text style={styles.buttonText}>
                 {screenCount(index) ? "Let's Play" : 'Swipe to Left ->'}
               </Text>
             </TouchableOpacity>
@@ -127,7 +81,7 @@ const OnBoarding = ({navigation}) => {
         ))}
       </Animated.ScrollView>
     );
-  }
+  };
 
   function renderDots() {
     const dotPosition = Animated.divide(scrollX, SIZES.width);
@@ -177,6 +131,7 @@ const styles = StyleSheet.create({
   imageAndTextContainer: {
     width: SIZES.width,
   },
+  imageContainer: {flex: 2, alignItems: 'center', justifyContent: 'center'},
   dotsRootContainer: {
     position: 'absolute',
     bottom: SIZES.height > 700 ? '20%' : '16%',
@@ -194,6 +149,50 @@ const styles = StyleSheet.create({
     backgroundColor: 'orange',
     marginHorizontal: SIZES.radius / 2,
   },
+  image: {
+    width: SIZES.width,
+    height: SIZES.height,
+  },
+  bottomContainer: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: '#1C39BB',
+    width: '100%',
+    height: '30%',
+    borderTopLeftRadius: 50,
+    borderTopRightRadius: 50,
+  },
+  textHeading: {
+    ...FONTS.h2,
+    color: 'white',
+    textAlign: 'center',
+    paddingTop: '5%',
+  },
+  textBody: {
+    ...FONTS.body3,
+    textAlign: 'center',
+    marginTop: SIZES.base,
+    color: '#91b4ed',
+    marginLeft: '5%',
+    marginRight: '5%',
+  },
+  button: {
+    position: 'absolute',
+    right: 0,
+    bottom: 0,
+    width: 130,
+    height: 40,
+    paddingLeft: 20,
+    justifyContent: 'center',
+    borderTopLeftRadius: 30,
+    borderBottomLeftRadius: 30,
+    borderBottomRightRadius: 0,
+    borderTopRightRadius: 0,
+    backgroundColor: 'orange',
+  },
+  buttonText: {...FONTS.h4, color: COLORS.white},
 });
 
 export default OnBoarding;

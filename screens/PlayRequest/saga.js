@@ -4,8 +4,8 @@ import ApiService from '../../utils/service';
 import {
   sendPlayRequestSuccess,
   sendPlayRequestError,
-  checkPlayStatusSuccess,
-  checkPlayStatusError,
+  checkRequestStatusSuccess,
+  checkRequestStatusError,
 } from './actions';
 
 export function* sendPlayRequest() {
@@ -30,7 +30,7 @@ export function* sendPlayRequest() {
   }
 }
 
-export function* checkPlayStatus() {
+export function* checkRequestStatus() {
   try {
     const {
       response: {data, status, error, statusText},
@@ -44,19 +44,19 @@ export function* checkPlayStatus() {
       }),
     });
     if (status === 200) {
-      return yield put(checkPlayStatusSuccess(status, data));
+      return yield put(checkRequestStatusSuccess(status, data));
     }
-    return yield put(checkPlayStatusError(error));
+    return yield put(checkRequestStatusError(error));
   } catch (error) {
-    return yield put(checkPlayStatusError(error));
+    return yield put(checkRequestStatusError(error));
   }
 }
 
 export function* sendPlayRequestSaga() {
   yield takeLatest('sendPlayRequest', sendPlayRequest);
 }
-export function* checkPlayStatusSaga() {
-  yield takeLatest('checkPlayStatus', checkPlayStatus);
+export function* checkRequestStatusSaga() {
+  yield takeLatest('checkRequestStatus', checkRequestStatus);
 }
 
-export default [sendPlayRequestSaga, checkPlayStatusSaga];
+export default [sendPlayRequestSaga, checkRequestStatusSaga];

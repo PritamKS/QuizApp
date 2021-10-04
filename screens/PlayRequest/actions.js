@@ -19,23 +19,23 @@ export function sendPlayRequestError(error) {
   };
 }
 
-export function checkPlayStatus() {
+export function checkRequestStatus() {
   return {
-    type: 'checkPlayStatus',
+    type: 'checkRequestStatus',
   };
 }
 
-export function checkPlayStatusSuccess(success, data) {
+export function checkRequestStatusSuccess(success, data) {
   return {
-    type: 'checkPlayStatusSuccess',
+    type: 'checkRequestStatusSuccess',
     success,
     data,
   };
 }
 
-export function checkPlayStatustError(error) {
+export function checkRequestStatustError(error) {
   return {
-    type: 'checkPlayStatusError',
+    type: 'checkRequestStatusError',
     error,
   };
 }

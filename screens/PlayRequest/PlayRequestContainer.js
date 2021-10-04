@@ -1,47 +1,55 @@
-import React, {Component} from 'react';
+import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import {createStructuredSelector} from 'reselect';
 
 import PlayRequest from './PlayRequest';
-import {sendPlayRequest, checkPlayStatus, clearData} from './actions';
+import {sendPlayRequest, checkRequestStatus, clearData} from './actions';
 import {
   selectUserStatus,
   selectLoadingStatus,
   selectPlayStatus,
 } from './selectors';
 
-export class PlayRequestContainer extends Component {
-  constructor(props) {
-    super(props);
-  }
+const PlayRequestContainer = props => {
+  const {
+    otherPlayerAvailable,
+    dispatchToCheckRequestStatus,
+    dispatchSendPlayRequest,
+  } = props;
 
-  componentDidMount() {
-    const {dispatchSendPlayRequest} = this.props;
+  useEffect(() => {
     dispatchSendPlayRequest();
+  }, []);
+
+  useEffect(() => {
+    let apiTimer;
+    if (!otherPlayerAvailable) {
+      apiTimer = setInterval(() => {
+        dispatchToCheckRequestStatus();
+      }, 5000);
+    } else {
+      clearInterval(apiTimer);
+    }
+    return () => clearInterval(apiTimer);
+  }, [otherPlayerAvailable]);
+
+  if (otherPlayerAvailable) {
+    console.log('player found');
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (this.props.playStatus === prevProps.playStatus) {
-      setInterval(() => {
-        this.props.dispatchCheckPlayStatus();
-      }, 5000);
-    }
-  }
-  render() {
-    return <PlayRequest categoryList={this.props.categoryList} />;
-  }
-}
+  return <PlayRequest categoryList={props.categoryList} />;
+};
 
 export const mapStateToProps = createStructuredSelector({
   userStatus: selectUserStatus(),
   loading: selectLoadingStatus(),
-  playStatus: selectPlayStatus(),
+  otherPlayerAvailable: selectPlayStatus(),
 });
 
 export const mapDispatchToProps = dispatch => {
   return {
     dispatchSendPlayRequest: () => dispatch(sendPlayRequest()),
-    dispatchCheckPlayStatus: () => dispatch(checkPlayStatus()),
+    dispatchToCheckRequestStatus: () => dispatch(checkRequestStatus()),
     dispatchClearData: () => dispatch(clearData()),
   };
 };
