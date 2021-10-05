@@ -1,9 +1,15 @@
 import {fromJS} from 'immutable';
+import {
+  SEND_PLAY_REQ_SUCCESS,
+  SEND_PLAY_REQ_ERROR,
+  CHECK_REQ_STATUS_SUCCESS,
+  CHECK_REQ_STATUS_ERROR,
+} from './constants';
 
 const initialState = fromJS({
   loading: true,
   playerRequest1: '',
-  otherPlayerAvailable: false,
+  otherPlayerAvailable: 'false',
   errorMessage: '',
   successMessage: '',
   errorMessageForPlayStatus: '',
@@ -14,16 +20,16 @@ const sendPlayRequestReducer = (
   {type, success, error, data},
 ) => {
   switch (type) {
-    case 'sendPlayRequestSuccess':
+    case SEND_PLAY_REQ_SUCCESS:
       return state
         .set('successMessage', success)
         .set('loading', false)
         .set('playerRequest1', data);
-    case 'sendPlayRequestError':
+    case SEND_PLAY_REQ_ERROR:
       return state.set('errorMessage', error).set('loading', false);
-    case 'checkPlayStatusSuccess':
+    case CHECK_REQ_STATUS_SUCCESS:
       return state.set('otherPlayerAvailable', data.status);
-    case 'checkPlayStatusError':
+    case CHECK_REQ_STATUS_ERROR:
       return state.set('errorMessageForPlayStatus', error);
     default:
       return state;

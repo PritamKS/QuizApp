@@ -23,7 +23,7 @@ const PlayRequestContainer = props => {
 
   useEffect(() => {
     let apiTimer;
-    if (!otherPlayerAvailable) {
+    if (otherPlayerAvailable === 'false') {
       apiTimer = setInterval(() => {
         dispatchToCheckRequestStatus();
       }, 5000);
@@ -33,8 +33,8 @@ const PlayRequestContainer = props => {
     return () => clearInterval(apiTimer);
   }, [otherPlayerAvailable]);
 
-  if (otherPlayerAvailable) {
-    console.log('player found');
+  if (otherPlayerAvailable === 'true') {
+    console.log(otherPlayerAvailable, 'player found');
   }
 
   return <PlayRequest categoryList={props.categoryList} />;

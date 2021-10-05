@@ -1,12 +1,21 @@
+import {
+  SEND_PLAY_REQ,
+  SEND_PLAY_REQ_SUCCESS,
+  SEND_PLAY_REQ_ERROR,
+  CHECK_REQ_STATUS,
+  CHECK_REQ_STATUS_SUCCESS,
+  CHECK_REQ_STATUS_ERROR,
+  CLEAR_DATA,
+} from './constants';
 export function sendPlayRequest() {
   return {
-    type: 'sendPlayRequest',
+    type: SEND_PLAY_REQ,
   };
 }
 
 export function sendPlayRequestSuccess(success, data) {
   return {
-    type: 'sendPlayRequestSuccess',
+    type: SEND_PLAY_REQ_SUCCESS,
     success,
     data,
   };
@@ -14,20 +23,20 @@ export function sendPlayRequestSuccess(success, data) {
 
 export function sendPlayRequestError(error) {
   return {
-    type: 'sendPlayRequestError',
+    type: SEND_PLAY_REQ_ERROR,
     error,
   };
 }
 
 export function checkRequestStatus() {
   return {
-    type: 'checkRequestStatus',
+    type: CHECK_REQ_STATUS,
   };
 }
 
 export function checkRequestStatusSuccess(success, data) {
   return {
-    type: 'checkRequestStatusSuccess',
+    type: CHECK_REQ_STATUS_SUCCESS,
     success,
     data,
   };
@@ -35,13 +44,13 @@ export function checkRequestStatusSuccess(success, data) {
 
 export function checkRequestStatustError(error) {
   return {
-    type: 'checkRequestStatusError',
+    type: CHECK_REQ_STATUS_ERROR,
     error,
   };
 }
 
 export function clearData() {
   return {
-    type: 'clearData',
+    type: CLEAR_DATA,
   };
 }

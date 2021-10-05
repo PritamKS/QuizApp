@@ -12,7 +12,7 @@ const CategoryList = ({subject, questCount, id, index}) => {
       index={index}
       key={id}
       onPress={() => {
-        navigation.navigate('SubCategoryContainer');
+        navigation.navigate('SubCategory List');
       }}>
       <LinearGradient
         style={styles.quizBox}

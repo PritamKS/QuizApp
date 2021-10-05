@@ -10,6 +10,7 @@ import {LOGIN_STATE} from './screens/Login/constant';
 import {OTP_VERIFICATION_STATE} from './screens/OTPVerification/constants';
 import {DASHBOARD_STATE} from './screens/Dashboard/constants';
 import {SUBCATEGORY_STATE} from './screens/SubCategoriesScreen/constants';
+import {SEND_PLAY_REQ_STATE} from './screens/PlayRequest/constants';
 
 export default function createReducer() {
   return combineReducers({
@@ -17,6 +18,6 @@ export default function createReducer() {
     [OTP_VERIFICATION_STATE]: sendOtpReducer,
     [DASHBOARD_STATE]: dashboardReducer,
     [SUBCATEGORY_STATE]: subCategoryReducer,
-    ['sendPlayRequest']: sendPlayRequestReducer,
+    [SEND_PLAY_REQ_STATE]: sendPlayRequestReducer,
   });
 }

@@ -42,7 +42,7 @@ export default function App() {
             options={{headerShown: false}}
           />
           <Stack.Screen
-            name="SubCategoryContainer"
+            name="SubCategory List"
             component={SubCategoryContainer}
             options={{headerShown: true}}
           />

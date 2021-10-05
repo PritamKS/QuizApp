@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import {createStructuredSelector} from 'reselect';
+import {useNavigation} from '@react-navigation/native';
 
 import OtpVerification from './OtpVerification';
 import {sendOtp, setOtp} from './actions';
@@ -14,6 +15,14 @@ const OtpVerificationContainer = props => {
   const submitOtp = (phone, otp) => {
     props.dispatchSubmitOtp(phone, otp);
   };
+  const navigation = useNavigation();
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('beforeRemove', e => {
+      e.preventDefault(); // Prevent default action
+      unsubscribe(); // Unsubscribe the event on first call to prevent infinite loop
+      navigation.navigate('OnBoarding'); // Navigate to your desired screen
+    });
+  }, []);
 
   return (
     <OtpVerification

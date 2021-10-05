@@ -7,6 +7,7 @@ import {
   checkRequestStatusSuccess,
   checkRequestStatusError,
 } from './actions';
+import {CHECK_REQ_STATUS, SEND_PLAY_REQ} from './constants';
 
 export function* sendPlayRequest() {
   try {
@@ -53,10 +54,10 @@ export function* checkRequestStatus() {
 }
 
 export function* sendPlayRequestSaga() {
-  yield takeLatest('sendPlayRequest', sendPlayRequest);
+  yield takeLatest(SEND_PLAY_REQ, sendPlayRequest);
 }
 export function* checkRequestStatusSaga() {
-  yield takeLatest('checkRequestStatus', checkRequestStatus);
+  yield takeLatest(CHECK_REQ_STATUS, checkRequestStatus);
 }
 
 export default [sendPlayRequestSaga, checkRequestStatusSaga];

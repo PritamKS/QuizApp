@@ -1,6 +1,7 @@
 import {createSelector} from 'reselect';
+import {SEND_PLAY_REQ_STATE} from './constants';
 
-const sendPlayRequest = state => state.get('sendPlayRequest');
+const sendPlayRequest = state => state.get(SEND_PLAY_REQ_STATE);
 
 export const selectUserStatus = () =>
   createSelector(sendPlayRequest, requestStatus =>
