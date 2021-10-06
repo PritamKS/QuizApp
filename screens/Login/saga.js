@@ -9,7 +9,7 @@ export function* getLoginData() {
     const {
       response: {data, status, error},
     } = yield call(ApiService, {
-      method: 'POST',
+      method: 'GET',
       apiUrl: 'login',
       data: JSON.stringify({
         mobile: '8787043285',

@@ -15,3 +15,8 @@ export const selectPlayStatus = () =>
   createSelector(sendPlayRequest, requestStatus =>
     requestStatus.get('otherPlayerAvailable'),
   );
+
+export const selectPlayerDetails = () =>
+  createSelector(sendPlayRequest, playerDetails =>
+    playerDetails.get('userData'),
+  );

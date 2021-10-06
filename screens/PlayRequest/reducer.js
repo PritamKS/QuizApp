@@ -10,6 +10,7 @@ const initialState = fromJS({
   loading: true,
   playerRequest1: '',
   otherPlayerAvailable: 'false',
+  userData: {},
   errorMessage: '',
   successMessage: '',
   errorMessageForPlayStatus: '',
@@ -28,7 +29,9 @@ const sendPlayRequestReducer = (
     case SEND_PLAY_REQ_ERROR:
       return state.set('errorMessage', error).set('loading', false);
     case CHECK_REQ_STATUS_SUCCESS:
-      return state.set('otherPlayerAvailable', data.status);
+      return state
+        .set('otherPlayerAvailable', data.status)
+        .set('userData', data);
     case CHECK_REQ_STATUS_ERROR:
       return state.set('errorMessageForPlayStatus', error);
     default:

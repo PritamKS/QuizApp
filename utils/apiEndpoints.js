@@ -4,6 +4,8 @@ const endpoints = {
   verifyOtp: 'http://13.127.123.219/quizgame/verifyotp.php',
   playRequest: 'http://13.127.123.219/quizgame/playing_request.php',
   checkRequest: 'http://13.127.123.219/quizgame/checkrequest.php',
+  getQuestionList: 'http://13.127.123.219/quizgame/questionlist.php',
+  sendQuestion: 'http://13.127.123.219/quizgame/questionask.php',
 };
 
 export default endpoints;

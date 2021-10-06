@@ -39,9 +39,10 @@ export function* checkRequestStatus() {
       method: 'POST',
       apiUrl: 'checkRequest',
       data: JSON.stringify({
-        id: 23,
-        player_id: 1,
-        quiz_id: 3,
+        id: '35',
+        player_id: '1',
+        player_name: 'Afza',
+        quiz_id: '3',
       }),
     });
     if (status === 200) {

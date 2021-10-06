@@ -14,6 +14,7 @@ import DashboardContainer from './screens/Dashboard/DashboardContainer';
 import PlayRequestContainer from './screens/PlayRequest/PlayRequestContainer';
 import CategoryList from './screens/CategoryList/CategoryList';
 import QuizBoxTopic from './components/UI/QuizBoxTopic';
+import QuestionListContainer from './screens/QuestionList/QuestionListContainer';
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -69,6 +70,11 @@ export default function App() {
           <Stack.Screen
             name="QuizBoxTopic"
             component={QuizBoxTopic}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="QuestionListContainer"
+            component={QuestionListContainer}
             options={{headerShown: false}}
           />
         </Stack.Navigator>
