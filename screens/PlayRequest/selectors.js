@@ -8,6 +8,11 @@ export const selectUserStatus = () =>
     requestStatus.getIn(['playerRequest1', 'status']),
   );
 
+export const selectUserDetails = () =>
+  createSelector(sendPlayRequest, requestStatus =>
+    requestStatus.getIn(['playerRequest1', 'response']),
+  );
+
 export const selectLoadingStatus = () =>
   createSelector(sendPlayRequest, loading => loading.get('loading'));
 

@@ -6,6 +6,10 @@ import {
   SEND_QUESTION,
   SEND_QUESTIONS_SUCCESS,
   SEND_QUESTIONS_ERROR,
+  GET_ALLOCATED_QUESTION,
+  GET_ALLOCATED_QUESTIONS_SUCCESS,
+  GET_ALLOCATED_QUESTIONS_ERROR,
+  CLEAN_ALLOCATED_QUESTIONS,
 } from './constants';
 
 export function getQuestions(questionParams) {
@@ -37,12 +41,12 @@ export function clearQuestionsData() {
   };
 }
 
-export function sendQuestion(player_id, question_id, token_id) {
+export function sendQuestion(questionId, playerId, tokenId) {
   return {
     type: SEND_QUESTION,
-    player_id,
-    question_id,
-    token_id,
+    questionId,
+    playerId,
+    tokenId,
   };
 }
 
@@ -58,5 +62,33 @@ export function sendQuestionError(error) {
   return {
     type: SEND_QUESTIONS_ERROR,
     error,
+  };
+}
+
+export function getAllocatedQuestion(playerId, tokenId) {
+  return {
+    type: GET_ALLOCATED_QUESTION,
+    playerId,
+    tokenId,
+  };
+}
+
+export function getAllocatedQuestionSuccess(data) {
+  return {
+    type: GET_ALLOCATED_QUESTIONS_SUCCESS,
+    data,
+  };
+}
+
+export function getAllocatedQuestionError(error) {
+  return {
+    type: GET_ALLOCATED_QUESTIONS_ERROR,
+    error,
+  };
+}
+
+export function cleanAllocatedQuestion() {
+  return {
+    type: CLEAN_ALLOCATED_QUESTIONS,
   };
 }

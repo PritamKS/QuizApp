@@ -29,6 +29,7 @@ const QuestionList = ({
                   sendQuestionHandler={sendQuestionHandler}
                   player_id={player_id}
                   token_id={token_id}
+                  questionIds={item.id}
                 />
               );
             })}

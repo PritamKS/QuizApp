@@ -46,10 +46,10 @@ const OtpVerification = props => {
   // a reference to autoSubmitOtpTimerIntervalCallback to always get updated value of autoSubmitOtpTime
   const autoSubmitOtpTimerIntervalCallbackReference = useRef();
 
-  // useEffect(() => {
-  //   // Your code here to get the OTP
-  //   console.log('call API to get the OTP');
-  // }, []);
+  useEffect(() => {
+    // Your code here to get the OTP
+    console.log('call API to get the OTP');
+  }, []);
 
   useEffect(() => {
     // autoSubmitOtpTime value will be set after otp is detected,
@@ -67,41 +67,41 @@ const OtpVerification = props => {
     };
   }, [resendButtonDisabledTime]);
 
-  // useEffect(() => {
-  //   RNOtpVerify.getOtp()
-  //     .then(p =>
-  //       RNOtpVerify.addListener(message => {
-  //         try {
-  //           if (message) {
-  //             const messageArray = message.split('\n');
-  //             if (messageArray[2]) {
-  //               const otp = messageArray[2].split(' ')[0];
-  //               if (otp.length === 4) {
-  //                 setOtpArray(otp.split(''));
-  //                 setAutoSubmitOtpTime(AUTO_SUBMIT_OTP_TIME_LIMIT);
-  //                 startAutoSubmitOtpTimer();
-  //               }
-  //             }
-  //           }
-  //         } catch (error) {
-  //           logErrorWithMessage(
-  //             error.message,
-  //             'RNOtpVerify.getOtp - read message, OtpVerification',
-  //           );
-  //         }
-  //       }),
-  //     )
-  //     .catch(error => {
-  //       logErrorWithMessage(
-  //         error.message,
-  //         'RNOtpVerify.getOtp, OtpVerification',
-  //       );
-  //     });
-  //   // remove listener on unmount
-  //   return () => {
-  //     RNOtpVerify.removeListener();
-  //   };
-  // }, []);
+  useEffect(() => {
+    RNOtpVerify.getOtp()
+      .then(p =>
+        RNOtpVerify.addListener(message => {
+          try {
+            if (message) {
+              const messageArray = message.split('\n');
+              if (messageArray[2]) {
+                const otp = messageArray[2].split(' ')[0];
+                if (otp.length === 4) {
+                  setOtpArray(otp.split(''));
+                  setAutoSubmitOtpTime(AUTO_SUBMIT_OTP_TIME_LIMIT);
+                  startAutoSubmitOtpTimer();
+                }
+              }
+            }
+          } catch (error) {
+            logErrorWithMessage(
+              error.message,
+              'RNOtpVerify.getOtp - read message, OtpVerification',
+            );
+          }
+        }),
+      )
+      .catch(error => {
+        logErrorWithMessage(
+          error.message,
+          'RNOtpVerify.getOtp, OtpVerification',
+        );
+      });
+    // remove listener on unmount
+    return () => {
+      RNOtpVerify.removeListener();
+    };
+  }, []);
 
   const startResendOtpTimer = () => {
     if (resendOtpTimerInterval) {
@@ -128,14 +128,14 @@ const OtpVerification = props => {
     setAutoSubmitOtpTime(autoSubmitOtpTime - 1);
   };
 
-  // const startAutoSubmitOtpTimer = () => {
-  //   if (autoSubmitOtpTimerInterval) {
-  //     clearInterval(autoSubmitOtpTimerInterval);
-  //   }
-  //   autoSubmitOtpTimerInterval = setInterval(() => {
-  //     autoSubmitOtpTimerIntervalCallbackReference.current();
-  //   }, 1000);
-  // };
+  const startAutoSubmitOtpTimer = () => {
+    if (autoSubmitOtpTimerInterval) {
+      clearInterval(autoSubmitOtpTimerInterval);
+    }
+    autoSubmitOtpTimerInterval = setInterval(() => {
+      autoSubmitOtpTimerIntervalCallbackReference.current();
+    }, 1000);
+  };
 
   const refCallback = textInputRef => node => {
     textInputRef.current = node;

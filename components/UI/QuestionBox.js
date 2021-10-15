@@ -8,6 +8,8 @@ const QuestionBox = ({
   sendQuestionHandler,
   player_id,
   token_id,
+  questionIds,
+  userAction,
 }) => {
   return (
     <View key={id} index={index} style={styles.quizBox}>
@@ -16,9 +18,9 @@ const QuestionBox = ({
       </View>
       <TouchableOpacity
         style={styles.paybtn}
+        disabled={userAction === 'SEND' ? false : true}
         onPress={() => {
-          console.log('call an API to send the question');
-          sendQuestionHandler(id, player_id, token_id);
+          sendQuestionHandler(questionIds, player_id, token_id);
         }}>
         <Text style={styles.payBtnTxt}>Send</Text>
       </TouchableOpacity>

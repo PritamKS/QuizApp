@@ -8,3 +8,10 @@ export const selectQuestionList = () =>
 
 export const selectLoadingStatus = () =>
   createSelector(questionsState, loading => loading.get('loading'));
+
+export const selectSentQuestionStatus = () =>
+  createSelector(questionsState, sentStatus =>
+    sentStatus.get('sentQuestionStatus'),
+  );
+export const getAllocatedQuestionList = () =>
+  createSelector(questionsState, question => question.get('allocatedQuestion'));

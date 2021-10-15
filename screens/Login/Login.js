@@ -32,7 +32,12 @@ const Login = ({onChangeNumber, phoneNumber, logInPress, userLoggedIn}) => {
             maxLength={10}
           />
           <TouchableOpacity
-            style={styles.actionButton}
+            disabled={phoneNumber.length === 10 ? false : true}
+            style={
+              phoneNumber.length === 10
+                ? styles.actionButton
+                : styles.disabledActionButton
+            }
             onPress={() => logInPress(phoneNumber)}>
             <Text style={styles.actionButtonTxt}>Login</Text>
           </TouchableOpacity>
@@ -58,7 +63,7 @@ const styles = StyleSheet.create({
   },
   actionArea: {
     position: 'absolute',
-    bottom: '15%',
+    bottom: 0,
     justifyContent: 'center',
     alignContent: 'center',
     width: '100%',
@@ -68,6 +73,16 @@ const styles = StyleSheet.create({
     width: '90%',
     height: 50,
     backgroundColor: '#1C39BB',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 15,
+    marginBottom: 10,
+    alignSelf: 'center',
+  },
+  disabledActionButton: {
+    width: '90%',
+    height: 50,
+    backgroundColor: '#94bdff',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 15,
@@ -87,6 +102,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     color: 'black',
+  },
+  actionButtons: {
+    backgroundColor: 'red',
+    paddingTop: '50%',
   },
 });
 

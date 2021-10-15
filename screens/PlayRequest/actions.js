@@ -7,9 +7,11 @@ import {
   CHECK_REQ_STATUS_ERROR,
   CLEAR_DATA,
 } from './constants';
-export function sendPlayRequest() {
+export function sendPlayRequest(playerData, questionId) {
   return {
     type: SEND_PLAY_REQ,
+    playerData,
+    questionId,
   };
 }
 
@@ -28,9 +30,13 @@ export function sendPlayRequestError(error) {
   };
 }
 
-export function checkRequestStatus() {
+export function checkRequestStatus(id, player_id, player_name, quiz_id) {
   return {
     type: CHECK_REQ_STATUS,
+    id,
+    player_id,
+    player_name,
+    quiz_id,
   };
 }
 

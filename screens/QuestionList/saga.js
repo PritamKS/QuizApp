@@ -6,8 +6,14 @@ import {
   getQuestionsError,
   sendQuestionSuccess,
   sendQuestionError,
+  getAllocatedQuestionSuccess,
+  getAllocatedQuestionError,
 } from './actions';
-import {GET_QUESTIONS_DATA, SEND_QUESTION} from './constants';
+import {
+  GET_QUESTIONS_DATA,
+  SEND_QUESTION,
+  GET_ALLOCATED_QUESTION,
+} from './constants';
 
 export function* getQuestions(payload) {
   try {
@@ -38,9 +44,9 @@ export function* sendQuestion(payload) {
       method: 'POST',
       apiUrl: 'sendQuestion',
       data: JSON.stringify({
-        player_id: payload.player_id,
-        question_id: payload.question_id,
-        token_id: payload.token_id,
+        player_id: payload.playerId,
+        question_id: payload.questionId,
+        token_id: payload.tokenId,
       }),
     });
     if (status === 200) {
@@ -52,6 +58,28 @@ export function* sendQuestion(payload) {
   }
 }
 
+export function* getAllocatedQuestion(payload) {
+  try {
+    console.log('getAllocatedQuestion', payload);
+    const {
+      response: {data, status, error},
+    } = yield call(ApiService, {
+      method: 'POST',
+      apiUrl: 'allocatedQuestion',
+      data: JSON.stringify({
+        player_id: payload.playerId,
+        token_id: payload.tokenId,
+      }),
+    });
+    if (status === 200) {
+      return yield put(getAllocatedQuestionSuccess(data.response));
+    }
+    return yield put(getAllocatedQuestionError(error));
+  } catch (error) {
+    return yield put(getAllocatedQuestionError(error));
+  }
+}
+
 export function* GetQuestionsSaga() {
   yield takeLatest(GET_QUESTIONS_DATA, getQuestions);
 }
@@ -59,4 +87,8 @@ export function* GetQuestionsSaga() {
 export function* SendQuestionsSaga() {
   yield takeLatest(SEND_QUESTION, sendQuestion);
 }
-export default [GetQuestionsSaga, SendQuestionsSaga];
+
+export function* getAllocatedQuestionSaga() {
+  yield takeLatest(GET_ALLOCATED_QUESTION, getAllocatedQuestion);
+}
+export default [GetQuestionsSaga, SendQuestionsSaga, getAllocatedQuestionSaga];

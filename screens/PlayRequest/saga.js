@@ -9,7 +9,8 @@ import {
 } from './actions';
 import {CHECK_REQ_STATUS, SEND_PLAY_REQ} from './constants';
 
-export function* sendPlayRequest() {
+export function* sendPlayRequest(payload) {
+  console.log(payload);
   try {
     const {
       response: {data, status, error, statusText},
@@ -17,9 +18,9 @@ export function* sendPlayRequest() {
       method: 'POST',
       apiUrl: 'playRequest',
       data: JSON.stringify({
-        player_id: 2,
-        player_name: 'sonu',
-        quiz_id: 1,
+        player_id: payload.playerData[0].id,
+        player_name: payload.playerData[0].name,
+        quiz_id: payload.questionId,
       }),
     });
     if (status === 200) {
@@ -31,7 +32,7 @@ export function* sendPlayRequest() {
   }
 }
 
-export function* checkRequestStatus() {
+export function* checkRequestStatus(payload) {
   try {
     const {
       response: {data, status, error, statusText},
@@ -39,10 +40,10 @@ export function* checkRequestStatus() {
       method: 'POST',
       apiUrl: 'checkRequest',
       data: JSON.stringify({
-        id: '35',
-        player_id: '1',
-        player_name: 'Afza',
-        quiz_id: '3',
+        id: payload.id,
+        player_id: payload.player_id,
+        player_name: payload.player_name,
+        quiz_id: payload.quiz_id,
       }),
     });
     if (status === 200) {

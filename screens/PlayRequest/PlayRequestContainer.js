@@ -10,32 +10,44 @@ import {
   selectLoadingStatus,
   selectPlayStatus,
   selectPlayerDetails,
+  selectUserDetails,
 } from './selectors';
+import {playerData} from '../OTPVerification/selectors';
 
 const PlayRequestContainer = props => {
   const navigation = useNavigation();
+  const questionId = props.route.params.quid;
   const {
     otherPlayerAvailable,
     dispatchToCheckRequestStatus,
     dispatchSendPlayRequest,
     playerDetails,
+    userDetails,
+    playerData,
   } = props;
 
   useEffect(() => {
-    dispatchSendPlayRequest();
+    dispatchSendPlayRequest(playerData, questionId);
   }, []);
 
   useEffect(() => {
-    let apiTimer;
-    if (otherPlayerAvailable === 'false') {
-      apiTimer = setInterval(() => {
-        dispatchToCheckRequestStatus();
-      }, 5000);
-    } else {
-      clearInterval(apiTimer);
+    if (userDetails && userDetails.length) {
+      let apiTimer;
+      const id = userDetails[0].id;
+      const player_id = userDetails[0].player_id;
+      const player_name = userDetails[0].player_name;
+      const quiz_id = userDetails[0].quiz_id;
+      if (otherPlayerAvailable === 'false') {
+        apiTimer = setInterval(() => {
+          dispatchToCheckRequestStatus(id, player_id, player_name, quiz_id);
+        }, 5000);
+      } else {
+        clearInterval(apiTimer);
+      }
+
+      return () => clearInterval(apiTimer);
     }
-    return () => clearInterval(apiTimer);
-  }, [otherPlayerAvailable]);
+  }, [otherPlayerAvailable, userDetails]);
 
   if (otherPlayerAvailable === 'true') {
     navigation.navigate('QuestionListContainer', {
@@ -49,16 +61,20 @@ const PlayRequestContainer = props => {
 };
 
 export const mapStateToProps = createStructuredSelector({
+  playerData: playerData(),
   userStatus: selectUserStatus(),
   loading: selectLoadingStatus(),
   otherPlayerAvailable: selectPlayStatus(),
   playerDetails: selectPlayerDetails(),
+  userDetails: selectUserDetails(),
 });
 
 export const mapDispatchToProps = dispatch => {
   return {
-    dispatchSendPlayRequest: () => dispatch(sendPlayRequest()),
-    dispatchToCheckRequestStatus: () => dispatch(checkRequestStatus()),
+    dispatchSendPlayRequest: (playerData, questionId) =>
+      dispatch(sendPlayRequest(playerData, questionId)),
+    dispatchToCheckRequestStatus: (id, player_id, player_name, quiz_id) =>
+      dispatch(checkRequestStatus(id, player_id, player_name, quiz_id)),
     dispatchClearData: () => dispatch(clearData()),
   };
 };

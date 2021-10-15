@@ -8,7 +8,7 @@ import {
 const initialState = fromJS({
   loading: true,
   loggedIn: false,
-  phoneNumber: null,
+  phoneNumber: '',
 });
 
 const getLoginReducer = (state = initialState, {type, error, data, value}) => {
