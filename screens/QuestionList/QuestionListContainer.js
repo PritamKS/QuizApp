@@ -17,7 +17,19 @@ import {
 } from './selectors';
 
 const QuestionListContainer = props => {
+  const navigation = useNavigation();
   const [userStatus, setUserStatus] = useState(props.route.params.userAction);
+  const tokenId = props.route.params.token_id;
+  const playerId = props.route.params.player_id;
+  const questionParams = props.route.params;
+
+  useEffect(() => {
+    props.dispatchGetQuestions(questionParams);
+  }, [props.route.params.answerSubmitted]);
+
+  useEffect(() => {
+    setUserStatus(props.route.params.userAction);
+  }, [props.route.params.userAction]);
 
   useEffect(() => {
     if (props.route.params.answerSubmitted) {
@@ -25,36 +37,34 @@ const QuestionListContainer = props => {
     }
   }, [props.route.params.answerSubmitted]);
 
-  const navigation = useNavigation();
-  if (props.allocatedQuestion && userStatus === 'RECEIVE') {
-    navigation.navigate('AllocatedQuestionContainer', {
-      questionData: props.allocatedQuestion,
-      tokenId: props.route.params.token_id,
-      playerId: props.route.params.player_id,
-      userAction: userStatus,
-    });
-  }
-  useEffect(() => {
-    const questionParams = props.route.params;
-    props.dispatchGetQuestions(questionParams);
-  }, []);
-
   useEffect(() => {
     let apiTimer;
-    if (
-      userStatus === 'RECEIVE' &&
-      !props.allocatedQuestion &&
-      !props.allocatedQuestion[0]
-    ) {
+    if (userStatus === 'RECEIVE' && !props.allocatedQuestion) {
       apiTimer = setInterval(() => {
-        props.dispatchQuestionsAlloted(
-          props.route.params.player_id,
-          props.route.params.token_id,
-        );
+        props.dispatchQuestionsAlloted(playerId, tokenId);
       }, 5000);
+    } else if (props.allocatedQuestion && userStatus === 'RECEIVE') {
+      setUserStatus('SEND');
+      const {allocatedQuestion} = props;
+      navigation.navigate('AllocatedQuestionContainer', {
+        questionData: allocatedQuestion,
+        tokenId: tokenId,
+        playerId: playerId,
+        userAction: userStatus,
+      });
     }
     return () => clearInterval(apiTimer);
-  }, [props.allocatedQuestion, userStatus]);
+  });
+
+  // if (props.allocatedQuestion && userStatus === 'RECEIVE') {
+  //   const {allocatedQuestion} = props;
+  //   navigation.navigate('AllocatedQuestionContainer', {
+  //     questionData: allocatedQuestion,
+  //     tokenId: tokenId,
+  //     playerId: playerId,
+  //     userAction: userStatus,
+  //   });
+  // }
 
   const sendQuestionHandler = (questionId, playerId, tokenId) => {
     props.dispatchSendQuestion(questionId, playerId, tokenId);
@@ -64,11 +74,11 @@ const QuestionListContainer = props => {
 
   return (
     <QuestionList
+      sendQuestionHandler={sendQuestionHandler}
       questionList={props.questionList}
       userAction={userStatus}
-      player_id={props.route.params.player_id}
-      token_id={props.route.params.token_id}
-      sendQuestionHandler={sendQuestionHandler}
+      player_id={playerId}
+      token_id={tokenId}
     />
   );
 };

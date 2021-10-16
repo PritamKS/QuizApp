@@ -18,7 +18,7 @@ const QuestionBox = ({
       </View>
       <TouchableOpacity
         style={styles.paybtn}
-        disabled={userAction === 'SEND' ? false : true}
+        disabled={userAction == 'SEND' ? false : true}
         onPress={() => {
           sendQuestionHandler(questionIds, player_id, token_id);
         }}>

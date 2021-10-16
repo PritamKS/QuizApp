@@ -12,9 +12,9 @@ export function* sendSubmitAnswer(payload) {
       method: 'POST',
       apiUrl: 'submitAnswer',
       data: JSON.stringify({
-        id: payload.id,
+        id: payload.answerId,
         token_id: payload.tokenId,
-        answer_id: payload.answerId,
+        answer_id: payload.id,
       }),
     });
     if (status === 200) {

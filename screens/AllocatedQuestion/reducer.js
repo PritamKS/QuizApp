@@ -1,5 +1,9 @@
 import {fromJS} from 'immutable';
-import {SUBMIT_ANSWER_SUCCESS, SUBMIT_ANSWER_ERROR} from './constant';
+import {
+  SUBMIT_ANSWER_SUCCESS,
+  SUBMIT_ANSWER_ERROR,
+  RESET_SUBMITTED_ANSWER_STATUS,
+} from './constant';
 
 const initialState = fromJS({
   answerSubmitted: false,
@@ -12,6 +16,8 @@ const submitAnswerReducer = (state = initialState, {type, error, status}) => {
       return state.set('answerSubmitted', status);
     case SUBMIT_ANSWER_ERROR:
       return state.set('answerSubmitted', false).set('errorMessage', error);
+    case RESET_SUBMITTED_ANSWER_STATUS:
+      return state.set('answerSubmitted', false);
     default:
       return state;
   }

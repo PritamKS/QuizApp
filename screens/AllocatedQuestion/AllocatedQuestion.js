@@ -2,8 +2,6 @@ import React, {useState} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 
 const AllocatedQuestion = ({questionData, submitAnswer, userToken}) => {
-  // const [modalVisible, setModalVisible] = useState(false);
-
   return (
     <View style={styles.centeredView}>
       <View style={styles.textInfo}>
@@ -21,7 +19,7 @@ const AllocatedQuestion = ({questionData, submitAnswer, userToken}) => {
                 questId={item.question_id}
                 style={styles.options}
                 onPress={() =>
-                  submitAnswer(item.id, userToken, item.question_id)
+                  submitAnswer(item.id, userToken, questionData.id)
                 }>
                 <View>
                   <Text style={styles.subject}>{item.question_option}</Text>
