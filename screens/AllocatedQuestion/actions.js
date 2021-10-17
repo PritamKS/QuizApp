@@ -14,10 +14,10 @@ export function submitAnswerAction(id, tokenId, answerId) {
   };
 }
 
-export function sendSubmitAnswerSuccess(status) {
+export function sendSubmitAnswerSuccess(data) {
   return {
     type: SUBMIT_ANSWER_SUCCESS,
-    status,
+    data,
   };
 }
 

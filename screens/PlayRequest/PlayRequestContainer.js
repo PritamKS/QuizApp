@@ -4,7 +4,12 @@ import {createStructuredSelector} from 'reselect';
 import {useNavigation} from '@react-navigation/native';
 
 import PlayRequest from './PlayRequest';
-import {sendPlayRequest, checkRequestStatus, clearData} from './actions';
+import {
+  sendPlayRequest,
+  checkRequestStatus,
+  clearData,
+  setPlayerCurrentStatus,
+} from './actions';
 import {
   selectUserStatus,
   selectLoadingStatus,
@@ -50,6 +55,7 @@ const PlayRequestContainer = props => {
   }, [otherPlayerAvailable, userDetails]);
 
   if (otherPlayerAvailable === 'true') {
+    props.dispatchPlayerCurrentStatus(playerDetails.action);
     navigation.navigate('QuestionListContainer', {
       player_id: playerDetails.response[0].player_id,
       token_id: playerDetails.response[0].token_id,
@@ -76,6 +82,8 @@ export const mapDispatchToProps = dispatch => {
     dispatchToCheckRequestStatus: (id, player_id, player_name, quiz_id) =>
       dispatch(checkRequestStatus(id, player_id, player_name, quiz_id)),
     dispatchClearData: () => dispatch(clearData()),
+    dispatchPlayerCurrentStatus: action =>
+      dispatch(setPlayerCurrentStatus(action)),
   };
 };
 export default connect(

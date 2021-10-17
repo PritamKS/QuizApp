@@ -18,7 +18,7 @@ export function* sendSubmitAnswer(payload) {
       }),
     });
     if (status === 200) {
-      return yield put(sendSubmitAnswerSuccess(data.status));
+      return yield put(sendSubmitAnswerSuccess(data));
     }
     return yield put(sendSubmitAnswerError(error));
   } catch (error) {

@@ -25,3 +25,6 @@ export const selectPlayerDetails = () =>
   createSelector(sendPlayRequest, playerDetails =>
     playerDetails.get('userData'),
   );
+
+export const selectPlayerStatus = () =>
+  createSelector(sendPlayRequest, status => status.get('PlayerCurrentStatus'));

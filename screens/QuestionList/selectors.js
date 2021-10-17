@@ -13,5 +13,9 @@ export const selectSentQuestionStatus = () =>
   createSelector(questionsState, sentStatus =>
     sentStatus.get('sentQuestionStatus'),
   );
+
 export const getAllocatedQuestionList = () =>
   createSelector(questionsState, question => question.get('allocatedQuestion'));
+
+export const getAnswerSentMessage = () =>
+  createSelector(questionsState, message => message.get('message'));

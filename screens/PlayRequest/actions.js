@@ -6,6 +6,7 @@ import {
   CHECK_REQ_STATUS_SUCCESS,
   CHECK_REQ_STATUS_ERROR,
   CLEAR_DATA,
+  SET_PLAYER_CURRENT_STATUS,
 } from './constants';
 export function sendPlayRequest(playerData, questionId) {
   return {
@@ -58,5 +59,12 @@ export function checkRequestStatustError(error) {
 export function clearData() {
   return {
     type: CLEAR_DATA,
+  };
+}
+
+export function setPlayerCurrentStatus(action) {
+  return {
+    type: SET_PLAYER_CURRENT_STATUS,
+    action,
   };
 }

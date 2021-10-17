@@ -15,56 +15,69 @@ import {
   selectSentQuestionStatus,
   getAllocatedQuestionList,
 } from './selectors';
+import {getAnswerSentMessage} from '../AllocatedQuestion/selectors';
 
 const QuestionListContainer = props => {
   const navigation = useNavigation();
   const [userStatus, setUserStatus] = useState(props.route.params.userAction);
   const tokenId = props.route.params.token_id;
   const playerId = props.route.params.player_id;
+  const userAction = props.route.params.userAction;
+  const answerSubmitted = props.route.params.answerSubmitted;
   const questionParams = props.route.params;
+
+  const allotedQuestion =
+    props.allocatedQuestion &&
+    props.allocatedQuestion.filter(arr => arr.answer_status === 'ASK');
+
+  console.log('pritam', props.answerSentMessage);
+  console.log('pritam1', answerSubmitted);
 
   useEffect(() => {
     props.dispatchGetQuestions(questionParams);
-  }, [props.route.params.answerSubmitted]);
+  }, [answerSubmitted, props.answerSentMessage]);
 
   useEffect(() => {
     setUserStatus(props.route.params.userAction);
   }, [props.route.params.userAction]);
 
   useEffect(() => {
-    if (props.route.params.answerSubmitted) {
+    if (answerSubmitted) {
       props.dispatchCleanPreviousAllocatedQuestion();
     }
-  }, [props.route.params.answerSubmitted]);
+  }, [answerSubmitted]);
+
+  // useEffect(() => {
+  //   if (props.answerSentMessage === 'answer completed') {
+  //     props.dispatchGetQuestions(questionParams);
+  //   }
+  // });
 
   useEffect(() => {
     let apiTimer;
-    if (userStatus === 'RECEIVE' && !props.allocatedQuestion) {
+    if (
+      userStatus === 'RECEIVE' &&
+      allotedQuestion &&
+      (allotedQuestion.length === 0 || allotedQuestion.size === 0)
+    ) {
       apiTimer = setInterval(() => {
         props.dispatchQuestionsAlloted(playerId, tokenId);
       }, 5000);
-    } else if (props.allocatedQuestion && userStatus === 'RECEIVE') {
+    } else if (
+      userStatus === 'RECEIVE' &&
+      allotedQuestion &&
+      allotedQuestion.length > 0
+    ) {
       setUserStatus('SEND');
-      const {allocatedQuestion} = props;
       navigation.navigate('AllocatedQuestionContainer', {
-        questionData: allocatedQuestion,
+        questionData: allotedQuestion[0],
         tokenId: tokenId,
         playerId: playerId,
-        userAction: userStatus,
+        userAction: userAction,
       });
     }
     return () => clearInterval(apiTimer);
   });
-
-  // if (props.allocatedQuestion && userStatus === 'RECEIVE') {
-  //   const {allocatedQuestion} = props;
-  //   navigation.navigate('AllocatedQuestionContainer', {
-  //     questionData: allocatedQuestion,
-  //     tokenId: tokenId,
-  //     playerId: playerId,
-  //     userAction: userStatus,
-  //   });
-  // }
 
   const sendQuestionHandler = (questionId, playerId, tokenId) => {
     props.dispatchSendQuestion(questionId, playerId, tokenId);
@@ -87,6 +100,7 @@ export const mapStateToProps = createStructuredSelector({
   questionList: selectQuestionList(),
   sentQuestStatus: selectSentQuestionStatus(),
   allocatedQuestion: getAllocatedQuestionList(),
+  answerSentMessage: getAnswerSentMessage(),
 });
 
 export const mapDispatchToProps = dispatch => {

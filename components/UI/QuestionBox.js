@@ -10,6 +10,7 @@ const QuestionBox = ({
   token_id,
   questionIds,
   userAction,
+  questionStatus,
 }) => {
   return (
     <View key={id} index={index} style={styles.quizBox}>
@@ -17,8 +18,14 @@ const QuestionBox = ({
         <Text style={styles.topicName}>{question}</Text>
       </View>
       <TouchableOpacity
-        style={styles.paybtn}
-        disabled={userAction == 'SEND' ? false : true}
+        style={
+          userAction == 'SEND' && questionStatus === 'PENDING'
+            ? styles.paybtn
+            : styles.disabledPaybtn
+        }
+        disabled={
+          userAction == 'SEND' && questionStatus === 'PENDING' ? false : true
+        }
         onPress={() => {
           sendQuestionHandler(questionIds, player_id, token_id);
         }}>
@@ -53,6 +60,14 @@ const styles = StyleSheet.create({
     width: '30%',
     height: '30%',
     backgroundColor: 'green',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 25,
+  },
+  disabledPaybtn: {
+    width: '30%',
+    height: '30%',
+    backgroundColor: '#808080',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 25,

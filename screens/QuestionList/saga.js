@@ -60,7 +60,6 @@ export function* sendQuestion(payload) {
 
 export function* getAllocatedQuestion(payload) {
   try {
-    console.log('getAllocatedQuestion', payload);
     const {
       response: {data, status, error},
     } = yield call(ApiService, {
@@ -72,7 +71,7 @@ export function* getAllocatedQuestion(payload) {
       }),
     });
     if (status === 200) {
-      return yield put(getAllocatedQuestionSuccess(data.response));
+      return yield put(getAllocatedQuestionSuccess(data));
     }
     return yield put(getAllocatedQuestionError(error));
   } catch (error) {

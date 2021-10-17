@@ -9,7 +9,7 @@ import AllocatedQuestion from './AllocatedQuestion';
 
 const AllocatedQuestionContainer = props => {
   const navigation = useNavigation();
-  const questionData = props.route.params.questionData[0];
+  const questionData = props.route.params.questionData;
   const userToken = props.route.params.tokenId;
   const playerId = props.route.params.playerId;
   const userAction = props.route.params.userAction;
@@ -20,7 +20,7 @@ const AllocatedQuestionContainer = props => {
         answerSubmitted: props.submittedAnswerStatus,
         token_id: userToken,
         player_id: playerId,
-        userAction: userAction,
+        userAction: 'SEND',
       });
     }
     return () => props.dispatchResetSubmittedAnswerStatus();
@@ -28,7 +28,9 @@ const AllocatedQuestionContainer = props => {
 
   const submitAnswer = (id, tokenId, answerId) => {
     props.dispatchSubmitAnswer(id, tokenId, answerId);
+    console.log('allocatedQuestionContainer after sending', userAction);
   };
+
   return (
     <AllocatedQuestion
       questionData={questionData}

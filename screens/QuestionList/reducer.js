@@ -6,6 +6,7 @@ import {
   SEND_QUESTIONS_SUCCESS,
   GET_ALLOCATED_QUESTIONS_SUCCESS,
   CLEAN_ALLOCATED_QUESTIONS,
+  GET_ALLOCATED_QUESTIONS_ERROR,
 } from './constants';
 
 const initialState = fromJS({
@@ -14,7 +15,7 @@ const initialState = fromJS({
   errorMessage: '',
   successMessage: '',
   sentQuestionStatus: false,
-  allocatedQuestion: '',
+  allocatedQuestion: [],
 });
 
 const questionsReducer = (state = initialState, {type, error, data}) => {
@@ -28,9 +29,11 @@ const questionsReducer = (state = initialState, {type, error, data}) => {
     case SEND_QUESTIONS_SUCCESS:
       return state.set('sentQuestionStatus', true);
     case GET_ALLOCATED_QUESTIONS_SUCCESS:
-      return state.set('allocatedQuestion', data);
+      return state.set('allocatedQuestion', data.response || []);
+    case GET_ALLOCATED_QUESTIONS_ERROR:
+      return state.set('allocatedQuestion', []);
     case CLEAN_ALLOCATED_QUESTIONS:
-      return state.set('allocatedQuestion', '');
+      return state.set('allocatedQuestion', []);
     default:
       return state;
   }

@@ -6,3 +6,4 @@ export const CHECK_REQ_STATUS = 'checkRequestStatus';
 export const CHECK_REQ_STATUS_SUCCESS = 'checkRequestStatusSuccess';
 export const CHECK_REQ_STATUS_ERROR = 'checkRequestStatusError';
 export const CLEAR_DATA = 'playReqClearData';
+export const SET_PLAYER_CURRENT_STATUS = 'setPlayerCurrentStatus';

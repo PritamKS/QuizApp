@@ -7,3 +7,6 @@ export const selectSubmittedAnswerStatus = () =>
   createSelector(submitAnswerState, submittedAnswerStatus =>
     submittedAnswerStatus.get('answerSubmitted'),
   );
+
+export const getAnswerSentMessage = () =>
+  createSelector(submitAnswerState, message => message.get('message'));

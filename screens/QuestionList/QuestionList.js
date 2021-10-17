@@ -30,6 +30,7 @@ const QuestionList = ({
                   player_id={player_id}
                   token_id={token_id}
                   questionIds={item.id}
+                  questionStatus={item.answer_status}
                 />
               );
             })}
