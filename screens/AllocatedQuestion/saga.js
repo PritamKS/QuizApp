@@ -1,5 +1,4 @@
 import {takeLatest, call, put} from 'redux-saga/effects';
-
 import ApiService from '../../utils/service';
 import {sendSubmitAnswerSuccess, sendSubmitAnswerError} from './actions';
 import {SUBMIT_ANSWER} from './constant';

@@ -6,7 +6,6 @@ import {GET_SUBCATEGORY_DATA} from './constants';
 
 export function* getSubCategory(payload) {
   try {
-    console.log(payload.quid);
     const {
       response: {data, status, error},
     } = yield call(ApiService, {

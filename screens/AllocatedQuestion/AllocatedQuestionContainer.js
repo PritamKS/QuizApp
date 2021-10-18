@@ -12,7 +12,6 @@ const AllocatedQuestionContainer = props => {
   const questionData = props.route.params.questionData;
   const userToken = props.route.params.tokenId;
   const playerId = props.route.params.playerId;
-  const userAction = props.route.params.userAction;
 
   useEffect(() => {
     if (props.submittedAnswerStatus) {
@@ -28,7 +27,6 @@ const AllocatedQuestionContainer = props => {
 
   const submitAnswer = (id, tokenId, answerId) => {
     props.dispatchSubmitAnswer(id, tokenId, answerId);
-    console.log('allocatedQuestionContainer after sending', userAction);
   };
 
   return (

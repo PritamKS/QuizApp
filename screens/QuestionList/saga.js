@@ -17,7 +17,6 @@ import {
 
 export function* getQuestions(payload) {
   try {
-    console.log(payload.questionParams);
     const {
       response: {data, status, error},
     } = yield call(ApiService, {
@@ -36,8 +35,6 @@ export function* getQuestions(payload) {
 
 export function* sendQuestion(payload) {
   try {
-    console.log('sendQuestion', payload);
-    console.log(payload.questionParams);
     const {
       response: {data, status, error},
     } = yield call(ApiService, {

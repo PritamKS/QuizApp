@@ -16,6 +16,8 @@ import CategoryList from './screens/CategoryList/CategoryList';
 import QuizBoxTopic from './components/UI/QuizBoxTopic';
 import QuestionListContainer from './screens/QuestionList/QuestionListContainer';
 import AllocatedQuestionContainer from './screens/AllocatedQuestion/AllocatedQuestionContainer';
+import ResultContainer from './screens/Result/ResultContainer';
+
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -81,6 +83,11 @@ export default function App() {
           <Stack.Screen
             name="AllocatedQuestionContainer"
             component={AllocatedQuestionContainer}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="ResultContainer"
+            component={ResultContainer}
             options={{headerShown: false}}
           />
         </Stack.Navigator>

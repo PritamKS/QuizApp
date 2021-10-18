@@ -18,19 +18,32 @@ import {
 import {
   getAnswerSentMessage,
   selectSubmittedAnswerStatus,
+  getAnswerCount,
 } from '../AllocatedQuestion/selectors';
 
 const QuestionListContainer = props => {
   const navigation = useNavigation();
   const [userStatus, setUserStatus] = useState(props.route.params.userAction);
+  const [questionSubmittedCount, setQuestionSubmittedCount] = useState(0);
   const tokenId = props.route.params.token_id;
   const playerId = props.route.params.player_id;
   const userAction = props.route.params.userAction;
   const questionParams = props.route.params;
+  const questionLength = props.questionList && props.questionList.length;
 
   const allotedQuestion =
     props.allocatedQuestion &&
     props.allocatedQuestion.filter(arr => arr.answer_status === 'ASK');
+
+  if (
+    questionLength === props.submittedAnswerCount &&
+    questionLength === questionSubmittedCount
+  ) {
+    navigation.navigate('ResultContainer', {
+      tokenId: tokenId,
+      playerId: playerId,
+    });
+  }
 
   useEffect(() => {
     props.dispatchGetQuestions(questionParams);
@@ -80,6 +93,7 @@ const QuestionListContainer = props => {
     props.dispatchSendQuestion(questionId, playerId, tokenId);
     props.dispatchCleanPreviousAllocatedQuestion();
     setUserStatus('RECEIVE');
+    setQuestionSubmittedCount(questionSubmittedCount + 1);
   };
 
   return (
@@ -99,6 +113,7 @@ export const mapStateToProps = createStructuredSelector({
   allocatedQuestion: getAllocatedQuestionList(),
   answerSentMessage: getAnswerSentMessage(),
   answerSubmitted: selectSubmittedAnswerStatus(),
+  submittedAnswerCount: getAnswerCount(),
 });
 
 export const mapDispatchToProps = dispatch => {

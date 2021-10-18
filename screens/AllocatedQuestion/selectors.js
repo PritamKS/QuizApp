@@ -10,3 +10,8 @@ export const selectSubmittedAnswerStatus = () =>
 
 export const getAnswerSentMessage = () =>
   createSelector(submitAnswerState, message => message.get('message'));
+
+export const getAnswerCount = () =>
+  createSelector(submitAnswerState, answerCount =>
+    answerCount.get('submittedAnswerCount'),
+  );

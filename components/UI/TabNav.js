@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import DashboardContainer from '../../screens/Dashboard/DashboardContainer';
 import Tabbar from './TabBar';
 import MyAccountContainer from '../../screens/MyAccount/MyAccountContainer';
+import ResultContainer from '../../screens/Result/ResultContainer';
 
 const tabData = [
   {
@@ -65,7 +66,7 @@ const TabNav = () => {
       {screen === 0 && <DashboardContainer />}
       {screen === 1 && <Text>Cricket Trading!</Text>}
       {screen === 2 && <Text>Cricket Stats!</Text>}
-      {screen === 3 && <Text>Quiz Stats!</Text>}
+      {screen === 3 && <ResultContainer />}
       {screen === 4 && <MyAccountContainer />}
       <Tabbar
         tabs={tabs}
