@@ -15,7 +15,10 @@ import {
   selectSentQuestionStatus,
   getAllocatedQuestionList,
 } from './selectors';
-import {getAnswerSentMessage} from '../AllocatedQuestion/selectors';
+import {
+  getAnswerSentMessage,
+  selectSubmittedAnswerStatus,
+} from '../AllocatedQuestion/selectors';
 
 const QuestionListContainer = props => {
   const navigation = useNavigation();
@@ -23,35 +26,29 @@ const QuestionListContainer = props => {
   const tokenId = props.route.params.token_id;
   const playerId = props.route.params.player_id;
   const userAction = props.route.params.userAction;
-  const answerSubmitted = props.route.params.answerSubmitted;
   const questionParams = props.route.params;
 
   const allotedQuestion =
     props.allocatedQuestion &&
     props.allocatedQuestion.filter(arr => arr.answer_status === 'ASK');
 
-  console.log('pritam', props.answerSentMessage);
-  console.log('pritam1', answerSubmitted);
-
   useEffect(() => {
     props.dispatchGetQuestions(questionParams);
-  }, [answerSubmitted, props.answerSentMessage]);
+  }, [
+    props.answerSubmitted,
+    props.answerSentMessage,
+    props.route.params.userAction,
+  ]);
 
   useEffect(() => {
     setUserStatus(props.route.params.userAction);
   }, [props.route.params.userAction]);
 
   useEffect(() => {
-    if (answerSubmitted) {
+    if (props.answerSubmitted) {
       props.dispatchCleanPreviousAllocatedQuestion();
     }
-  }, [answerSubmitted]);
-
-  // useEffect(() => {
-  //   if (props.answerSentMessage === 'answer completed') {
-  //     props.dispatchGetQuestions(questionParams);
-  //   }
-  // });
+  }, [props.answerSubmitted]);
 
   useEffect(() => {
     let apiTimer;
@@ -101,6 +98,7 @@ export const mapStateToProps = createStructuredSelector({
   sentQuestStatus: selectSentQuestionStatus(),
   allocatedQuestion: getAllocatedQuestionList(),
   answerSentMessage: getAnswerSentMessage(),
+  answerSubmitted: selectSubmittedAnswerStatus(),
 });
 
 export const mapDispatchToProps = dispatch => {
