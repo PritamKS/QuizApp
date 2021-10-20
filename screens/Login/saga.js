@@ -4,15 +4,15 @@ import ApiService from '../../utils/service';
 import {getLoginSuccess, getLoginError} from './actions';
 import {GET_LOGGED_IN} from './constant';
 
-export function* getLoginData() {
+export function* getLoginData(payload) {
   try {
     const {
       response: {data, status, error},
     } = yield call(ApiService, {
-      method: 'GET',
+      method: 'POST',
       apiUrl: 'login',
       data: JSON.stringify({
-        mobile: '8787043285',
+        mobile: payload.mobile,
       }),
     });
     if (status === 200) {

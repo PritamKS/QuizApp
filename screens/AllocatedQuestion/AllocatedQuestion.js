@@ -1,9 +1,24 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 
 const AllocatedQuestion = ({questionData, submitAnswer, userToken}) => {
+  const [autoSubmitTime, setAutoSubmitTime] = useState(30);
+  useEffect(() => {
+    let autoSubmitTimer;
+    if (autoSubmitTime > 0) {
+      autoSubmitTimer = setInterval(() => {
+        setAutoSubmitTime(autoSubmitTime - 1);
+      }, 1000);
+    }
+
+    return () => clearInterval(autoSubmitTimer);
+  });
+
   return (
     <View style={styles.centeredView}>
+      <View style={styles.timerView}>
+        <Text style={styles.timerText}>Auto Submit in {autoSubmitTime}s</Text>
+      </View>
       <View style={styles.textInfo}>
         <Text style={styles.topicName}>{questionData.question}</Text>
       </View>
@@ -19,7 +34,12 @@ const AllocatedQuestion = ({questionData, submitAnswer, userToken}) => {
                 questId={item.question_id}
                 style={styles.options}
                 onPress={() =>
-                  submitAnswer(item.id, userToken, questionData.id)
+                  submitAnswer(
+                    item.id,
+                    userToken,
+                    questionData.id,
+                    autoSubmitTime,
+                  )
                 }>
                 <View>
                   <Text style={styles.subject}>{item.question_option}</Text>
@@ -44,6 +64,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: '10%',
+  },
+  timerView: {
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: '10%',
+  },
+  timerText: {
+    fontSize: 16,
+    color: 'blue',
   },
   topicName: {
     fontSize: 22,

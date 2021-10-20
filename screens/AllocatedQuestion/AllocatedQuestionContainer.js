@@ -25,8 +25,8 @@ const AllocatedQuestionContainer = props => {
     return () => props.dispatchResetSubmittedAnswerStatus();
   });
 
-  const submitAnswer = (id, tokenId, answerId) => {
-    props.dispatchSubmitAnswer(id, tokenId, answerId);
+  const submitAnswer = (id, tokenId, answerId, time) => {
+    props.dispatchSubmitAnswer(id, tokenId, answerId, time);
   };
 
   return (
@@ -44,8 +44,8 @@ export const mapStateToProps = createStructuredSelector({
 
 export const mapDispatchToProps = dispatch => {
   return {
-    dispatchSubmitAnswer: (id, tokenId, answerId) =>
-      dispatch(submitAnswerAction(id, tokenId, answerId)),
+    dispatchSubmitAnswer: (id, tokenId, answerId, time) =>
+      dispatch(submitAnswerAction(id, tokenId, answerId, time)),
     dispatchResetSubmittedAnswerStatus: () =>
       dispatch(resetSubmittedAnswerStatus()),
   };

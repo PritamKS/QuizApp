@@ -14,6 +14,7 @@ export function* sendSubmitAnswer(payload) {
         id: payload.answerId,
         token_id: payload.tokenId,
         answer_id: payload.id,
+        time_taken: payload.time,
       }),
     });
     if (status === 200) {

@@ -13,7 +13,7 @@ const Login = ({onChangeNumber, phoneNumber, logInPress, userLoggedIn}) => {
   const navigation = useNavigation();
   if (userLoggedIn) {
     navigation.navigate('OtpVerificationContainer', {
-      phoneNumber: '8787043285',
+      phoneNumber: phoneNumber,
     });
   }
   return (

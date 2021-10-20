@@ -14,12 +14,13 @@ const Result = props => {
 
   return (
     <View style={styles.accmain}>
-      <View style={styles.gameOver}>
+      {/* <View style={styles.gameOver}>
         <Image
           source={require('../../assets/images/gameOver.png')}
           style={styles.gameOverImage}
         />
-      </View>
+      </View> */}
+      <Text style={styles.resultString}>RESULTS</Text>
       <Text
         style={
           currentPlayerResult === 'WINNER'
@@ -32,26 +33,28 @@ const Result = props => {
         <Image
           source={
             currentPlayerResult === 'WINNER'
-              ? require('../../assets/images/result.png')
-              : require('../../assets/images/looser.png')
+              ? require('../../assets/images/champ.png')
+              : require('../../assets/images/champ.png')
           }
           style={styles.resultPhoto}
         />
       </View>
       <View style={styles.playerDetails}>
         <View style={styles.playerDetailsBlock}>
-          <Text style={styles.playerDetailsBlockHeading}>
+          <Text style={styles.currentPlayerDetailsBlockHeading}>
             {currentPlayerData[0].score}
           </Text>
-          <Text style={styles.playerDetailsBlockSubHeading}>Your Score</Text>
+        </View>
+        <View style={styles.playerDetailsBlockSeparator}>
+          <Text style={styles.playerDetailsBlockHeading}>:</Text>
         </View>
         <View style={styles.playerDetailsBlock}>
           <Text style={styles.playerDetailsBlockHeading}>
             {otherPlayerData[0].score}
           </Text>
-          <Text style={styles.playerDetailsBlockSubHeading}>
-            Other Player Score
-          </Text>
+        </View>
+        <View style={styles.playerDetailsBlockName}>
+          <Text style={styles.scoreHeading}>FINAL SCORE</Text>
         </View>
       </View>
     </View>
@@ -63,13 +66,17 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     alignItems: 'center',
-    backgroundColor: 'white',
   },
   winnerResultMessage: {
-    marginTop: '5%',
     fontSize: 42,
     fontWeight: '600',
     color: 'green',
+  },
+  resultString: {
+    paddingTop: '20%',
+    fontSize: 22,
+    fontWeight: '600',
+    color: '#0420db',
   },
   looserResultMessage: {
     marginTop: '5%',
@@ -78,12 +85,12 @@ const styles = StyleSheet.create({
     color: 'red',
   },
   resultPhotoContainer: {
-    marginTop: '15%',
+    marginTop: '5%',
     position: 'relative',
     position: 'relative',
   },
   resultPhoto: {
-    width: 200,
+    width: 300,
     height: 200,
     backgroundColor: 'red',
     alignItems: 'center',
@@ -94,19 +101,47 @@ const styles = StyleSheet.create({
   playerDetails: {
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-    width: '100%',
-    margin: '10%',
-    backgroundColor: 'yellow',
-    paddingTop: '3%',
-    paddingBottom: '3%',
+    alignItems: 'center',
+    width: '80%',
+    marginTop: '10%',
+    backgroundColor: '#4e72f5',
+    height: '15%',
+    borderRadius: 10,
+    position: 'relative',
   },
   playerDetailsBlock: {
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '#0420db',
+    borderRadius: 10,
+    width: '30%',
+    height: '50%',
+  },
+  playerDetailsBlockSeparator: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '60%',
+  },
+  currentPlayerDetailsBlockHeading: {
+    fontSize: 26,
+    fontWeight: '600',
+    color: 'yellow',
   },
   playerDetailsBlockHeading: {
     fontSize: 26,
     fontWeight: '600',
+    color: 'white',
+  },
+  playerDetailsBlockName: {
+    position: 'absolute',
+    height: '30%',
+    width: '40%',
+    backgroundColor: '#0420db',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 10,
+    top: '-15%',
+    left: '30%',
   },
   playerDetailsBlockSubHeading: {
     fontSize: 18,
@@ -118,6 +153,9 @@ const styles = StyleSheet.create({
   gameOverImage: {
     resizeMode: 'contain',
     width: '100%',
+  },
+  scoreHeading: {
+    color: 'white',
   },
 });
 
