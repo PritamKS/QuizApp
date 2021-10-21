@@ -3,23 +3,18 @@ import {View, Text, StyleSheet, Image} from 'react-native';
 
 const Result = props => {
   const {playerId, resultData} = props;
-  const currentPlayerData = resultData.filter(
-    data => data.player_id === playerId,
-  );
-  const otherPlayerData = resultData.filter(
-    data => data.player_id !== playerId,
-  );
-  const currentPlayerResult = currentPlayerData[0].result;
+  const currentPlayerData =
+    resultData && resultData.filter(data => data.player_id === playerId);
+  const otherPlayerData =
+    resultData && resultData.filter(data => data.player_id !== playerId);
+  const currentPlayerResult =
+    currentPlayerData &&
+    currentPlayerData.length > 0 &&
+    currentPlayerData[0].result;
   const message = currentPlayerResult === 'WINNER' ? 'YOU WON' : 'YOU LOST';
 
   return (
     <View style={styles.accmain}>
-      {/* <View style={styles.gameOver}>
-        <Image
-          source={require('../../assets/images/gameOver.png')}
-          style={styles.gameOverImage}
-        />
-      </View> */}
       <Text style={styles.resultString}>RESULTS</Text>
       <Text
         style={
@@ -42,7 +37,9 @@ const Result = props => {
       <View style={styles.playerDetails}>
         <View style={styles.playerDetailsBlock}>
           <Text style={styles.currentPlayerDetailsBlockHeading}>
-            {currentPlayerData[0].score}
+            {currentPlayerData &&
+              currentPlayerData.length > 0 &&
+              currentPlayerData[0].score}
           </Text>
         </View>
         <View style={styles.playerDetailsBlockSeparator}>
@@ -50,7 +47,9 @@ const Result = props => {
         </View>
         <View style={styles.playerDetailsBlock}>
           <Text style={styles.playerDetailsBlockHeading}>
-            {otherPlayerData[0].score}
+            {otherPlayerData &&
+              currentPlayerData.length > 0 &&
+              otherPlayerData[0].score}
           </Text>
         </View>
         <View style={styles.playerDetailsBlockName}>
@@ -146,13 +145,6 @@ const styles = StyleSheet.create({
   playerDetailsBlockSubHeading: {
     fontSize: 18,
     fontWeight: '600',
-  },
-  gameOver: {
-    width: '100%',
-  },
-  gameOverImage: {
-    resizeMode: 'contain',
-    width: '100%',
   },
   scoreHeading: {
     color: 'white',

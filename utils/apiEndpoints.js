@@ -8,6 +8,8 @@ const endpoints = {
   sendQuestion: 'http://13.127.123.219/quizgame/questionask.php',
   allocatedQuestion: 'http://13.127.123.219/quizgame/question_alloted.php',
   submitAnswer: 'http://13.127.123.219/quizgame/answer.php',
+  finalResult: 'http://13.127.123.219/quizgame/result.php',
+  registration: 'http://13.127.123.219/quizgame/registration.php',
 };
 
 export default endpoints;

@@ -66,7 +66,7 @@ const TabNav = () => {
       {screen === 0 && <DashboardContainer />}
       {screen === 1 && <Text>Cricket Trading!</Text>}
       {screen === 2 && <Text>Cricket Stats!</Text>}
-      {screen === 3 && <ResultContainer />}
+      {screen === 3 && <Text>Notifications!</Text>}
       {screen === 4 && <MyAccountContainer />}
       <Tabbar
         tabs={tabs}

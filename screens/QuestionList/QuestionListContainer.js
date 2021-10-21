@@ -25,6 +25,7 @@ const QuestionListContainer = props => {
   const navigation = useNavigation();
   const [userStatus, setUserStatus] = useState(props.route.params.userAction);
   const [questionSubmittedCount, setQuestionSubmittedCount] = useState(0);
+  //const [stopAllocationApi, setStop] = useState(false);
   const tokenId = props.route.params.token_id;
   const playerId = props.route.params.player_id;
   const userAction = props.route.params.userAction;
@@ -58,7 +59,10 @@ const QuestionListContainer = props => {
   }, [props.route.params.userAction]);
 
   useEffect(() => {
-    if (props.answerSubmitted) {
+    if (
+      props.answerSubmitted &&
+      questionLength !== props.submittedAnswerCount
+    ) {
       props.dispatchCleanPreviousAllocatedQuestion();
     }
   }, [props.answerSubmitted]);

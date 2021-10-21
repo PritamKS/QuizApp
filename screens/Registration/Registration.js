@@ -6,22 +6,47 @@ import {
   ImageBackground,
   TouchableOpacity,
   Text,
+  Alert,
+  Image,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
-const Login = ({onChangeNumber, phoneNumber, logInPress, userLoggedIn}) => {
+const Registration = ({
+  userRegistered,
+  phoneNumber,
+  name,
+  email,
+  submitPress,
+  onChangeNumber,
+  onChangeName,
+  onChangeEmail,
+  cleanPreviousRecords,
+}) => {
   const navigation = useNavigation();
-  if (userLoggedIn) {
-    navigation.navigate('OtpVerificationContainer', {
-      phoneNumber: phoneNumber,
-    });
+  const showAlert = () =>
+    Alert.alert('Registration', 'You are registered Now!!', [
+      {
+        text: 'OK',
+      },
+    ]);
+  if (userRegistered) {
+    cleanPreviousRecords();
+    showAlert();
+    navigation.navigate('LoginContainer');
   }
+
   return (
     <View style={styles.main}>
       <ImageBackground
-        source={require('../../assets/images/login.png')}
+        source={require('../../assets/images/registration1.png')}
         style={styles.image}>
         <View style={styles.actionArea}>
+          <View style={styles.registrationPhotoContainer}>
+            <Image
+              source={require('../../assets/images/registrationPict.png')}
+              style={styles.registrationPhoto}
+            />
+          </View>
           <TextInput
             keyboardType="numeric"
             style={styles.phoneInput}
@@ -31,19 +56,35 @@ const Login = ({onChangeNumber, phoneNumber, logInPress, userLoggedIn}) => {
             placeholderTextColor="#1C39BB"
             maxLength={10}
           />
+          <TextInput
+            style={styles.phoneInput}
+            value={name}
+            onChange={onChangeName}
+            placeholder="Name"
+            placeholderTextColor="#1C39BB"
+            maxLength={15}
+          />
+          <TextInput
+            keyboardType="email-address"
+            style={styles.phoneInput}
+            value={email}
+            onChange={onChangeEmail}
+            placeholder="Email"
+            placeholderTextColor="#1C39BB"
+            maxLength={25}
+          />
           <TouchableOpacity
-            disabled={phoneNumber.length === 10 ? false : true}
+            disabled={
+              phoneNumber.length > 0 && name.length > 0 && email.length > 0
+                ? false
+                : true
+            }
             style={
-              phoneNumber.length === 10
+              phoneNumber.length > 0 && name.length > 0 && email.length > 0
                 ? styles.actionButton
                 : styles.disabledActionButton
             }
-            onPress={() => logInPress(phoneNumber)}>
-            <Text style={styles.actionButtonTxt}>Login</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.actionButton}
-            onPress={() => navigation.navigate('RegistrationContainer')}>
+            onPress={() => submitPress(phoneNumber, name, email)}>
             <Text style={styles.actionButtonTxt}>Register</Text>
           </TouchableOpacity>
         </View>
@@ -56,6 +97,19 @@ const styles = StyleSheet.create({
   main: {
     flex: 1,
   },
+  registrationPhotoContainer: {
+    position: 'relative',
+    alignItems: 'center',
+    marginBottom: '10%',
+  },
+  registrationPhoto: {
+    width: 300,
+    height: 200,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 100,
+    backgroundColor: 'white',
+  },
   image: {
     flex: 1,
     justifyContent: 'center',
@@ -63,11 +117,12 @@ const styles = StyleSheet.create({
   },
   actionArea: {
     position: 'absolute',
-    bottom: 0,
+    bottom: 80,
     justifyContent: 'center',
     alignContent: 'center',
     width: '100%',
     height: '40%',
+    marginBottom: '40%',
   },
   actionButton: {
     width: '90%',
@@ -109,4 +164,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Login;
+export default Registration;

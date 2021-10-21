@@ -6,6 +6,9 @@ import SubCategorySaga from '../screens/SubCategoriesScreen/saga';
 import sendPlayRequestSaga from '../screens/PlayRequest/saga';
 import GetQuestionsSaga from '../screens/QuestionList/saga';
 import submitAnswerSaga from '../screens/AllocatedQuestion/saga';
+import getResultSaga from '../screens/Result/saga';
+import setRegistrationSaga from '../screens/Registration/saga';
+
 export const runSagas = sagas => {
   if (Array.isArray(sagas)) {
     return sagas.map(saga => saga());
@@ -21,6 +24,8 @@ export default function* rootSaga() {
     ...runSagas(sendPlayRequestSaga),
     ...runSagas(GetQuestionsSaga),
     ...runSagas(submitAnswerSaga),
+    ...runSagas(getResultSaga),
+    ...runSagas(setRegistrationSaga),
   ];
   yield all(allSagas);
 }

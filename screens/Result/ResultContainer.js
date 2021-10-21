@@ -1,54 +1,45 @@
-import React from 'react';
-// import {connect} from 'react-redux';
-// import {createStructuredSelector} from 'reselect';
+import React, {useEffect} from 'react';
+import {connect} from 'react-redux';
+import {createStructuredSelector} from 'reselect';
 
 import Result from './Result';
-// import {getResult} from './actions';
-// import {finalResultData} from './selectors';
+import {getResult} from './actions';
+import {finalResultData} from './selectors';
 
-const ResultContainer = () => {
-  // const tokenId = props.route.params.tokenId;
-  // const playerId = props.route.params.playerId;
-  const tokenId = 'TK1634555292727';
-  const playerId = '1';
+const ResultContainer = props => {
+  const tokenId = props.route.params.tokenId;
+  const playerId = props.route.params.playerId;
 
-  const resultData = [
-    {
-      id: 104,
-      player_id: '2',
-      quiz_id: '3',
-      player_name: 'sonu',
-      token_id: 'TK1634555292727',
-      status: 4,
-      token_action: 'SEND',
-      score: '1',
-      result: 'LOOSER',
-    },
-    {
-      id: 105,
-      player_id: '1',
-      quiz_id: '3',
-      player_name: 'Afzal',
-      token_id: 'TK1634555292727',
-      status: 4,
-      token_action: 'RECEIVE',
-      score: '2',
-      result: 'WINNER',
-    },
-  ];
+  useEffect(() => {
+    let apiTimer;
+    if (
+      props.resultData &&
+      ((props.resultData[0] && props.resultData[0].result === null) ||
+        props.resultData.size === 0)
+    ) {
+      apiTimer = setInterval(() => {
+        props.dispatchGetResult(tokenId);
+      }, 5000);
+    }
+    return () => clearInterval(apiTimer);
+  });
+
   return (
-    <Result resultData={resultData} tokenId={tokenId} playerId={playerId} />
+    <Result
+      resultData={props.resultData}
+      tokenId={tokenId}
+      playerId={playerId}
+    />
   );
 };
 
-// export const mapStateToProps = createStructuredSelector({
-//   resultData: finalResultData(),
-// });
+export const mapStateToProps = createStructuredSelector({
+  resultData: finalResultData(),
+});
 
-// export const mapDispatchToProps = dispatch => {
-//   return {
-//     dispatchGetResultData: () => dispatch(getResult()),
-//   };
-// };
-// export default connect(mapStateToProps, mapDispatchToProps)(ResultContainer);
-export default ResultContainer;
+export const mapDispatchToProps = dispatch => {
+  return {
+    dispatchGetResult: tokenId => dispatch(getResult(tokenId)),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(ResultContainer);
