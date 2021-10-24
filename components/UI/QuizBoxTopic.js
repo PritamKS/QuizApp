@@ -18,7 +18,7 @@ const QuizBoxTopic = ({subject, questCount, id, index, amount}) => {
             quid: id,
           });
         }}>
-        <Text style={styles.payBtnTxt}>Pay</Text>
+        <Text style={styles.payBtnTxt}>Play</Text>
       </TouchableOpacity>
     </View>
   );
@@ -54,13 +54,15 @@ const styles = StyleSheet.create({
   paybtn: {
     width: '30%',
     height: '30%',
-    backgroundColor: 'green',
+    backgroundColor: 'orange',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 25,
   },
   payBtnTxt: {
     color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
 

@@ -6,6 +6,7 @@ import {
   ImageBackground,
   TouchableOpacity,
   Text,
+  Image,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
@@ -19,9 +20,15 @@ const Login = ({onChangeNumber, phoneNumber, logInPress, userLoggedIn}) => {
   return (
     <View style={styles.main}>
       <ImageBackground
-        source={require('../../assets/images/login.png')}
+        source={require('../../assets/images/registration1.png')}
         style={styles.image}>
         <View style={styles.actionArea}>
+          <View style={styles.registrationPhotoContainer}>
+            <Image
+              source={require('../../assets/images/login1.png')}
+              style={styles.registrationPhoto}
+            />
+          </View>
           <TextInput
             keyboardType="numeric"
             style={styles.phoneInput}
@@ -43,7 +50,7 @@ const Login = ({onChangeNumber, phoneNumber, logInPress, userLoggedIn}) => {
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.actionButton}
-            onPress={() => navigation.navigate('RegistrationContainer')}>
+            onPress={() => navigation.navigate('Back to Login!')}>
             <Text style={styles.actionButtonTxt}>Register</Text>
           </TouchableOpacity>
         </View>
@@ -56,6 +63,19 @@ const styles = StyleSheet.create({
   main: {
     flex: 1,
   },
+  registrationPhotoContainer: {
+    position: 'relative',
+    alignItems: 'center',
+    marginBottom: '10%',
+  },
+  registrationPhoto: {
+    width: 300,
+    height: 200,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 100,
+    backgroundColor: 'white',
+  },
   image: {
     flex: 1,
     justifyContent: 'center',
@@ -63,11 +83,12 @@ const styles = StyleSheet.create({
   },
   actionArea: {
     position: 'absolute',
-    bottom: 0,
+    bottom: 80,
     justifyContent: 'center',
     alignContent: 'center',
     width: '100%',
     height: '40%',
+    marginBottom: '40%',
   },
   actionButton: {
     width: '90%',
