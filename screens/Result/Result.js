@@ -1,7 +1,16 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  ImageBackground,
+  TouchableOpacity,
+} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 const Result = props => {
+  const navigation = useNavigation();
   const {playerId, resultData} = props;
   const currentPlayerData =
     resultData && resultData.filter(data => data.player_id === playerId);
@@ -11,51 +20,50 @@ const Result = props => {
     currentPlayerData &&
     currentPlayerData.length > 0 &&
     currentPlayerData[0].result;
-  const message = currentPlayerResult === 'WINNER' ? 'YOU WON' : 'YOU LOST';
 
   return (
     <View style={styles.accmain}>
-      <Text style={styles.resultString}>RESULTS</Text>
-      <Text
-        style={
-          currentPlayerResult === 'WINNER'
-            ? styles.winnerResultMessage
-            : styles.looserResultMessage
-        }>
-        {message}
-      </Text>
-      <View style={styles.resultPhotoContainer}>
-        <Image
-          source={
-            currentPlayerResult === 'WINNER'
-              ? require('../../assets/images/champ.png')
-              : require('../../assets/images/champ.png')
-          }
-          style={styles.resultPhoto}
-        />
-      </View>
-      <View style={styles.playerDetails}>
-        <View style={styles.playerDetailsBlock}>
-          <Text style={styles.currentPlayerDetailsBlockHeading}>
-            {currentPlayerData &&
-              currentPlayerData.length > 0 &&
-              currentPlayerData[0].score}
-          </Text>
+      <ImageBackground
+        source={require('../../assets/images/stars.png')}
+        style={styles.image}>
+        <View style={styles.resultPhotoContainer}>
+          <Image
+            source={
+              currentPlayerResult === 'WINNER'
+                ? require('../../assets/images/youWon.png')
+                : require('../../assets/images/looser1.png')
+            }
+            style={styles.resultPhoto}
+          />
         </View>
-        <View style={styles.playerDetailsBlockSeparator}>
-          <Text style={styles.playerDetailsBlockHeading}>:</Text>
+        <View style={styles.playerDetails}>
+          <View style={styles.playerDetailsBlock}>
+            <Text style={styles.currentPlayerDetailsBlockHeading}>
+              {currentPlayerData &&
+                currentPlayerData.length > 0 &&
+                currentPlayerData[0].score}
+            </Text>
+          </View>
+          <View style={styles.playerDetailsBlockSeparator}>
+            <Text style={styles.playerDetailsBlockHeading}>:</Text>
+          </View>
+          <View style={styles.playerDetailsBlock}>
+            <Text style={styles.playerDetailsBlockHeading}>
+              {otherPlayerData &&
+                currentPlayerData.length > 0 &&
+                otherPlayerData[0].score}
+            </Text>
+          </View>
+          <View style={styles.playerDetailsBlockName}>
+            <Text style={styles.scoreHeading}>FINAL SCORE</Text>
+          </View>
         </View>
-        <View style={styles.playerDetailsBlock}>
-          <Text style={styles.playerDetailsBlockHeading}>
-            {otherPlayerData &&
-              currentPlayerData.length > 0 &&
-              otherPlayerData[0].score}
-          </Text>
-        </View>
-        <View style={styles.playerDetailsBlockName}>
-          <Text style={styles.scoreHeading}>FINAL SCORE</Text>
-        </View>
-      </View>
+        <TouchableOpacity
+          style={styles.actionButton}
+          onPress={() => navigation.navigate('TabNav')}>
+          <Text style={styles.actionButtonTxt}>Play Again</Text>
+        </TouchableOpacity>
+      </ImageBackground>
     </View>
   );
 };
@@ -66,35 +74,37 @@ const styles = StyleSheet.create({
     height: '100%',
     alignItems: 'center',
   },
-  winnerResultMessage: {
-    fontSize: 42,
-    fontWeight: '600',
-    color: 'green',
-  },
-  resultString: {
-    paddingTop: '20%',
-    fontSize: 22,
-    fontWeight: '600',
-    color: '#0420db',
-  },
-  looserResultMessage: {
+  actionButton: {
     marginTop: '5%',
-    fontSize: 42,
-    fontWeight: '600',
-    color: 'red',
+    width: '90%',
+    height: 50,
+    backgroundColor: '#1C39BB',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 15,
+    marginBottom: 10,
+    alignSelf: 'center',
+  },
+  actionButtonTxt: {
+    color: 'white',
+  },
+  image: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    resizeMode: 'stretch',
+    width: '100%',
   },
   resultPhotoContainer: {
-    marginTop: '5%',
-    position: 'relative',
     position: 'relative',
   },
   resultPhoto: {
     width: 300,
-    height: 200,
+    height: 350,
     backgroundColor: 'red',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 100,
+    borderRadius: 150,
     backgroundColor: 'white',
   },
   playerDetails: {
@@ -102,11 +112,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     alignItems: 'center',
     width: '80%',
-    marginTop: '10%',
     backgroundColor: '#4e72f5',
     height: '15%',
     borderRadius: 10,
     position: 'relative',
+    marginTop: '10%',
   },
   playerDetailsBlock: {
     alignItems: 'center',
@@ -135,7 +145,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     height: '30%',
     width: '40%',
-    backgroundColor: '#0420db',
+    backgroundColor: 'orange',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 10,

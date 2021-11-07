@@ -6,6 +6,7 @@ import {
   Text,
   ImageBackground,
   TextInput,
+  Image,
 } from 'react-native';
 import RNOtpVerify from 'react-native-otp-verify';
 
@@ -219,47 +220,51 @@ const OtpVerification = props => {
   return (
     <View style={styles.container}>
       <ImageBackground
-        source={require('../../assets/images/otp.png')}
+        source={require('../../assets/images/registration1.png')}
         resizeMode="cover"
         style={styles.image}>
-        <View style={styles.contents}>
-          <Text>Enter OTP sent to your mobile number</Text>
-          <View style={styles.otpContainer}>
-            {[
-              firstTextInputRef,
-              secondTextInputRef,
-              thirdTextInputRef,
-              fourthTextInputRef,
-            ].map((textInputRef, index) => (
-              <View style={styles.otpBoxes} key={index}>
-                <TextInput
-                  key={`otp-${index}`}
-                  style={styles.otpText}
-                  value={otpArray[index]}
-                  onKeyPress={onOtpKeyPress(index)}
-                  onChangeText={onOtpChange(index)}
-                  keyboardType={'numeric'}
-                  maxLength={1}
-                  autoFocus={index === 0 ? true : undefined}
-                  ref={refCallback(textInputRef)}
-                />
-              </View>
-            ))}
-          </View>
-          {resendButtonDisabledTime > 0 ? (
-            <Text style={styles.timerText}>
-              Resend OTP in {resendButtonDisabledTime}s
-            </Text>
-          ) : (
-            <CustomButton
-              type={'link'}
-              text={'Resend OTP'}
-              buttonStyle={styles.otpResendButton}
-              textStyle={styles.otpResendButtonText}
-              onPress={onResendOtpButtonPress}
-            />
-          )}
+        <View style={styles.registrationPhotoContainer}>
+          <Image
+            source={require('../../assets/images/otp1.png')}
+            style={styles.registrationPhoto}
+          />
         </View>
+        <Text>Enter OTP sent to your mobile number</Text>
+        <View style={styles.otpContainer}>
+          {[
+            firstTextInputRef,
+            secondTextInputRef,
+            thirdTextInputRef,
+            fourthTextInputRef,
+          ].map((textInputRef, index) => (
+            <View style={styles.otpBoxes} key={index}>
+              <TextInput
+                key={`otp-${index}`}
+                style={styles.otpText}
+                value={otpArray[index]}
+                onKeyPress={onOtpKeyPress(index)}
+                onChangeText={onOtpChange(index)}
+                keyboardType={'numeric'}
+                maxLength={1}
+                autoFocus={index === 0 ? true : undefined}
+                ref={refCallback(textInputRef)}
+              />
+            </View>
+          ))}
+        </View>
+        {resendButtonDisabledTime > 0 ? (
+          <Text style={styles.timerText}>
+            Resend OTP in {resendButtonDisabledTime}s
+          </Text>
+        ) : (
+          <CustomButton
+            type={'link'}
+            text={'Resend OTP'}
+            buttonStyle={styles.otpResendButton}
+            textStyle={styles.otpResendButtonText}
+            onPress={onResendOtpButtonPress}
+          />
+        )}
 
         {submittingOtp && <ActivityIndicator />}
         {autoSubmitOtpTime > 0 &&
@@ -268,14 +273,16 @@ const OtpVerification = props => {
             Submitting OTP in {autoSubmitOtpTime}s
           </Text>
         ) : null}
-        <FullButtonComponent
-          type={'fill'}
-          text={'Submit'}
-          textStyle={styles.submitButtonText}
-          buttonStyle={GenericStyles.mt24}
-          onPress={onSubmitButtonPress}
-          disabled={submittingOtp}
-        />
+        <View style={styles.submitButton}>
+          <FullButtonComponent
+            type={'fill'}
+            text={'Submit'}
+            textStyle={styles.submitButtonText}
+            buttonStyle={GenericStyles.mt24}
+            onPress={onSubmitButtonPress}
+            disabled={submittingOtp}
+          />
+        </View>
       </ImageBackground>
     </View>
   );

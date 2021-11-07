@@ -20,17 +20,19 @@ export const styles = StyleSheet.create({
   },
   otpBoxes: {
     flex: 1,
-    marginRight: 12,
     flexDirection: 'row',
-    borderColor: colors.WHITE_GREY,
+    justifyContent: 'center',
+    borderColor: 'blue',
+    //borderColor: colors.WHITE_GREY,
     borderWidth: 1,
-    borderRadius: 4,
+    borderRadius: 10,
     padding: 8,
   },
   otpContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 12,
+    justifyContent: 'center',
+    margin: 20,
   },
   errorText: {
     color: colors.RED,
@@ -43,7 +45,6 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
   },
   container: {
-    padding: 16,
     flex: 1,
     backgroundColor: 'white',
   },
@@ -63,8 +64,24 @@ export const styles = StyleSheet.create({
   image: {
     flex: 1,
     justifyContent: 'center',
+    alignItems: 'center',
   },
-  contents: {
-    marginTop: '100%',
+  submitButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '90%',
+  },
+  registrationPhotoContainer: {
+    position: 'relative',
+    alignItems: 'center',
+    marginBottom: '10%',
+  },
+  registrationPhoto: {
+    width: 300,
+    height: 200,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 100,
+    backgroundColor: 'white',
   },
 });

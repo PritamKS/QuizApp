@@ -47,7 +47,7 @@ export default function App() {
             options={{headerShown: false}}
           />
           <Stack.Screen
-            name="SubCategory List"
+            name="Dashboard"
             component={SubCategoryContainer}
             options={{headerShown: true}}
           />
@@ -92,9 +92,8 @@ export default function App() {
             options={{headerShown: false}}
           />
           <Stack.Screen
-            name="RegistrationContainer"
+            name="Back to Login!"
             component={RegistrationContainer}
-            options={{headerShown: false}}
           />
         </Stack.Navigator>
       </NavigationContainer>
