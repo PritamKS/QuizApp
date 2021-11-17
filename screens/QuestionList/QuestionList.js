@@ -11,7 +11,7 @@ const QuestionList = ({
   token_id,
 }) => {
   return (
-    <ScrollView>
+    <ScrollView style={styles.questionScroll}>
       <View style={styles.container}>
         <Text style={styles.heading}>
           Choose 1 Questions to transfer to the other user
@@ -44,6 +44,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  questionScroll: {
+    height: '100%',
+    backgroundColor: '#26509e',
+  },
   quiz: {
     width: '100%',
     height: '100%',
@@ -52,12 +56,13 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   heading: {
-    fontSize: 24,
+    fontSize: 22,
     textAlign: 'center',
     width: '100%',
     paddingTop: 20,
     paddingLeft: 10,
     paddingRight: 10,
+    color: 'white',
   },
 });
 

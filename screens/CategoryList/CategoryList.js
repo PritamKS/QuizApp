@@ -18,21 +18,16 @@ const CategoryList = ({subject, questCount, id, index}) => {
         style={styles.quizBox}
         start={{x: 0, y: 0}}
         end={{x: 1, y: 0}}
-        colors={['#2a1bfa', '#0420db', '#2a1bfa']}>
+        colors={['#5e9cff', '#0062ff', '#0062ff']}>
         <Image
-          source={require('../../assets/images/quiz.png')}
+          source={require('../../assets/images/quizimage.gif')}
           style={styles.quizBoxImage}
         />
         <View style={styles.infoElementStyle}>
           <Text style={styles.subject}>{subject}</Text>
           <Text style={styles.questCount}>{questCount} Questions</Text>
           <View style={styles.iconView}>
-            <Icon
-              name="play-circle"
-              color="#fff"
-              size={35}
-              style={styles.playIcon}
-            />
+            <Icon name="play-circle" size={35} style={styles.playIcon} />
           </View>
         </View>
       </LinearGradient>
@@ -44,24 +39,25 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   quizBox: {
-    width: '95%',
-    height: 90,
+    width: '93%',
+    height: 80,
     marginTop: '5%',
-    backgroundColor: '#1C39BB',
     borderRadius: 20,
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-    borderWidth: 1,
-    borderColor: '#0015ff',
     alignItems: 'center',
     justifyContent: 'center',
     paddingLeft: '5%',
     position: 'relative',
+    shadowOpacity: 0.8,
+    shadowRadius: 5,
+    elevation: 25,
   },
   quizBoxImage: {
     width: '20%',
     height: '50%',
     resizeMode: 'contain',
+    borderRadius: 600,
   },
   subject: {
     color: 'white',
@@ -82,12 +78,13 @@ const styles = StyleSheet.create({
   },
   playIcon: {
     color: '#ff0a27',
+    top: -1,
   },
   iconView: {
     position: 'absolute',
     backgroundColor: 'white',
-    width: 30,
-    height: 33,
+    width: 32,
+    height: 32,
     top: '50%',
     right: '15%',
     borderRadius: 50,

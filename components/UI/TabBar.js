@@ -108,7 +108,7 @@ export default class Tabbar extends React.PureComponent {
               borderTopLeftRadius,
               borderBottomLeftRadius,
               borderBottomRightRadius,
-              height: height - 10,
+              height: height - 15,
             }}>
             <View
               {...{

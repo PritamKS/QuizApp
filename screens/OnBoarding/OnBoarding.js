@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
   },
   dot: {
     borderRadius: SIZES.radius,
-    backgroundColor: 'orange',
+    backgroundColor: '#26509e',
     marginHorizontal: SIZES.radius / 2,
   },
   image: {
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    backgroundColor: '#1C39BB',
+    backgroundColor: '#26509e',
     width: '100%',
     height: '30%',
     borderTopLeftRadius: 50,
@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 30,
     borderBottomRightRadius: 0,
     borderTopRightRadius: 0,
-    backgroundColor: 'orange',
+    backgroundColor: '#558dad',
   },
   buttonText: {...FONTS.h4, color: COLORS.white},
 });

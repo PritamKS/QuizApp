@@ -3,7 +3,6 @@ import {
   View,
   TextInput,
   StyleSheet,
-  ImageBackground,
   TouchableOpacity,
   Text,
   Image,
@@ -19,42 +18,38 @@ const Login = ({onChangeNumber, phoneNumber, logInPress, userLoggedIn}) => {
   }
   return (
     <View style={styles.main}>
-      <ImageBackground
-        source={require('../../assets/images/registration1.png')}
-        style={styles.image}>
-        <View style={styles.actionArea}>
-          <View style={styles.registrationPhotoContainer}>
-            <Image
-              source={require('../../assets/images/login1.png')}
-              style={styles.registrationPhoto}
-            />
-          </View>
-          <TextInput
-            keyboardType="numeric"
-            style={styles.phoneInput}
-            value={phoneNumber}
-            onChange={onChangeNumber}
-            placeholder="Phone No."
-            placeholderTextColor="#1C39BB"
-            maxLength={10}
+      <View style={styles.actionArea}>
+        <View style={styles.registrationPhotoContainer}>
+          <Image
+            source={require('../../assets/images/login1.png')}
+            style={styles.registrationPhoto}
           />
-          <TouchableOpacity
-            disabled={phoneNumber.length === 10 ? false : true}
-            style={
-              phoneNumber.length === 10
-                ? styles.actionButton
-                : styles.disabledActionButton
-            }
-            onPress={() => logInPress(phoneNumber)}>
-            <Text style={styles.actionButtonTxt}>Login</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.actionButton}
-            onPress={() => navigation.navigate('Back to Login!')}>
-            <Text style={styles.actionButtonTxt}>Register</Text>
-          </TouchableOpacity>
         </View>
-      </ImageBackground>
+        <TextInput
+          keyboardType="numeric"
+          style={styles.phoneInput}
+          value={phoneNumber}
+          onChange={onChangeNumber}
+          placeholder="Phone No."
+          placeholderTextColor="#1C39BB"
+          maxLength={10}
+        />
+        <TouchableOpacity
+          disabled={phoneNumber.length === 10 ? false : true}
+          style={
+            phoneNumber.length === 10
+              ? styles.actionButton
+              : styles.disabledActionButton
+          }
+          onPress={() => logInPress(phoneNumber)}>
+          <Text style={styles.actionButtonTxt}>Login</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.actionButton}
+          onPress={() => navigation.navigate('Back to Login!')}>
+          <Text style={styles.actionButtonTxt}>Register</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -62,6 +57,7 @@ const Login = ({onChangeNumber, phoneNumber, logInPress, userLoggedIn}) => {
 const styles = StyleSheet.create({
   main: {
     flex: 1,
+    backgroundColor: '#5e9cff',
   },
   registrationPhotoContainer: {
     position: 'relative',
@@ -69,12 +65,13 @@ const styles = StyleSheet.create({
     marginBottom: '10%',
   },
   registrationPhoto: {
-    width: 300,
-    height: 200,
+    width: '70%',
+    height: '80%',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 100,
     backgroundColor: 'white',
+    marginTop: '10%',
   },
   image: {
     flex: 1,
@@ -103,7 +100,7 @@ const styles = StyleSheet.create({
   disabledActionButton: {
     width: '90%',
     height: 50,
-    backgroundColor: '#94bdff',
+    backgroundColor: '#8fa4b3',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 15,
@@ -115,7 +112,7 @@ const styles = StyleSheet.create({
   },
   phoneInput: {
     borderWidth: 2,
-    borderColor: '#17aaff',
+    borderColor: '#1C39BB',
     width: '90%',
     borderRadius: 15,
     alignSelf: 'center',
@@ -123,6 +120,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     color: 'black',
+    backgroundColor: 'white',
   },
   actionButtons: {
     backgroundColor: 'red',

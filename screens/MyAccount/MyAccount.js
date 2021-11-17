@@ -59,6 +59,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     alignItems: 'center',
+    backgroundColor: '#5e9cff',
   },
   edit: {
     width: 50,

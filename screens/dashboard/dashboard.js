@@ -44,11 +44,12 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 120,
     flexDirection: 'row',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-around',
+    alignItems: 'center',
     marginTop: 10,
   },
   quizHeading: {
-    color: '#1C39BB',
+    color: '#fff',
     fontSize: 20,
     fontWeight: 'bold',
     alignSelf: 'flex-start',
@@ -57,10 +58,11 @@ const styles = StyleSheet.create({
   },
   quiz: {
     alignItems: 'center',
+    fontFamily: 'Roboto-Bold',
   },
   main: {
-    paddingBottom: '14%',
-    backgroundColor: 'white',
+    paddingBottom: '10%',
+    backgroundColor: '#26509e',
   },
 });
 

@@ -37,58 +37,54 @@ const Registration = ({
 
   return (
     <View style={styles.main}>
-      <ImageBackground
-        source={require('../../assets/images/registration1.png')}
-        style={styles.image}>
-        <View style={styles.actionArea}>
-          <View style={styles.registrationPhotoContainer}>
-            <Image
-              source={require('../../assets/images/registrationPict.png')}
-              style={styles.registrationPhoto}
-            />
-          </View>
-          <TextInput
-            keyboardType="numeric"
-            style={styles.phoneInput}
-            value={phoneNumber}
-            onChange={onChangeNumber}
-            placeholder="Phone No."
-            placeholderTextColor="#1C39BB"
-            maxLength={10}
+      <View style={styles.actionArea}>
+        <View style={styles.registrationPhotoContainer}>
+          <Image
+            source={require('../../assets/images/registrationPict.png')}
+            style={styles.registrationPhoto}
           />
-          <TextInput
-            style={styles.phoneInput}
-            value={name}
-            onChange={onChangeName}
-            placeholder="Name"
-            placeholderTextColor="#1C39BB"
-            maxLength={15}
-          />
-          <TextInput
-            keyboardType="email-address"
-            style={styles.phoneInput}
-            value={email}
-            onChange={onChangeEmail}
-            placeholder="Email"
-            placeholderTextColor="#1C39BB"
-            maxLength={25}
-          />
-          <TouchableOpacity
-            disabled={
-              phoneNumber.length > 0 && name.length > 0 && email.length > 0
-                ? false
-                : true
-            }
-            style={
-              phoneNumber.length > 0 && name.length > 0 && email.length > 0
-                ? styles.actionButton
-                : styles.disabledActionButton
-            }
-            onPress={() => submitPress(phoneNumber, name, email)}>
-            <Text style={styles.actionButtonTxt}>Register</Text>
-          </TouchableOpacity>
         </View>
-      </ImageBackground>
+        <TextInput
+          keyboardType="numeric"
+          style={styles.phoneInput}
+          value={phoneNumber}
+          onChange={onChangeNumber}
+          placeholder="Phone No."
+          placeholderTextColor="#1C39BB"
+          maxLength={10}
+        />
+        <TextInput
+          style={styles.phoneInput}
+          value={name}
+          onChange={onChangeName}
+          placeholder="Name"
+          placeholderTextColor="#1C39BB"
+          maxLength={15}
+        />
+        <TextInput
+          keyboardType="email-address"
+          style={styles.phoneInput}
+          value={email}
+          onChange={onChangeEmail}
+          placeholder="Email"
+          placeholderTextColor="#1C39BB"
+          maxLength={25}
+        />
+        <TouchableOpacity
+          disabled={
+            phoneNumber.length > 0 && name.length > 0 && email.length > 0
+              ? false
+              : true
+          }
+          style={
+            phoneNumber.length > 0 && name.length > 0 && email.length > 0
+              ? styles.actionButton
+              : styles.disabledActionButton
+          }
+          onPress={() => submitPress(phoneNumber, name, email)}>
+          <Text style={styles.actionButtonTxt}>Register</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -96,6 +92,7 @@ const Registration = ({
 const styles = StyleSheet.create({
   main: {
     flex: 1,
+    backgroundColor: '#5e9cff',
   },
   registrationPhotoContainer: {
     position: 'relative',
@@ -137,7 +134,7 @@ const styles = StyleSheet.create({
   disabledActionButton: {
     width: '90%',
     height: 50,
-    backgroundColor: '#94bdff',
+    backgroundColor: '#8fa4b3',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 15,
@@ -149,17 +146,16 @@ const styles = StyleSheet.create({
   },
   phoneInput: {
     borderWidth: 2,
-    borderColor: '#17aaff',
+    borderColor: '#1C39BB',
     width: '90%',
     borderRadius: 15,
     alignSelf: 'center',
     marginBottom: 20,
     fontSize: 20,
     textAlign: 'center',
-    color: 'black',
+    backgroundColor: 'white',
   },
   actionButtons: {
-    backgroundColor: 'red',
     paddingTop: '50%',
   },
 });

@@ -2,36 +2,35 @@ import React, {useState} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import DashboardContainer from '../../screens/Dashboard/DashboardContainer';
+import DashboardContainer from '../../screens/Dashboard/dashboardContainer';
 import Tabbar from './TabBar';
 import MyAccountContainer from '../../screens/MyAccount/MyAccountContainer';
-import ResultContainer from '../../screens/Result/ResultContainer';
 
 const tabData = [
   {
     key: 1,
     activeIcon: <Icon name="home" color="#fff" size={25} />,
-    inactiveIcon: <Icon name="home" color="#fff" size={25} />,
+    inactiveIcon: <Icon name="home" color="#d2e2fc" size={25} />,
   },
   {
     key: 2,
     activeIcon: <Icon name="list-ul" color="#fff" size={25} />,
-    inactiveIcon: <Icon name="list-ul" color="#fff" size={25} />,
+    inactiveIcon: <Icon name="list-ul" color="#d2e2fc" size={25} />,
   },
   {
     key: 3,
     activeIcon: <Icon name="comment" color="#fff" size={25} />,
-    inactiveIcon: <Icon name="comment" color="#fff" size={25} />,
+    inactiveIcon: <Icon name="comment" color="#d2e2fc" size={25} />,
   },
   {
     key: 4,
     activeIcon: <Icon name="bell" color="#fff" size={25} />,
-    inactiveIcon: <Icon name="bell" color="#fff" size={25} />,
+    inactiveIcon: <Icon name="bell" color="#d2e2fc" size={25} />,
   },
   {
     key: 5,
     activeIcon: <Icon name="user" color="#fff" size={25} />,
-    inactiveIcon: <Icon name="user" color="#fff" size={25} />,
+    inactiveIcon: <Icon name="user" color="#d2e2fc" size={25} />,
   },
 ];
 
@@ -71,9 +70,9 @@ const TabNav = () => {
       <Tabbar
         tabs={tabs}
         onTabChange={item => onTabChange(item)}
-        tabBarContainerBackground="#2a1bfa"
-        tabBarBackground="#FFFFFF"
-        activeTabBackground="#2a1bfa"
+        tabBarContainerBackground="#2256a3"
+        tabBarBackground="#26509e"
+        activeTabBackground="#f75769"
       />
     </View>
   );

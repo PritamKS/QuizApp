@@ -10,7 +10,7 @@ import TabNav from './components/UI/TabNav';
 import SubCategoryContainer from './screens/SubCategoriesScreen/SubCategoryContainer';
 import LoginContainer from './screens/Login/LoginContainer';
 import OtpVerificationContainer from './screens/OTPVerification/OtpVerificationContainer';
-import DashboardContainer from './screens/Dashboard/DashboardContainer';
+import DashboardContainer from './screens/Dashboard/dashboardContainer';
 import PlayRequestContainer from './screens/PlayRequest/PlayRequestContainer';
 import CategoryList from './screens/CategoryList/CategoryList';
 import QuizBoxTopic from './components/UI/QuizBoxTopic';
@@ -49,7 +49,13 @@ export default function App() {
           <Stack.Screen
             name="Dashboard"
             component={SubCategoryContainer}
-            options={{headerShown: true}}
+            options={{
+              headerShown: true,
+              headerStyle: {
+                backgroundColor: '#5e9cff',
+              },
+              headerTintColor: 'white',
+            }}
           />
           <Stack.Screen
             name="LoginContainer"
@@ -94,6 +100,12 @@ export default function App() {
           <Stack.Screen
             name="Back to Login!"
             component={RegistrationContainer}
+            options={{
+              headerStyle: {
+                backgroundColor: '#5e9cff',
+              },
+              headerTintColor: 'white',
+            }}
           />
         </Stack.Navigator>
       </NavigationContainer>

@@ -8,7 +8,7 @@ const StatsCard = children => {
       style={styles.box}
       start={{x: 0, y: 0}}
       end={{x: 1, y: 0}}
-      colors={['#2a1bfa', '#0420db', '#2a1bfa']}>
+      colors={['#2256a3', '#2256a3', '#2256a3']}>
       <Image
         source={require('../../assets/images/smileys.png')}
         style={styles.statsAPI}
@@ -22,15 +22,16 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   box: {
-    width: '30%',
-    height: '100%',
+    width: '25%',
+    height: '82%',
     backgroundColor: '#1C39BB',
     borderRadius: 20,
     flexDirection: 'column',
     justifyContent: 'space-around',
     alignItems: 'center',
-    borderColor: '#0420db',
-    borderWidth: 1,
+    shadowOpacity: 0.8,
+    shadowRadius: 5,
+    elevation: 25,
   },
   statsTxt: {
     color: 'white',
@@ -40,6 +41,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'red',
     width: '30%',
     height: '30%',
+    borderRadius: 20,
   },
 });
 

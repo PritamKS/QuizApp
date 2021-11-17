@@ -12,7 +12,7 @@ const Header = ({points}) => {
   return (
     <View style={styles.header}>
       <TouchableOpacity>
-        <Icon name="bars" color="#fff" size={40} style={styles.bars} />
+        <Icon name="bars" color="#fff" size={35} style={styles.bars} />
       </TouchableOpacity>
       <LinearGradient
         style={styles.linearGradient}
@@ -31,12 +31,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingTop: '1%',
+    paddingTop: '2%',
     paddingBottom: '1%',
   },
   bars: {
-    marginLeft: '15%',
-    color: '#1C39BB',
+    marginLeft: '17%',
+    color: '#ffffff',
   },
   linearGradient: {
     width: '30%',

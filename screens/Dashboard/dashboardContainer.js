@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {createStructuredSelector} from 'reselect';
 import {useNavigation} from '@react-navigation/native';
 
-import Dashboard from './Dashboard';
+import Dashboard from './dashboard';
 import {getCategoryList} from './actions';
 import {selectCategoryList, selectLoadingStatus} from './selectors';
 

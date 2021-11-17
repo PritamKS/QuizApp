@@ -18,7 +18,7 @@ const QuizBoxTopic = ({subject, questCount, id, index, amount}) => {
             quid: id,
           });
         }}>
-        <Text style={styles.payBtnTxt}>Play</Text>
+        <Text style={styles.payBtnTxt}>Pay</Text>
       </TouchableOpacity>
     </View>
   );
@@ -26,7 +26,7 @@ const QuizBoxTopic = ({subject, questCount, id, index, amount}) => {
 
 const styles = StyleSheet.create({
   topicName: {
-    color: 'white',
+    color: '#26509e',
     fontSize: 22,
     fontWeight: 'bold',
   },
@@ -36,13 +36,16 @@ const styles = StyleSheet.create({
   },
   quizBox: {
     width: '90%',
-    height: 150,
-    backgroundColor: '#1C39BB',
-    borderRadius: 25,
+    height: 110,
+    backgroundColor: '#5e9cff',
+    borderRadius: 10,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 15,
+    shadowOpacity: 0.8,
+    shadowRadius: 5,
+    elevation: 15,
   },
   textInfo: {
     width: '60%',
@@ -52,12 +55,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   paybtn: {
-    width: '30%',
+    width: '25%',
     height: '30%',
-    backgroundColor: 'orange',
+    backgroundColor: '#26509e',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 25,
+    shadowOpacity: 0.8,
+    shadowRadius: 5,
+    elevation: 10,
   },
   payBtnTxt: {
     color: 'white',

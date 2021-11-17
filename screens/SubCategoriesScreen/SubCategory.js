@@ -5,7 +5,7 @@ import QuizBoxTopic from '../../components/UI/QuizBoxTopic';
 
 const SubCategory = ({subCategoryList}) => {
   return (
-    <ScrollView>
+    <ScrollView style={styles.scrolls}>
       <View style={styles.container}>
         <View style={styles.quiz}>
           {subCategoryList &&
@@ -28,15 +28,18 @@ const SubCategory = ({subCategoryList}) => {
 };
 
 const styles = StyleSheet.create({
+  scrolls: {
+    height: '100%',
+    backgroundColor: '#26509e',
+  },
   container: {
     flex: 1,
   },
   quiz: {
-    width: '100%',
-    height: '100%',
     flexDirection: 'column',
     alignItems: 'center',
-    marginTop: 20,
+    paddingTop: 15,
+    backgroundColor: '#26509e',
   },
 });
 

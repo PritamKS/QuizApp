@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  Dimensions,
-  Image,
-} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
 const Banner = ({infoString}) => {
@@ -15,7 +8,7 @@ const Banner = ({infoString}) => {
       style={styles.banner}
       start={{x: 0, y: 0}}
       end={{x: 1, y: 0}}
-      colors={['#2a1bfa', '#0420db', '#2a1bfa']}>
+      colors={['#2256a3', '#2256a3', '#2256a3']}>
       <View style={styles.elementStyle}>
         <View style={styles.infoElementStyle}>
           <Text style={styles.infoString}>{infoString}</Text>
@@ -37,8 +30,8 @@ const Banner = ({infoString}) => {
 };
 const styles = StyleSheet.create({
   banner: {
-    width: '95%',
-    height: 140,
+    width: '93%',
+    height: 130,
     paddingTop: 25,
     paddingBottom: 25,
     paddingLeft: 25,
@@ -48,8 +41,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    borderColor: '#0420db',
-    borderWidth: 1,
+    shadowOpacity: 0.8,
+    shadowRadius: 5,
+    elevation: 25,
   },
   quizBoxImage: {
     width: '25%',
@@ -62,7 +56,7 @@ const styles = StyleSheet.create({
     height: '80%',
     color: 'white',
     fontSize: 20,
-    fontWeight: 'bold',
+    fontFamily: 'Roboto-Bold',
   },
   elementStyle: {
     flexDirection: 'row',

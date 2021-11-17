@@ -27,6 +27,7 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 10,
     padding: 8,
+    backgroundColor: 'white',
   },
   otpContainer: {
     flexDirection: 'row',
@@ -47,6 +48,9 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#5e9cff',
   },
   submitButtonText: {
     color: colors.WHITE,

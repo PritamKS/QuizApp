@@ -43,13 +43,16 @@ const styles = StyleSheet.create({
   },
   quizBox: {
     width: '90%',
-    height: 150,
+    height: 120,
     backgroundColor: '#1C39BB',
     borderRadius: 25,
     flexDirection: 'column',
     justifyContent: 'space-evenly',
     alignItems: 'center',
     marginBottom: 15,
+    shadowOpacity: 0.8,
+    shadowRadius: 5,
+    elevation: 5,
   },
   textInfo: {
     width: '100%',
@@ -59,10 +62,13 @@ const styles = StyleSheet.create({
   paybtn: {
     width: '30%',
     height: '30%',
-    backgroundColor: 'green',
+    backgroundColor: '#26509e',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 25,
+    shadowOpacity: 0.8,
+    shadowRadius: 5,
+    elevation: 5,
   },
   disabledPaybtn: {
     width: '30%',
@@ -71,6 +77,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 25,
+    shadowOpacity: 0.8,
+    shadowRadius: 5,
+    elevation: 5,
   },
   payBtnTxt: {
     color: 'white',
