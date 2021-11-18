@@ -10,6 +10,7 @@ const endpoints = {
   submitAnswer: 'http://13.127.123.219/quizgame/answer.php',
   finalResult: 'http://13.127.123.219/quizgame/result.php',
   registration: 'http://13.127.123.219/quizgame/registration.php',
+  walletDetailsOnDashboard: 'http://13.127.123.219/quizgame/wallet.php',
 };
 
 export default endpoints;

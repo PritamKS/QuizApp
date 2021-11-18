@@ -10,3 +10,8 @@ export const selectCategoryList = () =>
 
 export const selectLoadingStatus = () =>
   createSelector(dashboardState, loading => loading.get('loading'));
+
+export const selectWalletBalance = () =>
+  createSelector(dashboardState, balance =>
+    balance.getIn(['walletDetails', 'wallet']),
+  );

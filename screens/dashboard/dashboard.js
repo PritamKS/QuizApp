@@ -6,11 +6,11 @@ import CategoryList from '../CategoryList/CategoryList';
 import Banner from '../../components/UI/Banner';
 import Header from '../../components/UI/Header';
 
-const Dashboard = ({categoryList}) => {
+const Dashboard = ({categoryList, walletBalance}) => {
   return (
     <View style={styles.main}>
-      <Header points="1K" />
-      <ScrollView>
+      <Header points={walletBalance} />
+      <ScrollView style={styles.dashboardArea}>
         <View style={styles.quiz}>
           <Banner infoString="50% Off Get Premium!" />
         </View>
@@ -40,6 +40,9 @@ const Dashboard = ({categoryList}) => {
 };
 
 const styles = StyleSheet.create({
+  dashboardArea: {
+    height: '90%',
+  },
   stats: {
     width: '100%',
     height: 120,
@@ -55,14 +58,14 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     paddingLeft: '5%',
     marginTop: '5%',
+    marginBottom: '5%',
   },
   quiz: {
     alignItems: 'center',
-    fontFamily: 'Roboto-Bold',
   },
   main: {
-    paddingBottom: '10%',
     backgroundColor: '#26509e',
+    paddingBottom: 55,
   },
 });
 

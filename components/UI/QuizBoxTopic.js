@@ -1,25 +1,32 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import LinearGradient from 'react-native-linear-gradient';
 
 const QuizBoxTopic = ({subject, questCount, id, index, amount}) => {
   const navigation = useNavigation();
   return (
-    <View key={id} index={index} style={styles.quizBox}>
-      <View style={styles.textInfo}>
-        <Text style={styles.topicName}>{subject}</Text>
-        <Text style={styles.topicName}>{amount}</Text>
-        <Text style={styles.questCount}>{questCount} Questions</Text>
-      </View>
-      <TouchableOpacity
-        style={styles.paybtn}
-        onPress={() => {
-          navigation.navigate('PlayRequestContainer', {
-            quid: id,
-          });
-        }}>
-        <Text style={styles.payBtnTxt}>Pay</Text>
-      </TouchableOpacity>
+    <View key={id} index={index}>
+      <LinearGradient
+        style={styles.quizBox}
+        start={{x: 0, y: 0}}
+        end={{x: 1, y: 0}}
+        colors={['#5e9cff', '#5e9cff', '#0062ff']}>
+        <View style={styles.textInfo}>
+          <Text style={styles.topicName}>{subject}</Text>
+          <Text style={styles.topicName}>{amount}</Text>
+          <Text style={styles.questCount}>{questCount} Questions</Text>
+        </View>
+        <TouchableOpacity
+          style={styles.paybtn}
+          onPress={() => {
+            navigation.navigate('PlayRequestContainer', {
+              quid: id,
+            });
+          }}>
+          <Text style={styles.payBtnTxt}>Pay</Text>
+        </TouchableOpacity>
+      </LinearGradient>
     </View>
   );
 };
@@ -35,7 +42,7 @@ const styles = StyleSheet.create({
     fontSize: 17,
   },
   quizBox: {
-    width: '90%',
+    width: '100%',
     height: 110,
     backgroundColor: '#5e9cff',
     borderRadius: 10,
@@ -45,7 +52,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     shadowOpacity: 0.8,
     shadowRadius: 5,
-    elevation: 15,
+    elevation: 10,
   },
   textInfo: {
     width: '60%',
@@ -60,7 +67,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#26509e',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 25,
+    borderRadius: 10,
+    marginRight: 15,
     shadowOpacity: 0.8,
     shadowRadius: 5,
     elevation: 10,

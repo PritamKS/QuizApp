@@ -21,7 +21,7 @@ const Banner = ({infoString}) => {
           </TouchableOpacity>
         </View>
         <Image
-          source={require('../../assets/images/quiz.png')}
+          source={require('../../assets/images/quizimage.png')}
           style={styles.quizBoxImage}
         />
       </View>
@@ -46,10 +46,11 @@ const styles = StyleSheet.create({
     elevation: 25,
   },
   quizBoxImage: {
-    width: '25%',
-    height: 50,
+    width: 70,
+    height: 70,
     resizeMode: 'contain',
     alignItems: 'center',
+    borderRadius: 200,
   },
   infoString: {
     width: '60%',
@@ -76,11 +77,11 @@ const styles = StyleSheet.create({
     height: '50%',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'white',
+    backgroundColor: '#5e9cff',
   },
   getNowText: {
     fontSize: 17,
-    color: '#176ffc',
+    color: 'white',
   },
 });
 
