@@ -9,7 +9,7 @@ import {
 
 const initialState = fromJS({
   loading: true,
-  playerRequest1: '',
+  playerRequest1: {},
   otherPlayerAvailable: 'false',
   userData: {},
   errorMessage: '',

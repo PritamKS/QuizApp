@@ -5,17 +5,24 @@ import {createStructuredSelector} from 'reselect';
 import SubCategory from './SubCategory';
 import {getSubCategory} from './actions';
 import {selectQuestionList} from './selectors';
+import {selectWalletBalance} from '../Dashboard/selectors';
 
 const SubCategoryContainer = props => {
   useEffect(() => {
     props.dispatchGetSubCategoryData();
   }, []);
 
-  return <SubCategory subCategoryList={props.subCategoryList} />;
+  return (
+    <SubCategory
+      subCategoryList={props.subCategoryList}
+      walletBalance={props.walletBalance}
+    />
+  );
 };
 
 export const mapStateToProps = createStructuredSelector({
   subCategoryList: selectQuestionList(),
+  walletBalance: selectWalletBalance(),
 });
 
 export const mapDispatchToProps = dispatch => {

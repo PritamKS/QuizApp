@@ -3,7 +3,14 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 
-const QuizBoxTopic = ({subject, questCount, id, index, amount}) => {
+const QuizBoxTopic = ({
+  subject,
+  questCount,
+  id,
+  index,
+  amount,
+  walletBalance,
+}) => {
   const navigation = useNavigation();
   return (
     <View key={id} index={index}>
@@ -14,17 +21,22 @@ const QuizBoxTopic = ({subject, questCount, id, index, amount}) => {
         colors={['#5e9cff', '#5e9cff', '#0062ff']}>
         <View style={styles.textInfo}>
           <Text style={styles.topicName}>{subject}</Text>
-          <Text style={styles.topicName}>{amount}</Text>
+          <Text style={styles.topicName}>&#8377;{amount}</Text>
           <Text style={styles.questCount}>{questCount} Questions</Text>
         </View>
         <TouchableOpacity
-          style={styles.paybtn}
+          style={
+            walletBalance - amount > 0 ? styles.paybtn : styles.disabledPayBtn
+          }
+          disabled={walletBalance - amount < 0}
           onPress={() => {
             navigation.navigate('PlayRequestContainer', {
               quid: id,
             });
           }}>
-          <Text style={styles.payBtnTxt}>Pay</Text>
+          <Text style={styles.payBtnTxt}>
+            {walletBalance - amount > 0 ? 'Pay' : 'Add Money'}
+          </Text>
         </TouchableOpacity>
       </LinearGradient>
     </View>
@@ -72,6 +84,18 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.8,
     shadowRadius: 5,
     elevation: 10,
+  },
+  disabledPayBtn: {
+    width: '25%',
+    height: '30%',
+    backgroundColor: '#34b33e',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 15,
+    borderRadius: 10,
+    shadowOpacity: 0.8,
+    shadowRadius: 5,
+    elevation: 5,
   },
   payBtnTxt: {
     color: 'white',

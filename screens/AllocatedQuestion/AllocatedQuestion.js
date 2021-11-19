@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
     height: '100%',
     flexDirection: 'column',
     alignItems: 'center',
+    backgroundColor: '#26509e',
   },
   textInfo: {
     width: '100%',
@@ -73,11 +74,12 @@ const styles = StyleSheet.create({
   },
   timerText: {
     fontSize: 16,
-    color: 'blue',
+    color: 'yellow',
   },
   topicName: {
     fontSize: 22,
     fontWeight: 'bold',
+    color: 'white',
   },
   answerList: {
     marginTop: '60%',
@@ -87,16 +89,20 @@ const styles = StyleSheet.create({
   subject: {
     width: '100%',
     color: 'white',
+    fontSize: 16,
   },
   options: {
     width: '90%',
     height: 60,
-    backgroundColor: '#1C39BB',
+    backgroundColor: '#528afa',
     borderRadius: 15,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 15,
+    shadowOpacity: 0.8,
+    shadowRadius: 5,
+    elevation: 25,
   },
 });
 

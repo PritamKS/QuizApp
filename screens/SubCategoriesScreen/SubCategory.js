@@ -3,7 +3,7 @@ import {View, StyleSheet, ScrollView} from 'react-native';
 
 import QuizBoxTopic from '../../components/UI/QuizBoxTopic';
 
-const SubCategory = ({subCategoryList}) => {
+const SubCategory = ({subCategoryList, walletBalance}) => {
   return (
     <ScrollView style={styles.scrolls}>
       <View style={styles.container}>
@@ -14,10 +14,11 @@ const SubCategory = ({subCategoryList}) => {
                 <QuizBoxTopic
                   key={`sub-${index}`}
                   id={item.questionUid}
-                  amount="20.00"
+                  amount={item.price}
                   index={index}
                   subject={item.quizname}
                   questCount={item.questioncount}
+                  walletBalance={walletBalance}
                 />
               );
             })}

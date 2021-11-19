@@ -26,7 +26,6 @@ const CategoryList = ({subject, questCount, id, index}) => {
           <Text style={styles.subject}>{subject}</Text>
           <Text style={styles.questCount}>{questCount} Questions</Text>
           <View style={styles.iconView}>
-            {/* <Icon name="play-circle" size={35} style={styles.playIcon} /> */}
             <Image
               source={require('../../assets/images/playIcon.png')}
               style={styles.playIcon}
