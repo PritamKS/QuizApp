@@ -9,6 +9,7 @@ import {
   checkRequestStatus,
   clearData,
   setPlayerCurrentStatus,
+  exitPlayerWaiting,
 } from './actions';
 import {
   selectUserStatus,
@@ -16,6 +17,7 @@ import {
   selectPlayStatus,
   selectPlayerDetails,
   selectUserDetails,
+  playerExited,
 } from './selectors';
 import {playerData} from '../OTPVerification/selectors';
 
@@ -30,6 +32,12 @@ const PlayRequestContainer = props => {
     userDetails,
     playerData,
   } = props;
+
+  const exitWaiting = () => {
+    const PlayerRequestId = props.userDetails[0].id;
+    const playerId = props.userDetails[0].player_id;
+    props.dispatchExitWaiting(PlayerRequestId, playerId);
+  };
 
   useEffect(() => {
     dispatchSendPlayRequest(playerData, questionId);
@@ -63,7 +71,13 @@ const PlayRequestContainer = props => {
     });
   }
 
-  return <PlayRequest categoryList={props.categoryList} />;
+  return (
+    <PlayRequest
+      categoryList={props.categoryList}
+      exitWaiting={exitWaiting}
+      playerExited={props.playerExited}
+    />
+  );
 };
 
 export const mapStateToProps = createStructuredSelector({
@@ -73,6 +87,7 @@ export const mapStateToProps = createStructuredSelector({
   otherPlayerAvailable: selectPlayStatus(),
   playerDetails: selectPlayerDetails(),
   userDetails: selectUserDetails(),
+  playerExited: playerExited(),
 });
 
 export const mapDispatchToProps = dispatch => {
@@ -84,6 +99,8 @@ export const mapDispatchToProps = dispatch => {
     dispatchClearData: () => dispatch(clearData()),
     dispatchPlayerCurrentStatus: action =>
       dispatch(setPlayerCurrentStatus(action)),
+    dispatchExitWaiting: (reqId, playerId) =>
+      dispatch(exitPlayerWaiting(reqId, playerId)),
   };
 };
 export default connect(

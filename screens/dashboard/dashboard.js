@@ -45,11 +45,10 @@ const styles = StyleSheet.create({
   },
   stats: {
     width: '100%',
-    height: 120,
+    height: 110,
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
-    marginTop: 10,
   },
   quizHeading: {
     color: '#fff',
@@ -57,7 +56,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     alignSelf: 'flex-start',
     paddingLeft: '5%',
-    marginTop: '5%',
+    marginTop: '10%',
     marginBottom: '5%',
   },
   quiz: {

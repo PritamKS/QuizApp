@@ -18,6 +18,7 @@ import QuestionListContainer from './screens/QuestionList/QuestionListContainer'
 import AllocatedQuestionContainer from './screens/AllocatedQuestion/AllocatedQuestionContainer';
 import ResultContainer from './screens/Result/ResultContainer';
 import RegistrationContainer from './screens/Registration/RegistrationContainer';
+import WalletContainer from './screens/Wallet/WalletContainer';
 
 const Stack = createStackNavigator();
 
@@ -100,6 +101,16 @@ export default function App() {
           <Stack.Screen
             name="Back to Login!"
             component={RegistrationContainer}
+            options={{
+              headerStyle: {
+                backgroundColor: '#5e9cff',
+              },
+              headerTintColor: 'white',
+            }}
+          />
+          <Stack.Screen
+            name="Back to Dashboard!"
+            component={WalletContainer}
             options={{
               headerStyle: {
                 backgroundColor: '#5e9cff',

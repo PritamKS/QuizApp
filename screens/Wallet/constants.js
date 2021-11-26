@@ -1,0 +1,19 @@
+export const WALLET_STATE = 'walletState';
+export const GET_ORDER_ID = 'getOrderId';
+export const SET_AMOUNT = 'setAmount';
+export const GET_ORDER_ID_SUCCESS = 'getOrderIdSuccess';
+export const GET_ORDER_ID_ERROR = 'getOrderIdError';
+export const SET_ADD_MONEY = 'setAddMoney';
+export const VERIFICATION_SUCCESS = 'verificationSuccess';
+export const VERIFICATION_ERROR = 'verificationError';
+export const CLEAR_ORDER_STATUS = 'clearOrder';
+export const SERVER_INTIMATION_ON_SUCCESS = 'serverIntimationOnSuccess';
+export const SET_UPI = 'setUPI';
+export const WITHDRAW_MONEY = 'withdrawMoney';
+export const WITHDRAW_MONEY_SUCCESS = 'withdrawMoneySuccess';
+export const WITHDRAW_MONEY_ERROR = 'withdrawMoneyError';
+export const CLEAR_WITHDRAW_REQUEST = 'clearWithdrawRequest';
+export const SERVER_INTIMATION_SUCCESS = 'serverIntimationSuccess';
+export const SERVER_INTIMATION_ERROR = 'serverIntimationError';
+export const CLEAR_SERVER_VERIFICATION_MESSAGE =
+  'clearServerVerificationMessage';

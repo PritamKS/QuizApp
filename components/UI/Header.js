@@ -8,7 +8,10 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import LinearGradient from 'react-native-linear-gradient';
+import {useNavigation} from '@react-navigation/native';
+
 const Header = ({points}) => {
+  const navigation = useNavigation();
   return (
     <View style={styles.header}>
       <TouchableOpacity>
@@ -19,7 +22,12 @@ const Header = ({points}) => {
         start={{x: 0, y: 0}}
         end={{x: 1, y: 0}}
         colors={['#f75769', '#f52a67', '#ff0a27']}>
-        <Text style={styles.buttonText}>{points} Points</Text>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('Back to Dashboard!');
+          }}>
+          <Text style={styles.buttonText}>{points} Points</Text>
+        </TouchableOpacity>
       </LinearGradient>
     </View>
   );

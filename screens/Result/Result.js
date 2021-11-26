@@ -21,51 +21,56 @@ const Result = props => {
     currentPlayerData.length > 0 &&
     currentPlayerData[0].result;
 
-  return (
-    <View style={styles.accmain}>
-      <ImageBackground
-        source={require('../../assets/images/stars.png')}
-        style={styles.image}>
-        <View style={styles.resultPhotoContainer}>
-          <Image
-            source={
-              currentPlayerResult === 'WINNER'
-                ? require('../../assets/images/youWon.png')
-                : require('../../assets/images/looser1.png')
-            }
-            style={styles.resultPhoto}
-          />
+  <View style={styles.accmain}>
+    return props.resultData && props.resultData[0] && props.resultData[0].result
+    ? (
+    <ImageBackground
+      source={require('../../assets/images/stars.png')}
+      style={styles.image}>
+      <View style={styles.resultPhotoContainer}>
+        <Image
+          source={
+            currentPlayerResult === 'WINNER'
+              ? require('../../assets/images/youWon.png')
+              : require('../../assets/images/looser1.png')
+          }
+          style={styles.resultPhoto}
+        />
+      </View>
+      <View style={styles.playerDetails}>
+        <View style={styles.playerDetailsBlock}>
+          <Text style={styles.currentPlayerDetailsBlockHeading}>
+            {currentPlayerData &&
+              currentPlayerData.length > 0 &&
+              currentPlayerData[0].score}
+          </Text>
         </View>
-        <View style={styles.playerDetails}>
-          <View style={styles.playerDetailsBlock}>
-            <Text style={styles.currentPlayerDetailsBlockHeading}>
-              {currentPlayerData &&
-                currentPlayerData.length > 0 &&
-                currentPlayerData[0].score}
-            </Text>
-          </View>
-          <View style={styles.playerDetailsBlockSeparator}>
-            <Text style={styles.playerDetailsBlockHeading}>:</Text>
-          </View>
-          <View style={styles.playerDetailsBlock}>
-            <Text style={styles.playerDetailsBlockHeading}>
-              {otherPlayerData &&
-                currentPlayerData.length > 0 &&
-                otherPlayerData[0].score}
-            </Text>
-          </View>
-          <View style={styles.playerDetailsBlockName}>
-            <Text style={styles.scoreHeading}>FINAL SCORE</Text>
-          </View>
+        <View style={styles.playerDetailsBlockSeparator}>
+          <Text style={styles.playerDetailsBlockHeading}>:</Text>
         </View>
-        <TouchableOpacity
-          style={styles.actionButton}
-          onPress={() => navigation.navigate('TabNav')}>
-          <Text style={styles.actionButtonTxt}>Play Again</Text>
-        </TouchableOpacity>
-      </ImageBackground>
-    </View>
-  );
+        <View style={styles.playerDetailsBlock}>
+          <Text style={styles.playerDetailsBlockHeading}>
+            {otherPlayerData &&
+              currentPlayerData.length > 0 &&
+              otherPlayerData[0].score}
+          </Text>
+        </View>
+        <View style={styles.playerDetailsBlockName}>
+          <Text style={styles.scoreHeading}>FINAL SCORE</Text>
+        </View>
+      </View>
+      <TouchableOpacity
+        style={styles.actionButton}
+        onPress={() => navigation.navigate('TabNav')}>
+        <Text style={styles.actionButtonTxt}>Play Again</Text>
+      </TouchableOpacity>
+    </ImageBackground>{' '}
+    ) : (
+    <Text style={styles.heading}>
+      Please wait while the other user responds
+    </Text>
+    );
+  </View>;
 };
 
 const styles = StyleSheet.create({
@@ -158,6 +163,14 @@ const styles = StyleSheet.create({
   },
   scoreHeading: {
     color: 'white',
+  },
+  heading: {
+    fontSize: 22,
+    textAlign: 'center',
+    width: '100%',
+    paddingLeft: 10,
+    paddingRight: 10,
+    color: 'blue',
   },
 });
 

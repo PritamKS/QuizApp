@@ -9,6 +9,7 @@ import questionsReducer from './screens/QuestionList/reducer';
 import submitAnswerReducer from './screens/AllocatedQuestion/reducer';
 import resultReducer from './screens/Result/reducer';
 import setRegistrationReducer from './screens/Registration/reducer';
+import walletReducer from './screens/Wallet/reducer';
 
 import {LOGIN_STATE} from './screens/Login/constant';
 import {OTP_VERIFICATION_STATE} from './screens/OTPVerification/constants';
@@ -19,6 +20,7 @@ import {QUESTIONS_STATE} from './screens/QuestionList/constants';
 import {SUBMIT_ANSWER_STATE} from './screens/AllocatedQuestion/constant';
 import {RESULT_STATE} from './screens/Result/constants';
 import {REGISTRATION_STATE} from './screens/Registration/constants';
+import {WALLET_STATE} from './screens/Wallet/constants';
 
 export default function createReducer() {
   return combineReducers({
@@ -31,5 +33,6 @@ export default function createReducer() {
     [SUBMIT_ANSWER_STATE]: submitAnswerReducer,
     [RESULT_STATE]: resultReducer,
     [REGISTRATION_STATE]: setRegistrationReducer,
+    [WALLET_STATE]: walletReducer,
   });
 }

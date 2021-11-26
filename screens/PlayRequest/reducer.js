@@ -5,6 +5,7 @@ import {
   CHECK_REQ_STATUS_SUCCESS,
   CHECK_REQ_STATUS_ERROR,
   SET_PLAYER_CURRENT_STATUS,
+  EXIT_PLAYER_SUCCESS,
 } from './constants';
 
 const initialState = fromJS({
@@ -16,6 +17,7 @@ const initialState = fromJS({
   successMessage: '',
   errorMessageForPlayStatus: '',
   PlayerCurrentStatus: '',
+  playerExited: false,
 });
 
 const sendPlayRequestReducer = (
@@ -38,6 +40,8 @@ const sendPlayRequestReducer = (
       return state.set('errorMessageForPlayStatus', error);
     case SET_PLAYER_CURRENT_STATUS:
       return state.set('PlayerCurrentStatus', action);
+    case EXIT_PLAYER_SUCCESS:
+      return state.set('playerExited', true);
     default:
       return state;
   }

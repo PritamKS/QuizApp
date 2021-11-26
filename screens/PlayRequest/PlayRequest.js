@@ -1,7 +1,10 @@
 import React from 'react';
+import {useNavigation} from '@react-navigation/native';
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 
-const PlayRequest = () => {
+const PlayRequest = ({exitWaiting, playerExited}) => {
+  // const navigation = useNavigation();
+  // playerExited && navigation.navigate('QuestionListContainer');
   return (
     <View style={styles.accmain}>
       <View style={styles.profile}>
@@ -13,9 +16,10 @@ const PlayRequest = () => {
       <Text style={styles.profileName}>WAITING</Text>
       <View style={styles.actionArea}>
         <Text style={styles.emailId}>Don't want to play right now?</Text>
+        {/* <TouchableOpacity style={styles.paybtn} onPress={() => exitWaiting()}> */}
         <TouchableOpacity
           style={styles.paybtn}
-          onPress={() => console.log('exit pressed')}>
+          onPress={console.log('button pressed')}>
           <Text style={styles.payBtnTxt}>Leave</Text>
         </TouchableOpacity>
       </View>

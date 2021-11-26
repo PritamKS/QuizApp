@@ -8,6 +8,7 @@ import GetQuestionsSaga from '../screens/QuestionList/saga';
 import submitAnswerSaga from '../screens/AllocatedQuestion/saga';
 import getResultSaga from '../screens/Result/saga';
 import setRegistrationSaga from '../screens/Registration/saga';
+import getOrderIdSaga from '../screens/Wallet/Saga';
 
 export const runSagas = sagas => {
   if (Array.isArray(sagas)) {
@@ -26,6 +27,7 @@ export default function* rootSaga() {
     ...runSagas(submitAnswerSaga),
     ...runSagas(getResultSaga),
     ...runSagas(setRegistrationSaga),
+    ...runSagas(getOrderIdSaga),
   ];
   yield all(allSagas);
 }

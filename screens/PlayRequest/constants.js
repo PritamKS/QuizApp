@@ -7,3 +7,6 @@ export const CHECK_REQ_STATUS_SUCCESS = 'checkRequestStatusSuccess';
 export const CHECK_REQ_STATUS_ERROR = 'checkRequestStatusError';
 export const CLEAR_DATA = 'playReqClearData';
 export const SET_PLAYER_CURRENT_STATUS = 'setPlayerCurrentStatus';
+export const EXIT_PLAYER = 'exitPlayerWaiting';
+export const EXIT_PLAYER_SUCCESS = 'exitPlayerWaitingSuccess';
+export const EXIT_PLAYER_ERROR = 'exitPlayerWaitingError';

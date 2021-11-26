@@ -11,6 +11,10 @@ const endpoints = {
   finalResult: 'http://13.127.123.219/quizgame/result.php',
   registration: 'http://13.127.123.219/quizgame/registration.php',
   walletDetailsOnDashboard: 'http://13.127.123.219/quizgame/wallet.php',
+  orderId: 'http://13.127.123.219/quizgame/deposit_request.php',
+  exitWaitingPlayer: 'http://13.127.123.219/quizgame/quizleave.php',
+  sendRazRespToBackend: 'http://13.127.123.219/quizgame/deposit_response.php',
+  withdrawMoney: 'http://13.127.123.219/quizgame/withdrawal_request.php',
 };
 
 export default endpoints;

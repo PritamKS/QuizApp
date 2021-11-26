@@ -6,8 +6,10 @@ import {
   sendPlayRequestError,
   checkRequestStatusSuccess,
   checkRequestStatusError,
+  exitPlayerRequestSuccess,
+  exitPlayerRequestError,
 } from './actions';
-import {CHECK_REQ_STATUS, SEND_PLAY_REQ} from './constants';
+import {CHECK_REQ_STATUS, SEND_PLAY_REQ, EXIT_PLAYER} from './constants';
 
 export function* sendPlayRequest(payload) {
   console.log(payload);
@@ -55,11 +57,39 @@ export function* checkRequestStatus(payload) {
   }
 }
 
+export function* exitPlayerRequest(payload) {
+  try {
+    const {
+      response: {data, status, error},
+    } = yield call(ApiService, {
+      method: 'POST',
+      apiUrl: 'exitWaitingPlayer',
+      data: JSON.stringify({
+        player_id: payload.playerId,
+        playing_req_id: payload.reqId,
+      }),
+    });
+    if (status === 200) {
+      return yield put(exitPlayerRequestSuccess(status, data));
+    }
+    return yield put(exitPlayerRequestError(error));
+  } catch (error) {
+    return yield put(exitPlayerRequestError(error));
+  }
+}
+
 export function* sendPlayRequestSaga() {
   yield takeLatest(SEND_PLAY_REQ, sendPlayRequest);
 }
 export function* checkRequestStatusSaga() {
   yield takeLatest(CHECK_REQ_STATUS, checkRequestStatus);
 }
+export function* exitWaitingPlayerSaga() {
+  yield takeLatest(EXIT_PLAYER, exitPlayerRequest);
+}
 
-export default [sendPlayRequestSaga, checkRequestStatusSaga];
+export default [
+  sendPlayRequestSaga,
+  checkRequestStatusSaga,
+  exitWaitingPlayerSaga,
+];

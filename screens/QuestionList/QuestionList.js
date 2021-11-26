@@ -10,11 +10,14 @@ const QuestionList = ({
   player_id,
   token_id,
 }) => {
+  const isUserSender = userAction == 'SEND';
   return (
     <ScrollView style={styles.questionScroll}>
       <View style={styles.container}>
         <Text style={styles.heading}>
-          Choose 1 Questions to transfer to the other user
+          {isUserSender
+            ? 'SEND any one question to the other User'
+            : 'Please wait while the other player respond'}
         </Text>
         <View style={styles.quiz}>
           {questionList &&
@@ -54,6 +57,9 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     marginTop: 20,
+    shadowOpacity: 0.8,
+    shadowRadius: 5,
+    elevation: 5,
   },
   heading: {
     fontSize: 22,

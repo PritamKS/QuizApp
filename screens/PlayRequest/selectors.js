@@ -28,3 +28,6 @@ export const selectPlayerDetails = () =>
 
 export const selectPlayerStatus = () =>
   createSelector(sendPlayRequest, status => status.get('PlayerCurrentStatus'));
+
+export const playerExited = () =>
+  createSelector(sendPlayRequest, exited => exited.get('playerExited'));

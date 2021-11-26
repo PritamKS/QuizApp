@@ -22,16 +22,17 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   box: {
-    width: '25%',
-    height: '82%',
+    width: '28%',
+    height: '75%',
     backgroundColor: '#1C39BB',
-    borderRadius: 20,
     flexDirection: 'column',
-    justifyContent: 'space-around',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
     shadowOpacity: 0.8,
     shadowRadius: 5,
     elevation: 25,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
   },
   statsTxt: {
     color: 'white',
@@ -39,8 +40,8 @@ const styles = StyleSheet.create({
   },
   statsAPI: {
     backgroundColor: 'red',
-    width: '30%',
-    height: '30%',
+    width: '25%',
+    height: '35%',
     borderRadius: 20,
   },
 });
