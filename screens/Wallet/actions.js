@@ -74,12 +74,13 @@ export function clearOrderId() {
   };
 }
 
-export function ServerIntimationOnSuccess(order, payment, signature) {
+export function ServerIntimationOnSuccess(order, payment, signature, playerId) {
   return {
     type: SERVER_INTIMATION_ON_SUCCESS,
     order,
     payment,
     signature,
+    playerId,
   };
 }
 

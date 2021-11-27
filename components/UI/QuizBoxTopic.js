@@ -28,11 +28,14 @@ const QuizBoxTopic = ({
           style={
             walletBalance - amount > 0 ? styles.paybtn : styles.disabledPayBtn
           }
-          disabled={walletBalance - amount < 0}
           onPress={() => {
-            navigation.navigate('PlayRequestContainer', {
-              quid: id,
-            });
+            walletBalance - amount > 0
+              ? navigation.navigate('PlayRequestContainer', {
+                  quid: id,
+                })
+              : navigation.navigate('Back to Question', {
+                  quid: id,
+                });
           }}>
           <Text style={styles.payBtnTxt}>
             {walletBalance - amount > 0 ? 'Pay' : 'Add Money'}

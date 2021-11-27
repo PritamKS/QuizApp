@@ -1,5 +1,5 @@
 import React from 'react';
-import {useNavigation} from '@react-navigation/native';
+// import {useNavigation} from '@react-navigation/native';
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 
 const PlayRequest = ({exitWaiting, playerExited}) => {
@@ -16,10 +16,10 @@ const PlayRequest = ({exitWaiting, playerExited}) => {
       <Text style={styles.profileName}>WAITING</Text>
       <View style={styles.actionArea}>
         <Text style={styles.emailId}>Don't want to play right now?</Text>
-        {/* <TouchableOpacity style={styles.paybtn} onPress={() => exitWaiting()}> */}
-        <TouchableOpacity
+        <TouchableOpacity style={styles.paybtn} onPress={() => exitWaiting()}>
+          {/* <TouchableOpacity
           style={styles.paybtn}
-          onPress={console.log('button pressed')}>
+          onPress={console.log('button pressed')}> */}
           <Text style={styles.payBtnTxt}>Leave</Text>
         </TouchableOpacity>
       </View>

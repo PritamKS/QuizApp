@@ -38,43 +38,27 @@ const Wallet = ({
           />
           <Text style={styles.walletAmount}>{walletBalance}</Text>
         </View>
-        <View style={styles.walletAction}>
-          <View style={styles.walletAction1}>
-            <Icon name="university" size={35} style={styles.bankIcon} />
-            <View style={styles.walletActionText}>
-              <Text style={styles.walletAction1SubclassHeading}>
-                Deposit Cash
+        <View style={styles.actionArea}>
+          <View style={styles.walletAction}>
+            <TouchableOpacity
+              style={styles.addCashCTA}
+              onPress={toggleAddMoneyModal}>
+              <Text style={styles.addCashCTAText}>
+                <Icon name="plus" color="#fff" size={16} />
+                &nbsp;&nbsp;Add Cash
               </Text>
-              <Text style={styles.walletAction1Subclass1}>&#8377;0</Text>
-            </View>
+            </TouchableOpacity>
           </View>
-          <TouchableOpacity
-            style={styles.addCashCTA}
-            onPress={toggleAddMoneyModal}>
-            <Text style={styles.addCashCTAText}>
-              <Icon name="plus" color="#fff" size={16} />
-              &nbsp;&nbsp;Add Cash
-            </Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.walletAction}>
-          <View style={styles.walletAction1}>
-            <Icon name="angellist" size={35} style={styles.winningIcon} />
-            <View style={styles.walletActionText}>
-              <Text style={styles.walletAction1SubclassHeading}>
-                Winnings Cash
+          <View style={styles.walletAction}>
+            <TouchableOpacity
+              style={styles.addCashCTA}
+              onPress={toggleWithdrawMoneyModal}>
+              <Text style={styles.addCashCTAText}>
+                <Icon name="sign-out" color="#fff" size={16} />
+                &nbsp;&nbsp;Withdraw
               </Text>
-              <Text style={styles.walletAction1Subclass1}>&#8377;0</Text>
-            </View>
+            </TouchableOpacity>
           </View>
-          <TouchableOpacity
-            style={styles.addCashCTA}
-            onPress={toggleWithdrawMoneyModal}>
-            <Text style={styles.addCashCTAText}>
-              <Icon name="sign-out" color="#fff" size={16} />
-              &nbsp;&nbsp;Withdraw
-            </Text>
-          </TouchableOpacity>
         </View>
       </View>
       <AddMoney
@@ -98,57 +82,8 @@ const Wallet = ({
 };
 
 const styles = StyleSheet.create({
-  walletAction1Subclass1: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: 'white',
-  },
-  walletActionText: {
-    marginLeft: '3%',
-  },
-  addCashCTA: {
-    width: '30%',
-    borderRadius: 5,
-    height: '60%',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#ff0d35',
-    shadowOpacity: 0.8,
-    shadowRadius: 5,
-    elevation: 5,
-  },
-  addCashCTAText: {
-    color: 'white',
-  },
-  walletAction1SubclassHeading: {
-    fontSize: 16,
-    color: '#92b7f7',
-  },
-  bankIcon: {
-    backgroundColor: '#5e9cff',
-    width: 50,
-    height: 50,
-    padding: 6,
-    color: '#26509e',
-    borderRadius: 10,
-    shadowOpacity: 0.8,
-    shadowRadius: 5,
-    elevation: 5,
-  },
-  winningIcon: {
-    backgroundColor: '#5e9cff',
-    width: 50,
-    height: 50,
-    padding: 6,
-    color: '#26509e',
-    borderRadius: 10,
-    shadowOpacity: 0.8,
-    shadowRadius: 5,
-    elevation: 5,
-  },
   main: {
     height: '100%',
-    justifyContent: 'center',
   },
   topContainer: {
     backgroundColor: '#2e5db0',
@@ -165,32 +100,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     margin: '2%',
   },
-  walletBalanceSection: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    margin: 10,
-    width: '25%',
-  },
-  walletAction: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    margin: 10,
-    height: '20%',
-  },
-  walletAction1: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
   topContainerSection1Left: {
     color: 'white',
     fontSize: 19,
-  },
-  walletAmount: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: 'white',
   },
   topContainerSection1Right: {
     alignItems: 'center',
@@ -200,14 +112,51 @@ const styles = StyleSheet.create({
     color: '#92b7f7',
     fontSize: 16,
   },
+  walletBalanceSection: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    margin: 10,
+    width: '25%',
+  },
   rupeeIcon: {
     width: 40,
     height: 40,
     resizeMode: 'contain',
-    alignItems: 'center',
     borderRadius: 200,
-    alignContent: 'center',
+    marginRight: 10,
+  },
+  walletAmount: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: 'orange',
+  },
+  actionArea: {
+    flexDirection: 'row',
+    width: '100%',
+    alignItems: 'center',
+    backgroundColor: '#2f499e',
+    marginTop: '15%',
+  },
+  walletAction: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    height: '65%',
+    width: '50%',
+  },
+  addCashCTA: {
+    width: '50%',
+    borderRadius: 5,
+    height: '80%',
+    alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '#ff0d35',
+    shadowOpacity: 0.8,
+    shadowRadius: 5,
+    elevation: 5,
+  },
+  addCashCTAText: {
+    color: 'white',
   },
 });
 

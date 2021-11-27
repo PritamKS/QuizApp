@@ -37,6 +37,7 @@ const PlayRequestContainer = props => {
     const PlayerRequestId = props.userDetails[0].id;
     const playerId = props.userDetails[0].player_id;
     props.dispatchExitWaiting(PlayerRequestId, playerId);
+    navigation.navigate('Dashboard');
   };
 
   useEffect(() => {

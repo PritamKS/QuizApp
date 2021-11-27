@@ -42,6 +42,7 @@ const WalletContainer = props => {
   if (props.orderIdReceived) {
     const amount = props.orderIdDetails.amount;
     const orderId = props.orderIdDetails.order_txn_no;
+    const playerId = props.playerData[0].id;
     props.dispatchClearOrderId();
     let options = {
       description: 'Quiz App',
@@ -52,9 +53,9 @@ const WalletContainer = props => {
       name: 'Quiz App',
       order_id: orderId, //Replace this with an order_id created using Orders API.
       prefill: {
-        email: 'pritam.singh@example.com',
-        contact: '9911716569',
-        name: 'Pritam Singh',
+        email: '',
+        contact: props.phone,
+        name: props.playerData[0].name,
       },
       theme: {color: '#26509e'},
     };
@@ -66,6 +67,7 @@ const WalletContainer = props => {
           data.razorpay_order_id,
           data.razorpay_payment_id,
           data.razorpay_signature,
+          playerId,
         );
         toggleAddMoneyModal();
         // alert(`Success: ${data.razorpay_payment_id}`);
@@ -83,6 +85,11 @@ const WalletContainer = props => {
 
   if (props.serverVerified === 'Invalid Request') {
     alert(`Server cannot verify the transaction`);
+    props.dispatchClearServerVerifiedMessage();
+  }
+
+  if (props.serverVerified === 'Deposit saved') {
+    alert(`Successfully Deposited`);
     props.dispatchClearServerVerifiedMessage();
   }
 
@@ -152,8 +159,8 @@ export const mapDispatchToProps = dispatch => {
     dispatchAddMoney: (amount, phone, id) =>
       dispatch(setAddMoney(amount, phone, id)),
     dispatchClearOrderId: () => dispatch(clearOrderId()),
-    dispatchServerIntimationOnSuccess: (order, payment, signature) =>
-      dispatch(ServerIntimationOnSuccess(order, payment, signature)),
+    dispatchServerIntimationOnSuccess: (order, payment, signature, playerId) =>
+      dispatch(ServerIntimationOnSuccess(order, payment, signature, playerId)),
     dispatchonUPIChange: upi => dispatch(setUPI(upi)),
     dispathWithdrawMoneyRequest: (phone, playerId, amountToBeAdded, UPI) =>
       dispatch(withdrawMoney(phone, playerId, amountToBeAdded, UPI)),

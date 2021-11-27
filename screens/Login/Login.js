@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   phoneInput: {
-    borderWidth: 2,
+    borderWidth: 1,
     borderColor: '#1C39BB',
     width: '90%',
     borderRadius: 15,

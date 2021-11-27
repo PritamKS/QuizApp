@@ -48,6 +48,7 @@ export function* serverIntimation(payload) {
         razorpay_order_id: payload.order,
         razorpay_payment_id: payload.payment,
         razorpay_signature: payload.signature,
+        player_id: payload.playerId,
       }),
     });
     if (status === 200) {

@@ -118,6 +118,16 @@ export default function App() {
               headerTintColor: 'white',
             }}
           />
+          <Stack.Screen
+            name="Back to Question"
+            component={WalletContainer}
+            options={{
+              headerStyle: {
+                backgroundColor: '#5e9cff',
+              },
+              headerTintColor: 'white',
+            }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
